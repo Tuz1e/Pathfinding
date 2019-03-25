@@ -1,2 +1,2 @@
-# A-Star
-An A* algorithm
+# Pathfinding
+A pathfinding algorithm
