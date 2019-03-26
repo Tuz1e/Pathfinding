@@ -13,6 +13,7 @@ public:
 
 private:
 	void ChooseAlgorithm();
+	std::vector<std::string> getAlgorithms();
 };
 
 #endif //Program_H
