@@ -9,17 +9,18 @@ Program::~Program()
 {
 }
 
-void Program::Run()
+void Program::Init()
 {
-	
 }
 
-void Program::ChooseAlgorithm()
+void Program::Update(float aDelta)
 {
-	std::cout << "Choose an algorithm" << std::endl;
-	std::vector<std::string> tempAlgo = getAlgorithms();
-	for (size_t i = 0; i < tempAlgo.size(); i++)
-	{
+}
 
-	}
+void Program::Draw(sf::RenderWindow & aWindow)
+{
+}
+
+void Program::LateDraw(sf::RenderWindow & aWindow)
+{
 }
