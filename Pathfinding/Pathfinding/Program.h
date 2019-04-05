@@ -18,4 +18,4 @@ public:
 private:
 };
 
-#endif //Program_H
+#endif //PROGRAM_H
