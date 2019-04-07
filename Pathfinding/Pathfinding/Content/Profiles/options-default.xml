@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tocipe>
+	<ScreenSize>
+		<Width>1280</Width>
+		<Height>720</Height>
+	</ScreenSize>
+	<ScreenAspectRatio>
+		<Width>16</Width>
+		<Height>9</Height>
+	</ScreenAspectRatio>
+	<Fullscreen>0</Fullscreen>
+	<FrameCounter>0</FrameCounter>
+</Tocipe>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tocipe>
+	<Id>0</Id>
+	<Name>
+		<Firstname>Kim</Firstname>
+		<Surname>Duo</Surname>
+	</Name>
+	<Backpack>
+		<NormalSpace>20</NormalSpace>
+		<TociSpace>3</TociSpace>
+	</Backpack>
+	<Monsterid>0</Monsterid>
+</Tocipe>
