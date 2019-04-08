@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tocipe>
-	<Id>0</Id>
-	<Name>
-		<Firstname>Kim</Firstname>
-		<Surname>Duo</Surname>
-	</Name>
-	<Backpack>
-		<NormalSpace>20</NormalSpace>
-		<TociSpace>3</TociSpace>
-	</Backpack>
-	<Monsterid>0</Monsterid>
+	<Username>Kim Duo</Username>
+	<BackpackSpace>20</BackpackSpace>
+	<Class>0</Class>
+	<WeaponId>0</WeaponId>
+	<Abilities>
+		<AB00>0</AB00>
+		<AB01>1</AB01>
+		<AB02>2</AB02>
+		<AB03>3</AB03>
+	</Abilites>
+	<ClassId>0</ClassId>
+	<Attributes>
+		<Strength>11</Strength>
+		<Constitution>10</Constitution>
+		<Dexterity>15</Dexterity>
+		<Intelligence>16</Intelligence>
+		<Wisdom>10</Wisdom>
+		<Charisma>7</Charisma>
+	</Attributes>
 </Tocipe>

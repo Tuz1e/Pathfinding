@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tocipe>
+	<Name>Aid</Name>
+	<Id>7</Id>
+	<TypeId>0</TypeId>
+	<BaseDamage>0</BaseDamage>
+	<BaseHeal>23</BaseHeal>
+	<Bleeding>0</Bleeding>
+	<Toxic>0</Toxic>
+	<Burn>13</Burn>
+	<Cold>0</Cold>
+	<Psych>1</Psych>
+	<SelfUse>1</SelfUse>
+	<Cooldown>7</Cooldown>
+	<UseDescription>
+		Heal yourself, mkay?
+	</UseDescription>
+</Tocipe>

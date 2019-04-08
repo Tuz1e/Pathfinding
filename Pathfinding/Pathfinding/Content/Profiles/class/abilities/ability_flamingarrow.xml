@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tocipe>
+	<Name>Flaming Arrow</Name>
+	<Id>5</Id>
+	<TypeId>2</TypeId>
+	<BaseDamage>23</BaseDamage>
+	<BaseHeal>0</BaseHeal>
+	<Bleeding>0</Bleeding>
+	<Toxic>0</Toxic>
+	<Burn>13</Burn>
+	<Cold>0</Cold>
+	<Psych>1</Psych>
+	<SelfUse>0</SelfUse>
+	<Cooldown>7</Cooldown>
+	<UseDescription>
+		A burning arrow being shot at your opponent, don't touch, could hurt.
+	</UseDescription>
+</Tocipe>

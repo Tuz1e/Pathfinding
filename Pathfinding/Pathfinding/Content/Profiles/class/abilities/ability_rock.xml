@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tocipe>
+	<Name>Rock</Name>
+	<Id>10</Id>
+	<TypeId>0</TypeId>
+	<BaseDamage>0</BaseDamage>
+	<BaseHeal>0</BaseHeal>
+	<Bleeding>0</Bleeding>
+	<Toxic>0</Toxic>
+	<Burn>0</Burn>
+	<Cold>0</Cold>
+	<Psych>0</Psych>
+	<SelfUse>0</SelfUse>
+	<Cooldown>0</Cooldown>
+	<UseDescription>
+		Throw small rocks at your opponent, ye, that's it. Does literally no damage though.
+	</UseDescription>
+</Tocipe>

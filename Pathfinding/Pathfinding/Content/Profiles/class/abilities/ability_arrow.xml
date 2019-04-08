@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tocipe>
+	<Name>Arrow</Name>
+	<Id>6</Id>
+	<TypeId>2</TypeId>
+	<BaseDamage>11</BaseDamage>
+	<BaseHeal>0</BaseHeal>
+	<Bleeding>0</Bleeding>
+	<Toxic>0</Toxic>
+	<Burn>13</Burn>
+	<Cold>0</Cold>
+	<Psych>1</Psych>
+	<SelfUse>0</SelfUse>
+	<Cooldown>7</Cooldown>
+	<UseDescription>
+		An arrow that's supposed to be shot at your opponent, don't gag on it.
+	</UseDescription>
+</Tocipe>

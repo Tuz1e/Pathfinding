@@ -133,17 +133,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Map.cpp" />
     <ClCompile Include="Program.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Grid.h" />
-    <ClInclude Include="GridInfo.h" />
     <ClInclude Include="Info.h" />
-    <ClInclude Include="Map.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Program.h" />
-    <ClInclude Include="Tile.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

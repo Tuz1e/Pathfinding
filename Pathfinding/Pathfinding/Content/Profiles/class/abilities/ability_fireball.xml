@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tocipe>
+	<Name>Fireball</Name>
+	<Id>4</Id>
+	<TypeId>3</TypeId>
+	<BaseDamage>26</BaseDamage>
+	<BaseHeal>0</BaseHeal>
+	<Bleeding>0</Bleeding>
+	<Toxic>0</Toxic>
+	<Burn>17</Burn>
+	<Cold>0</Cold>
+	<Psych>57</Psych>
+	<SelfUse>0</SelfUse>
+	<Cooldown>3</Cooldown>
+	<UseDescription>
+		A big ball of fire being shot at your opponent, what else?
+	</UseDescription>
+</Tocipe>
