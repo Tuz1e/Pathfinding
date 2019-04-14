@@ -5,6 +5,21 @@
 #include <string.h>
 #include <vector>
 
+#include "File.h"
+#include "Info.h"
+
+inline int ConvertToInt(const std::string& aConvertableString)
+{
+	if (!aConvertableString.empty())
+	{
+		try
+		{
+			return std::stoi(aConvertableString.c_str());
+		}
+		catch (...) {}
+	}
+	return 0;
+}
 
 template<typename T>
 void DelPtr(T* ptr) 

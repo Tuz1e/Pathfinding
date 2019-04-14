@@ -3,7 +3,8 @@
 
 #include "pch.h"
 #include "Program.h"
-#include "Info.h"
+
+#include "Settings.h"
 
 #include <chrono>
 #include <time.h>
@@ -32,7 +33,10 @@ int main()
 		(std::chrono::system_clock::now().time_since_epoch()).count();
 	float tempDelta = 0.0f;
 
-	sf::RenderWindow tempWindow(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), TITLE);
+	Settings tempSettings;
+	tempSettings.LoadDefault();
+
+	sf::RenderWindow tempWindow(sf::VideoMode(tempSettings.GetScreen().Width, tempSettings.GetScreen().Height), tempSettings.GetTitle());
 	tempGame.Init();
 
 	while (tempRunFlag && tempWindow.isOpen())
