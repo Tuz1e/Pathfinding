@@ -11,19 +11,32 @@ namespace tx
 	{
 	public:
 		Sprite();
+		Sprite(std::string aTextureLocation, tz::Vector2f& aPos);
 		~Sprite();
 
-		void SetAnimation(int someColumns, int someRows);
-		void UpdateAnimation();
+		void
+			SetScale(tz::Vector2f aScale),
+			Draw(sf::RenderWindow& aWindow),
+			UpdateAnimation(),
+			SetAnimation(int someColumns, int someRows),
+			LoadTexture(tz::Vector2f aScale),
+			SetPosition(tz::Vector2f& aPos);
 
 		sf::Sprite GetSprite();
-		tz::Vector2f GetPosition();
+		tz::Vector2f 
+			GetPosition(), 
+			GetScale();
 		std::string GetTextureLocation();
 
 	private:
-		std::string myTextureLocation;
+		std::string myTextureLocation = "";
 		sf::Sprite mySprite;
-		tz::Vector2f myPos;
+		tz::Vector2f myPos, myScale;
+
+		sf::Texture myTexture;
+
+		bool myLoadedFlag = false;
+
 	};
 }
 

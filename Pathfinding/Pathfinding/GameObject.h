@@ -11,19 +11,25 @@ public:
 	GameObject();
 	~GameObject();
 
-	void Init();
-	void Update(float aDelta);
-	void Draw(sf::RenderWindow& aWindow);
+	void 
+		Init(), 
+		Update(float& aDelta), 
+		Draw(sf::RenderWindow& aWindow);
 
 	std::string GetName();
-	int GetWeaponID();
-	int GetBackpackSpace();
-	tx::Sprite GetSprite();
+	int& GetWeaponID(), &GetBackpackSpace();
+	tx::Sprite* GetSprite();
+	tz::Vector2f& GetPosition();
 
-private:
-	std::string myTextureLocation, myName;
-	int myWeaponId, myBackpackSpace;
-	tx::Sprite mySprite;
+protected:
+	std::string 
+		myTextureLocation, 
+		myName;
+	int 
+		myWeaponId, 
+		myBackpackSpace;
+	tx::Sprite* mySprite;
+	tz::Vector2f myPos, mySpeed;
 };
 
 #endif //GAMEOBJECT_H

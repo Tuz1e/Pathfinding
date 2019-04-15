@@ -3,6 +3,9 @@
 
 #include "pch.h"
 #include "SFML/Graphics.hpp"
+#include "Input.h"
+#include "Player.h"
+#include "TileMap.h"
 
 class Program
 {
@@ -11,11 +14,14 @@ public:
 	~Program();
 
 	void Init();
-	void Update(float aDelta);
-	void Draw(sf::RenderWindow &aWindow);
-	void LateDraw(sf::RenderWindow &aWindow);
+	void Update(float& aDelta);
+	void Draw(sf::RenderWindow& aWindow);
+	void LateDraw(sf::RenderWindow& aWindow);
 
 private:
+	Player* myPlayer;
+	Input myInput;
+	TileMap* myMap;
 };
 
 #endif //PROGRAM_H

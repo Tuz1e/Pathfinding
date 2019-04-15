@@ -9,13 +9,14 @@ GameObject::GameObject()
 
 GameObject::~GameObject()
 {
+	DelPtr(mySprite);
 }
 
 void GameObject::Init()
 {
 }
 
-void GameObject::Update(float aDelta)
+void GameObject::Update(float& aDelta)
 {
 }
 
@@ -28,17 +29,22 @@ std::string GameObject::GetName()
 	return myName;
 }
 
-int GameObject::GetWeaponID()
+int& GameObject::GetWeaponID()
 {
 	return myWeaponId;
 }
 
-int GameObject::GetBackpackSpace()
+int& GameObject::GetBackpackSpace()
 {
 	return myBackpackSpace;
 }
 
-tx::Sprite GameObject::GetSprite()
+tx::Sprite* GameObject::GetSprite()
 {
 	return mySprite;
+}
+
+tz::Vector2f& GameObject::GetPosition()
+{
+	return myPos;
 }

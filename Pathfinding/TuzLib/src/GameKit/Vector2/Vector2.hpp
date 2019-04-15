@@ -78,6 +78,12 @@ namespace tz
 	template<typename T>
 	Vector2<T> operator /=(const tz::Vector2<T>& leftVec, T& right);
 
+	template<typename T>
+	Vector2<T> operator +=(const tz::Vector2<T>& leftVec, T& right);
+
+	template<typename T>
+	Vector2<T> operator -=(const tz::Vector2<T>& leftVec, T& right);
+
 	typedef Vector2<int> Vector2i;
 	typedef Vector2<unsigned int> Vector2u;
 	typedef Vector2<float> Vector2f;

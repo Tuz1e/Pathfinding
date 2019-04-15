@@ -119,15 +119,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\GameKit\FileManagement\File.h" />
     <ClInclude Include="Include\TZ\GameKit.hpp" />
     <ClInclude Include="src\GameKit\Vector2\Vector2.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\GameKit\Vector2\Vector2.inl" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="src\GameKit\FileManagement\File.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

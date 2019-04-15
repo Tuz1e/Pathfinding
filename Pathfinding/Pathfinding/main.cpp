@@ -71,8 +71,8 @@ int main()
 		if ((long)std::chrono::duration_cast<std::chrono::milliseconds>
 			(std::chrono::system_clock::now().time_since_epoch()).count() - tempLastTimer > 1000)
 		{
-			printf("\n\nFPS: %i", tempFrames);
-			printf("\nDELTA: %f", tempDelta);
+			//printf("\n\nFPS: %i", tempFrames);
+			//printf("\nDELTA: %f", tempDelta);
 			tempLastTimer += 1000;
 			tempTicks = 0;
 			tempFrames = 0;

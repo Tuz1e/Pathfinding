@@ -3,7 +3,13 @@
 	<Username>Ghost Boy</Username>
 	<BackpackSpace>20</BackpackSpace>
 	<WeaponId>0</WeaponId>
+	<Speed>
+		<SpeedX>10</SpeedX>
+		<SpeedY>10</SpeedY>
+	</Speed>
 	<Texture>
-		<TX00>..\..\player\player_temp_texture.png</TX00>
+		<TX00>Content/Textures/player/player_temp_texture.png</TX00>
+			<TX00-ScaleX>2</TX00-ScaleX>
+			<TX00-ScaleY>2</TX00-ScaleY>
 	</Texture>
 </Tocipe>

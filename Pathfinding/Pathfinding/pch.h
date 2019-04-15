@@ -21,10 +21,32 @@ inline int ConvertToInt(const std::string& aConvertableString)
 	return 0;
 }
 
-template<typename T>
-void DelPtr(T* ptr) 
+inline float ConvertToFloat(const std::string& aConvertableString) 
 {
-	delete[](ptr);
+	if (!aConvertableString.empty()) 
+	{
+		try 
+		{
+			return std::stof(aConvertableString);
+		}
+		catch (...) {}
+	}
+	return 0.0f;
+}
+
+inline void PrintLoaded(std::string aStr) 
+{
+	try
+	{
+		std::cout << "Loaded in: " << aStr << std::endl;
+	}
+	catch (...) {}
+}
+
+template<typename T>
+void DelPtr(T*& ptr) 
+{
+	delete ptr;
 	ptr = nullptr;
 }
 

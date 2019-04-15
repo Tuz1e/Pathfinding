@@ -92,3 +92,21 @@ inline tz::Vector2<T> operator /=(const tz::Vector2<T>& leftVec, T& right)
 
 	return leftVec;
 }
+
+template<typename T>
+inline tz::Vector2<T> operator +=(const tz::Vector2<T>& leftVec, T& right) 
+{
+	leftVec.X += right;
+	leftVec.Y += right;
+
+	return leftVec;
+}
+
+template<typename T>
+inline tz::Vector2<T> operator -=(const tz::Vector2<T>& leftVec, T& right)
+{
+	leftVec.X -= right;
+	leftVec.Y -= right;
+
+	return leftVec;
+}
