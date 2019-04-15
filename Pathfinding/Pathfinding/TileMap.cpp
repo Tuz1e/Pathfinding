@@ -32,6 +32,8 @@ void TileMap::LoadMapData()
 
 	LoadTexture();
 
+
+	//TODO: The map are tiling them incorrectly, it is not taking their size into account regarding their position
 	int tempTileId = 0;
 	for (size_t i = 0; i < myHeight; i++)
 	{
