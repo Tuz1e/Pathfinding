@@ -12,7 +12,6 @@ struct Tile
 {
 	tz::Vector2f Position;
 	int TextureID;
-	sf::Sprite Sprite;
 };
 
 class TileMap
@@ -25,14 +24,15 @@ public:
 	void Draw(sf::RenderWindow& aWindow);
 
 private:
-	void LoadTexture();
+	void SetSprite();
 
-	std::vector<Tile> myMap;
-	int myWidth, myHeight;
-	tx::Sprite* mySprite;
+	//Double vector to account for layers
+	std::vector<std::vector<Tile>> myMap;
+	int myWidth, myHeight, myLayerAmount;
+	sf::Sprite* mySprite;
 	std::string myTextureLocation, myMapLocation;
 	sf::Texture myTexture;
-	float myTileDimension;
+	float myTileDimension, myTileScale;
 };
 
 #endif //TILEMAP_H

@@ -1,6 +1,10 @@
 #include "TileMap.h"
 
-//TODO: Tiling works but need to specify the location on the tilemap which is, actually TextureID
+//UNDONE: Tiling works but need to specify the location on the tilemap which is, actually TextureID
+//TODO: Scale up the sprites a bit
+//TODO: Implement specific layers for collisions etc
+//OPTIMIZE: Eats up ALOT of resources when running larger maps.
+//Could be fixed by having one sprite instead of width*height amount.
 
 TileMap::TileMap(std::string aMapLocation)
 {
@@ -21,71 +25,88 @@ void TileMap::LoadMapData()
 	//1: Map width
 	//2: Map height
 	//3: Tile dimensions
-	//4: Map data
+	//4: Tile scale
+	//5: Map layer amount
+	//6+: Map data
 	std::vector<std::string> tempMapDataVec = SplitString(tempMapData, ';');
 
 	myTextureLocation = tempMapDataVec[0];
 	myWidth = ConvertToInt(tempMapDataVec[1]);
 	myHeight = ConvertToInt(tempMapDataVec[2]);
 	myTileDimension = ConvertToFloat(tempMapDataVec[3]);
-	std::vector<std::string> tempData = SplitString(tempMapDataVec[4], ',');
+	myTileScale = ConvertToFloat(tempMapDataVec[4]);
+	myLayerAmount = ConvertToInt(tempMapDataVec[5]);
 
-	LoadTexture();
+	//std::vector<std::string> tempData = SplitString(tempMapDataVec[6], ',');
+	std::vector<std::vector<std::string>> tempData2Dim;
+	std::vector<std::string> tempData;
+
+	for (size_t i = 6; i < tempMapDataVec.size(); i++)
+	{
+		tempData = SplitString(tempMapDataVec[i], ';');
+		for (size_t j = 0; j < tempData.size(); j++)
+		{
+			tempData2Dim.push_back(SplitString(tempData[j], ','));
+		}
+	}
+
+	SetSprite();
+
+	myTileDimension *= myTileScale;
+
+	std::vector<Tile> tempMap;
 
 	int tempTileId = 0;
 	for (size_t y = 0; y < myHeight; y++)
 	{
 		for (size_t x = 0; x < myWidth; x++)
 		{
-			Tile tempTile = 
-			{ 
-				tz::Vector2f(x * myTileDimension, y * myTileDimension),
-				ConvertToInt(tempData[tempTileId]),
-				sf::Sprite(myTexture)
-			};
-
-			myMap.push_back(tempTile);
-			myMap[tempTileId].Sprite.setPosition
-			(
-				sf::Vector2f
-				(
-					myMap[tempTileId].Position.X,
-					myMap[tempTileId].Position.Y
-				)
-			);
-
-			//myMap[tempTileId].Sprite.setScale(sf::Vector2f(2.0, 2.0));
+			for (size_t i = 0; i < tempData2Dim.size(); i++)
+			{
+				Tile tempTile =
+				{
+					tz::Vector2f(x * myTileDimension, y * myTileDimension),
+					ConvertToInt(tempData2Dim[i][tempTileId]),
+				};
+				tempMap.push_back(tempTile);
+			}
 
 			tempTileId += 1;
 		}
 	}
 
+	myMap.push_back(tempMap);
 	PrintLoaded("Map data");
 }
 
 void TileMap::Draw(sf::RenderWindow& aWindow)
 {
-	//FIX: Problem regarding tiling of int rect.
 	for (size_t i = 0; i < myMap.size(); i++)
 	{
-		if (myMap[i].TextureID != 0)
+		for (size_t j = 0; j < myMap[i].size(); j++)
 		{
-			myMap[i].Sprite.setTextureRect
-			(
-				sf::IntRect
+			if (myMap[i][j].TextureID != 0)
+			{
+				mySprite->setTextureRect
 				(
-					myMap[i].Position.X * myTileDimension,
-					myMap[i].Position.Y * myTileDimension,
-					myTileDimension,
-					myTileDimension
-				)
-			);
-			aWindow.draw(myMap[i].Sprite);
+					sf::IntRect
+					(
+						myMap[i][j].Position.X * myTileDimension,
+						myMap[i][j].Position.Y * myTileDimension,
+						myTileDimension,
+						myTileDimension
+					)
+				);
+				mySprite->setPosition(sf::Vector2f(myMap[i][j].Position.X, myMap[i][j].Position.Y));
+				aWindow.draw(*mySprite);
+			}
 		}
 	}
 }
 
-void TileMap::LoadTexture()
+void TileMap::SetSprite()
 {
 	myTexture.loadFromFile(myTextureLocation);
+	mySprite = new sf::Sprite(myTexture);
+	mySprite->setScale(myTileScale, myTileScale);
 }
