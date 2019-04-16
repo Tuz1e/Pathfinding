@@ -32,6 +32,7 @@ private:
 	tx::Sprite* mySprite;
 	std::string myTextureLocation, myMapLocation;
 	sf::Texture myTexture;
+	float myTileDimension;
 };
 
 #endif //TILEMAP_H

@@ -1,6 +1,6 @@
 #include "TileMap.h"
 
-
+//TODO: Tiling works but need to specify the location on the tilemap which is, actually TextureID
 
 TileMap::TileMap(std::string aMapLocation)
 {
@@ -20,35 +20,30 @@ void TileMap::LoadMapData()
 	//0: Texture Location
 	//1: Map width
 	//2: Map height
-	//3: Map data and texture
+	//3: Tile dimensions
+	//4: Map data
 	std::vector<std::string> tempMapDataVec = SplitString(tempMapData, ';');
 
 	myTextureLocation = tempMapDataVec[0];
 	myWidth = ConvertToInt(tempMapDataVec[1]);
 	myHeight = ConvertToInt(tempMapDataVec[2]);
-	std::vector<std::string> tempData = SplitString(tempMapDataVec[3], ',');
-
-	//myMap.resize(myWidth * myHeight);
+	myTileDimension = ConvertToFloat(tempMapDataVec[3]);
+	std::vector<std::string> tempData = SplitString(tempMapDataVec[4], ',');
 
 	LoadTexture();
 
-
-	//TODO: The map are tiling them incorrectly, it is not taking their size into account regarding their position
 	int tempTileId = 0;
-	for (size_t i = 0; i < myHeight; i++)
+	for (size_t y = 0; y < myHeight; y++)
 	{
-		for (size_t j = 0; j < myWidth; j++)
+		for (size_t x = 0; x < myWidth; x++)
 		{
 			Tile tempTile = 
 			{ 
-				tz::Vector2f(i, j),
+				tz::Vector2f(x * myTileDimension, y * myTileDimension),
 				ConvertToInt(tempData[tempTileId]),
 				sf::Sprite(myTexture)
 			};
-			//myMap[tempTile].Position = tz::Vector2f(i, j);
-			//myMap[tempTileId].TextureID = ConvertToInt(tempMapDataVec[tempTileId]);
 
-			//myMap[tempTileId].Sprite = sf::Sprite(myTexture);
 			myMap.push_back(tempTile);
 			myMap[tempTileId].Sprite.setPosition
 			(
@@ -59,7 +54,7 @@ void TileMap::LoadMapData()
 				)
 			);
 
-			myMap[tempTileId].Sprite.setScale(sf::Vector2f(2.0, 2.0));
+			//myMap[tempTileId].Sprite.setScale(sf::Vector2f(2.0, 2.0));
 
 			tempTileId += 1;
 		}
@@ -70,9 +65,23 @@ void TileMap::LoadMapData()
 
 void TileMap::Draw(sf::RenderWindow& aWindow)
 {
+	//FIX: Problem regarding tiling of int rect.
 	for (size_t i = 0; i < myMap.size(); i++)
 	{
-		aWindow.draw(myMap[i].Sprite);
+		if (myMap[i].TextureID != 0)
+		{
+			myMap[i].Sprite.setTextureRect
+			(
+				sf::IntRect
+				(
+					myMap[i].Position.X * myTileDimension,
+					myMap[i].Position.Y * myTileDimension,
+					myTileDimension,
+					myTileDimension
+				)
+			);
+			aWindow.draw(myMap[i].Sprite);
+		}
 	}
 }
 
