@@ -9,7 +9,7 @@
 	</Speed>
 	<Texture>
 		<TX00>Content/Textures/player/player_temp_texture.png</TX00>
-			<TX00-ScaleX>1.5</TX00-ScaleX>
-			<TX00-ScaleY>1.5</TX00-ScaleY>
+			<TX00-ScaleX>1.75</TX00-ScaleX>
+			<TX00-ScaleY>1.75</TX00-ScaleY>
 	</Texture>
 </Tocipe>

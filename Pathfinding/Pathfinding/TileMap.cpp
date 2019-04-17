@@ -27,6 +27,9 @@ void TileMap::LoadMapData()
 	//3: Tile dimensions
 	//4: Tile scale
 	//5: Map layer amount
+	//6: Spritesheet size
+	//7: Spritesheet Horizontal size
+	//8: Spritesheet Vertical size
 	//6+: Map data
 	std::vector<std::string> tempMapDataVec = SplitString(tempMapData, ';');
 
@@ -36,12 +39,15 @@ void TileMap::LoadMapData()
 	myTileDimension = ConvertToFloat(tempMapDataVec[3]);
 	myTileScale = ConvertToFloat(tempMapDataVec[4]);
 	myLayerAmount = ConvertToInt(tempMapDataVec[5]);
+	mySpritesheetSize = ConvertToInt(tempMapDataVec[6]);
+	mySheetHorizontalSize = ConvertToInt(tempMapDataVec[7]);
+	mySheetVerticalSize = ConvertToInt(tempMapDataVec[8]);
 
 	//std::vector<std::string> tempData = SplitString(tempMapDataVec[6], ',');
 	std::vector<std::vector<std::string>> tempData2Dim;
 	std::vector<std::string> tempData;
 
-	for (size_t i = 6; i < tempMapDataVec.size(); i++)
+	for (size_t i = 9; i < tempMapDataVec.size(); i++)
 	{
 		tempData = SplitString(tempMapDataVec[i], ';');
 		for (size_t j = 0; j < tempData.size(); j++)
@@ -65,7 +71,7 @@ void TileMap::LoadMapData()
 			{
 				Tile tempTile =
 				{
-					tz::Vector2f(x * myTileDimension, y * myTileDimension),
+					sf::Vector2f(x * myTileDimension, y * myTileDimension),
 					ConvertToInt(tempData2Dim[i][tempTileId]),
 				};
 				tempMap.push_back(tempTile);
@@ -75,12 +81,35 @@ void TileMap::LoadMapData()
 		}
 	}
 
+	tempTileId = 0;
+	for (size_t y = 0; y < mySheetVerticalSize; y++)
+	{
+		for (size_t x = 0; x < mySheetHorizontalSize; x++)
+		{
+			mySpriteTiles.push_back
+			(
+				sf::IntRect
+				(
+					mySpritesheet.getSize().x / mySheetHorizontalSize * x, // 16 * x
+					mySpritesheet.getSize().y / mySheetVerticalSize * y, // = 16 * y
+					mySpritesheet.getSize().x / mySheetHorizontalSize, // = 16
+					mySpritesheet.getSize().y / mySheetVerticalSize // = 16
+				)
+			);
+
+			tempTileId++;
+		}
+	}
+
+	std::cout << "X: " << mySpritesheet.getSize().x << " || Y: " << mySpritesheet.getSize().y << std::endl;
+
 	myMap.push_back(tempMap);
 	PrintLoaded("Map data");
 }
 
 void TileMap::Draw(sf::RenderWindow& aWindow)
 {
+	int temp = 0;
 	for (size_t i = 0; i < myMap.size(); i++)
 	{
 		for (size_t j = 0; j < myMap[i].size(); j++)
@@ -89,15 +118,16 @@ void TileMap::Draw(sf::RenderWindow& aWindow)
 			{
 				mySprite->setTextureRect
 				(
-					sf::IntRect
-					(
-						myMap[i][j].Position.X * myTileDimension,
-						myMap[i][j].Position.Y * myTileDimension,
-						myTileDimension,
-						myTileDimension
-					)
+					//sf::IntRect
+					//(
+					//	myMap[i][j].Position.X * myTileDimension,
+					//	myMap[i][j].Position.Y * myTileDimension,
+					//	myTileDimension,
+					//	myTileDimension)
+					//mySpriteTiles[myMap[i][j].TextureID - 1]
+					mySpriteTiles[myMap[i][j].TextureID-1]
 				);
-				mySprite->setPosition(sf::Vector2f(myMap[i][j].Position.X, myMap[i][j].Position.Y));
+				mySprite->setPosition(myMap[i][j].Position);
 				aWindow.draw(*mySprite);
 			}
 		}
@@ -106,7 +136,7 @@ void TileMap::Draw(sf::RenderWindow& aWindow)
 
 void TileMap::SetSprite()
 {
-	myTexture.loadFromFile(myTextureLocation);
-	mySprite = new sf::Sprite(myTexture);
+	mySpritesheet.loadFromFile(myTextureLocation);
+	mySprite = new sf::Sprite(mySpritesheet);
 	mySprite->setScale(myTileScale, myTileScale);
 }

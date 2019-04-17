@@ -10,7 +10,7 @@
 
 struct Tile
 {
-	tz::Vector2f Position;
+	sf::Vector2f Position;
 	int TextureID;
 };
 
@@ -26,12 +26,14 @@ public:
 private:
 	void SetSprite();
 
-	//Double vector to account for layers
+	//Double vector to account for multiple layers
 	std::vector<std::vector<Tile>> myMap;
-	int myWidth, myHeight, myLayerAmount;
+	int myWidth, myHeight, myLayerAmount, mySpritesheetSize;
+	int mySheetHorizontalSize, mySheetVerticalSize; //x, y
 	sf::Sprite* mySprite;
 	std::string myTextureLocation, myMapLocation;
-	sf::Texture myTexture;
+	sf::Texture mySpritesheet;
+	std::vector<sf::IntRect> mySpriteTiles;
 	float myTileDimension, myTileScale;
 };
 
