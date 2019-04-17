@@ -9,12 +9,14 @@ public:
 	Input();
 	~Input();
 
-	bool GetJumpKey(), GetLeftKey(), GetRightKey();
+	bool GetLeftKey(), GetRightKey(), GetUpKey(), GetDownKey();
 
 private:
-	sf::Keyboard::Key myJumpKey = sf::Keyboard::Space;
-	sf::Keyboard::Key myLeftKey = sf::Keyboard::A;
-	sf::Keyboard::Key myRightKey = sf::Keyboard::D;
+	sf::Keyboard::Key 
+		myUpKey = sf::Keyboard::W,
+		myDownKey = sf::Keyboard::S,
+		myLeftKey = sf::Keyboard::A,
+		myRightKey = sf::Keyboard::D;
 };
 
 #endif //INPUT_H

@@ -22,6 +22,7 @@ private:
 	Player* myPlayer;
 	Input myInput;
 	TileMap* myMap;
+	sf::View myView;
 };
 
 #endif //PROGRAM_H

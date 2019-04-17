@@ -40,7 +40,7 @@ inline std::string GetFromXml(const std::string& aPath, const std::string& aFind
 	return tempLine;
 }
 
-inline std::string GetMap(const std::string& aPath) 
+inline std::string GetMapData(const std::string& aPath) 
 {
 	std::string tempLine, tempFullLine;
 	char tempDelimiter = ';';

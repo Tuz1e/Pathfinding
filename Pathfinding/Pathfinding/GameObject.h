@@ -11,15 +11,15 @@ public:
 	GameObject();
 	~GameObject();
 
-	void 
+	virtual void 
 		Init(), 
 		Update(float& aDelta), 
 		Draw(sf::RenderWindow& aWindow);
 
-	std::string GetName();
-	int& GetWeaponID(), &GetBackpackSpace();
-	tx::Sprite* GetSprite();
-	tz::Vector2f& GetPosition();
+	virtual std::string GetName();
+	virtual int& GetWeaponID(), &GetBackpackSpace();
+	virtual tx::Sprite* GetSprite();
+	virtual tz::Vector2f& GetPosition();
 
 protected:
 	std::string 

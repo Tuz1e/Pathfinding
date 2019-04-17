@@ -1,49 +1,49 @@
 #include "TileMap.h"
 
-//UNDONE: Tiling works but need to specify the location on the tilemap which is, actually TextureID
-//TODO: Scale up the sprites a bit
 //TODO: Implement specific layers for collisions etc
-//OPTIMIZE: Eats up ALOT of resources when running larger maps.
-//Could be fixed by having one sprite instead of width*height amount.
+//OPTIMIZE: Eats up ALOT of resources when running larger maps. 
+//Could be fixed by only rendering that which are inside of the window
+//TODO: Implement multithreading
 
 TileMap::TileMap(std::string aMapLocation)
 {
 	myMapLocation = aMapLocation;
+	myMap = new std::vector<std::vector<Tile>>();
 }
 
 
 TileMap::~TileMap()
 {
+	DelPtr(myMap);
 	DelPtr(mySprite);
 }
 
 void TileMap::LoadMapData()
 {
-	std::string tempMapData = GetMap(myMapLocation);
+	std::string tempMapData = GetMapData(myMapLocation);
 
 	//0: Texture Location
 	//1: Map width
 	//2: Map height
-	//3: Tile dimensions
+	//3: Tile dimension
 	//4: Tile scale
 	//5: Map layer amount
 	//6: Spritesheet size
 	//7: Spritesheet Horizontal size
 	//8: Spritesheet Vertical size
-	//6+: Map data
+	//9+: Map data
 	std::vector<std::string> tempMapDataVec = SplitString(tempMapData, ';');
 
-	myTextureLocation = tempMapDataVec[0];
+	mySheetLocation = tempMapDataVec[0];
 	myWidth = ConvertToInt(tempMapDataVec[1]);
 	myHeight = ConvertToInt(tempMapDataVec[2]);
-	myTileDimension = ConvertToFloat(tempMapDataVec[3]);
-	myTileScale = ConvertToFloat(tempMapDataVec[4]);
+	myMapTileDimension = ConvertToFloat(tempMapDataVec[3]);
+	myMapTileScale = ConvertToFloat(tempMapDataVec[4]);
 	myLayerAmount = ConvertToInt(tempMapDataVec[5]);
-	mySpritesheetSize = ConvertToInt(tempMapDataVec[6]);
+	mySheetSize = ConvertToInt(tempMapDataVec[6]);
 	mySheetHorizontalSize = ConvertToInt(tempMapDataVec[7]);
 	mySheetVerticalSize = ConvertToInt(tempMapDataVec[8]);
 
-	//std::vector<std::string> tempData = SplitString(tempMapDataVec[6], ',');
 	std::vector<std::vector<std::string>> tempData2Dim;
 	std::vector<std::string> tempData;
 
@@ -56,9 +56,87 @@ void TileMap::LoadMapData()
 		}
 	}
 
-	SetSprite();
+	LoadSprite();
 
-	myTileDimension *= myTileScale;
+	//Scales the dimensions to the correct proportions
+	myMapTileDimension *= myMapTileScale;
+
+	//Load spritesheet data
+	LoadSheetData(&myTextureTiles);
+
+	//Load and add map data to myMap
+	myMap->push_back(LoadMap(&tempData2Dim));
+
+	CleanMapData(myMap);
+
+	PrintLoaded("Finished: Map data");
+}
+
+void TileMap::Draw(sf::RenderWindow& aWindow)
+{
+	for (size_t i = 0; i < myMap->size(); i++)
+	{
+		for (size_t j = 0; j < myMap->at(i).size(); j++)
+		{
+			mySprite->setTextureRect(myTextureTiles[myMap->at(i)[j].TextureID - 1]);
+			mySprite->setPosition(myMap->at(i)[j].Position);
+			aWindow.draw(*mySprite);
+		}
+	}
+}
+
+void TileMap::LoadSprite()
+{
+	mySheet.loadFromFile(mySheetLocation);
+	mySprite = new sf::Sprite(mySheet);
+	mySprite->setScale(myMapTileScale, myMapTileScale);
+
+	PrintLoaded("Map data: sprite");
+}
+
+void TileMap::CleanMapData(std::vector<std::vector<Tile>>* aMap)
+{
+	for (size_t i = 0; i < aMap->size(); i++)
+	{
+		std::vector<Tile> tempData;
+		for (size_t j = 0; j < aMap->at(i).size(); j++)
+		{
+			if (aMap->at(i)[j].TextureID != 0)
+			{
+				tempData.push_back(aMap->at(i)[j]);
+			}
+		}
+		aMap->at(i).clear();
+		aMap->at(i) = tempData;
+	}
+
+	Print("Cleaned map data");
+}
+
+void TileMap::LoadSheetData(std::vector<sf::IntRect>* someTextureTiles)
+{
+	for (size_t y = 0; y < mySheetVerticalSize; y++)
+	{
+		for (size_t x = 0; x < mySheetHorizontalSize; x++)
+		{
+			someTextureTiles->push_back
+			(
+				sf::IntRect
+				(
+					mySheet.getSize().x / mySheetHorizontalSize * x, // 16 * x
+					mySheet.getSize().y / mySheetVerticalSize * y, // = 16 * y
+					mySheet.getSize().x / mySheetHorizontalSize, // = 16
+					mySheet.getSize().y / mySheetVerticalSize // = 16
+				)
+			);
+		}
+	}
+
+	PrintLoaded("Map data: Spritesheet data");
+}
+
+std::vector<Tile> TileMap::LoadMap(std::vector<std::vector<std::string>>* someMapData)
+{
 
 	std::vector<Tile> tempMap;
 
@@ -67,76 +145,20 @@ void TileMap::LoadMapData()
 	{
 		for (size_t x = 0; x < myWidth; x++)
 		{
-			for (size_t i = 0; i < tempData2Dim.size(); i++)
+			for (size_t i = 0; i < someMapData->size(); i++)
 			{
 				Tile tempTile =
 				{
-					sf::Vector2f(x * myTileDimension, y * myTileDimension),
-					ConvertToInt(tempData2Dim[i][tempTileId]),
+					sf::Vector2f(x * myMapTileDimension, y * myMapTileDimension),
+					ConvertToInt(someMapData->at(i)[tempTileId]),
 				};
 				tempMap.push_back(tempTile);
 			}
-
-			tempTileId += 1;
-		}
-	}
-
-	tempTileId = 0;
-	for (size_t y = 0; y < mySheetVerticalSize; y++)
-	{
-		for (size_t x = 0; x < mySheetHorizontalSize; x++)
-		{
-			mySpriteTiles.push_back
-			(
-				sf::IntRect
-				(
-					mySpritesheet.getSize().x / mySheetHorizontalSize * x, // 16 * x
-					mySpritesheet.getSize().y / mySheetVerticalSize * y, // = 16 * y
-					mySpritesheet.getSize().x / mySheetHorizontalSize, // = 16
-					mySpritesheet.getSize().y / mySheetVerticalSize // = 16
-				)
-			);
 
 			tempTileId++;
 		}
 	}
 
-	std::cout << "X: " << mySpritesheet.getSize().x << " || Y: " << mySpritesheet.getSize().y << std::endl;
-
-	myMap.push_back(tempMap);
-	PrintLoaded("Map data");
-}
-
-void TileMap::Draw(sf::RenderWindow& aWindow)
-{
-	int temp = 0;
-	for (size_t i = 0; i < myMap.size(); i++)
-	{
-		for (size_t j = 0; j < myMap[i].size(); j++)
-		{
-			if (myMap[i][j].TextureID != 0)
-			{
-				mySprite->setTextureRect
-				(
-					//sf::IntRect
-					//(
-					//	myMap[i][j].Position.X * myTileDimension,
-					//	myMap[i][j].Position.Y * myTileDimension,
-					//	myTileDimension,
-					//	myTileDimension)
-					//mySpriteTiles[myMap[i][j].TextureID - 1]
-					mySpriteTiles[myMap[i][j].TextureID-1]
-				);
-				mySprite->setPosition(myMap[i][j].Position);
-				aWindow.draw(*mySprite);
-			}
-		}
-	}
-}
-
-void TileMap::SetSprite()
-{
-	mySpritesheet.loadFromFile(myTextureLocation);
-	mySprite = new sf::Sprite(mySpritesheet);
-	mySprite->setScale(myTileScale, myTileScale);
+	PrintLoaded("Map data: Map");
+	return tempMap;
 }

@@ -24,17 +24,22 @@ public:
 	void Draw(sf::RenderWindow& aWindow);
 
 private:
-	void SetSprite();
+	void 
+		LoadSprite(), 
+		LoadSheetData(std::vector<sf::IntRect>* someTextureTiles),
+		CleanMapData(std::vector<std::vector<Tile>>* aMap);
+
+	std::vector<Tile> LoadMap(std::vector<std::vector<std::string>>* someMapData);
 
 	//Double vector to account for multiple layers
-	std::vector<std::vector<Tile>> myMap;
-	int myWidth, myHeight, myLayerAmount, mySpritesheetSize;
+	std::vector<std::vector<Tile>>* myMap;
+	int myWidth, myHeight, myLayerAmount, mySheetSize;
 	int mySheetHorizontalSize, mySheetVerticalSize; //x, y
 	sf::Sprite* mySprite;
-	std::string myTextureLocation, myMapLocation;
-	sf::Texture mySpritesheet;
-	std::vector<sf::IntRect> mySpriteTiles;
-	float myTileDimension, myTileScale;
+	std::string mySheetLocation, myMapLocation;
+	sf::Texture mySheet;
+	std::vector<sf::IntRect> myTextureTiles;
+	float myMapTileDimension, myMapTileScale;
 };
 
 #endif //TILEMAP_H

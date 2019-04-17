@@ -29,6 +29,10 @@ Player::~Player()
 void Player::Init(Input& anInput)
 {
 	myInput = anInput;
+	mySprite->GetSprite().setOrigin(
+		sf::Vector2f(
+			mySprite->GetSprite().getTexture()->getSize().x / 2.0f, 
+			mySprite->GetSprite().getTexture()->getSize().y / 2.0f));
 }
 
 void Player::Update(float& aDelta)
@@ -44,8 +48,16 @@ void Player::Update(float& aDelta)
 		myVelocity.X = mySpeed.X;
 	}
 
-	//myPos = tz::Vector2f(myPos.X + myVelocity.X * aDelta, myPos.Y + myVelocity.Y * aDelta);
-	myPos = myPos + myVelocity;
+	if (myInput.GetUpKey())
+	{
+		myVelocity.Y = -mySpeed.Y;
+	}
+	else if (myInput.GetDownKey())
+	{
+		myVelocity.Y = mySpeed.Y;
+	}
+
+	myPos = myPos + myVelocity * aDelta;
 	mySprite->SetPosition(myPos);
 }
 

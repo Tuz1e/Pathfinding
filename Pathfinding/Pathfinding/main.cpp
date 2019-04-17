@@ -63,7 +63,7 @@ int main()
 		}
 
 		tempFrames++; //Updates frames
-		tempWindow.clear(sf::Color(51, 153, 255)); //Clear with light blue colour
+		tempWindow.clear(sf::Color(32, 32, 32));
 		tempGame.Draw(tempWindow);
 		tempGame.LateDraw(tempWindow); //To render UI elements, on top of normal game ones.
 		tempWindow.display();

@@ -8,37 +8,46 @@
 #include "File.h"
 #include "Info.h"
 
-inline int ConvertToInt(const std::string& aConvertableString)
+inline int ConvertToInt(const std::string& convertableStr)
 {
-	if (!aConvertableString.empty())
+	if (!convertableStr.empty())
 	{
 		try
 		{
-			return std::stoi(aConvertableString.c_str());
+			return std::stoi(convertableStr.c_str());
 		}
 		catch (...) {}
 	}
 	return 0;
 }
 
-inline float ConvertToFloat(const std::string& aConvertableString) 
+inline float ConvertToFloat(const std::string& convertableStr) 
 {
-	if (!aConvertableString.empty()) 
+	if (!convertableStr.empty()) 
 	{
 		try 
 		{
-			return std::stof(aConvertableString);
+			return std::stof(convertableStr);
 		}
 		catch (...) {}
 	}
 	return 0.0f;
 }
 
-inline void PrintLoaded(std::string aStr) 
+inline void PrintLoaded(std::string str) 
 {
 	try
 	{
-		std::cout << "Loaded in: " << aStr << std::endl;
+		std::cout << "Loaded in: " << str << std::endl;
+	}
+	catch (...) {}
+}
+
+inline void Print(std::string str)
+{
+	try
+	{
+		std::cout << str << std::endl;
 	}
 	catch (...) {}
 }
