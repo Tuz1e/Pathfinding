@@ -1,11 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.489
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.156
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Pathfinding", "Pathfinding\Pathfinding.vcxproj", "{CDE623B2-BD47-439C-A96E-BFACDD63F3EF}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TuzLib", "TuzLib\TuzLib.vcxproj", "{688A62AB-580A-46F9-8C8C-697F91D7A0CD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,14 +21,6 @@ Global
 		{CDE623B2-BD47-439C-A96E-BFACDD63F3EF}.Release|x64.Build.0 = Release|x64
 		{CDE623B2-BD47-439C-A96E-BFACDD63F3EF}.Release|x86.ActiveCfg = Release|Win32
 		{CDE623B2-BD47-439C-A96E-BFACDD63F3EF}.Release|x86.Build.0 = Release|Win32
-		{688A62AB-580A-46F9-8C8C-697F91D7A0CD}.Debug|x64.ActiveCfg = Debug|x64
-		{688A62AB-580A-46F9-8C8C-697F91D7A0CD}.Debug|x64.Build.0 = Debug|x64
-		{688A62AB-580A-46F9-8C8C-697F91D7A0CD}.Debug|x86.ActiveCfg = Debug|Win32
-		{688A62AB-580A-46F9-8C8C-697F91D7A0CD}.Debug|x86.Build.0 = Debug|Win32
-		{688A62AB-580A-46F9-8C8C-697F91D7A0CD}.Release|x64.ActiveCfg = Release|x64
-		{688A62AB-580A-46F9-8C8C-697F91D7A0CD}.Release|x64.Build.0 = Release|x64
-		{688A62AB-580A-46F9-8C8C-697F91D7A0CD}.Release|x86.ActiveCfg = Release|Win32
-		{688A62AB-580A-46F9-8C8C-697F91D7A0CD}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

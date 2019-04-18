@@ -43,7 +43,6 @@ inline std::string GetFromXml(const std::string& aPath, const std::string& aFind
 inline std::string GetMapData(const std::string& aPath) 
 {
 	std::string tempLine, tempFullLine;
-	char tempDelimiter = ';';
 	std::ifstream tempFile;
 	tempFile.open(aPath);
 

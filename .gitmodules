@@ -1,0 +1,3 @@
+[submodule "Pathfinding/Dependencies/TuzLib"]
+	path = Pathfinding/Dependencies/TuzLib
+	url = https://github.com/Tuz1e/TuzLib
