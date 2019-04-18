@@ -23,6 +23,9 @@ private:
 	Input myInput;
 	TileMap* myMap;
 	sf::View myView;
+	sf::RenderWindow myWindow;
+
+	float myRenderOffset, myFadeOffset;
 };
 
 #endif //PROGRAM_H

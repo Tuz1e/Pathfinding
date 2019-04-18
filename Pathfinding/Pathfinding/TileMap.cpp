@@ -72,15 +72,32 @@ void TileMap::LoadMapData()
 	PrintLoaded("Finished: Map data");
 }
 
-void TileMap::Draw(sf::RenderWindow& aWindow)
+void TileMap::Draw(sf::RenderWindow& aWindow, Player& aPlayer, float& aRenderOffset, float& aFadeOffset)
 {
+	tz::Vector2f tempMapPos;
+	float tempDis = 0;
+	sf::Color tempC;
+	float tempOffset = aRenderOffset / 4;
+
 	for (size_t i = 0; i < myMap->size(); i++)
 	{
 		for (size_t j = 0; j < myMap->at(i).size(); j++)
 		{
-			mySprite->setTextureRect(myTextureTiles[myMap->at(i)[j].TextureID - 1]);
-			mySprite->setPosition(myMap->at(i)[j].Position);
-			aWindow.draw(*mySprite);
+			tempMapPos = tz::Vector2f(myMap->at(i)[j].Position.x, myMap->at(i)[j].Position.y);
+			float tempDis = tz::DisBetweenVec(aPlayer.GetPosition(), tempMapPos);
+
+			if (tempDis < aFadeOffset)
+			{
+				mySprite->setTextureRect(myTextureTiles[myMap->at(i)[j].TextureID - 1]);
+				mySprite->setPosition(myMap->at(i)[j].Position);
+
+				tempC = mySprite->getColor();
+				tempC.a = (tempDis > aRenderOffset) ? 190 : 255;
+
+				mySprite->setColor(tempC);
+				aWindow.draw(*mySprite);
+			}
+
 		}
 	}
 }

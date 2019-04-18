@@ -1,6 +1,6 @@
 #include "GameObject.h"
 
-
+//TODO: Bounding Box
 
 GameObject::GameObject()
 {
@@ -47,4 +47,9 @@ tx::Sprite* GameObject::GetSprite()
 tz::Vector2f& GameObject::GetPosition()
 {
 	return myPos;
+}
+
+sf::IntRect GameObject::GetBoundingBox()
+{
+	return mySprite->GetFrame();
 }

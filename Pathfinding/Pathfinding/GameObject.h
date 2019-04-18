@@ -20,6 +20,7 @@ public:
 	virtual int& GetWeaponID(), &GetBackpackSpace();
 	virtual tx::Sprite* GetSprite();
 	virtual tz::Vector2f& GetPosition();
+	virtual sf::IntRect GetBoundingBox();
 
 protected:
 	std::string 

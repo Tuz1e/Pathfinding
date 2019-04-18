@@ -30,6 +30,9 @@ void tx::Sprite::LoadTexture(tz::Vector2f aScale = tz::Vector2f(1.0f, 1.0f))
 
 		myLoadedFlag = true;
 	}
+	myTextureWidth = mySprite.getTextureRect().width;
+	myTextureHeight = mySprite.getTextureRect().height;
+
 }
 
 void tx::Sprite::SetAnimation(int someColumns, int someRows)
@@ -58,6 +61,18 @@ tz::Vector2f tx::Sprite::GetScale()
 std::string tx::Sprite::GetTextureLocation()
 {
 	return myTextureLocation;
+}
+
+sf::IntRect tx::Sprite::GetFrame()
+{
+	if (myLoadedFlag)
+	{
+		sf::IntRect
+		(
+			
+		);
+	}
+	return (myLoadedFlag) ? myFrames[myCurrentFrame] : mySprite.getTextureRect();
 }
 
 void tx::Sprite::SetScale(tz::Vector2f aScale)

@@ -64,6 +64,15 @@ void Player::Update(float& aDelta)
 void Player::Draw(sf::RenderWindow& aWindow)
 {
 	mySprite->Draw(aWindow);
+
+	//sf::Sprite tempSprite = mySprite->GetSprite();
+	//tempSprite.setTextureRect(GetBoundingBox());
+	//tempSprite.setColor(sf::Color::Red);
+}
+
+sf::Vector2f Player::GetVelocity()
+{
+	return sf::Vector2f(myVelocity.X, myVelocity.Y);
 }
 
 void Player::LoadDefaults()

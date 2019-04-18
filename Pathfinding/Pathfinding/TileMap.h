@@ -7,6 +7,7 @@
 #include "TZ/GameKit.hpp"
 #include "SFML/Graphics.hpp"
 #include "Sprite.h"
+#include "Player.h"
 
 struct Tile
 {
@@ -21,7 +22,7 @@ public:
 	~TileMap();
 
 	void LoadMapData();
-	void Draw(sf::RenderWindow& aWindow);
+	void Draw(sf::RenderWindow& aWindow, Player& aPlayer, float& aRenderOffset, float& aFadeOffset);
 
 private:
 	void 

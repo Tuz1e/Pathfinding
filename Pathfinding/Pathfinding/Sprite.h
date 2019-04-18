@@ -27,16 +27,16 @@ namespace tx
 			GetPosition(), 
 			GetScale();
 		std::string GetTextureLocation();
+		sf::IntRect GetFrame();
 
 	private:
 		std::string myTextureLocation = "";
 		sf::Sprite mySprite;
 		tz::Vector2f myPos, myScale;
-
 		sf::Texture myTexture;
-
 		bool myLoadedFlag = false;
-
+		int myCurrentFrame, myTextureWidth, myTextureHeight;
+		std::vector<sf::IntRect> myFrames;
 	};
 }
 

@@ -16,6 +16,7 @@ public:
 		Init(Input& anInput),
 		Update(float& aDelta),
 		Draw(sf::RenderWindow& aWindow);
+	sf::Vector2f GetVelocity();
 
 private:
 	void LoadDefaults();
