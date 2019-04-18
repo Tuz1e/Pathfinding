@@ -12,12 +12,30 @@ The loading of the tilemap is setup to easily be changed depending on map file w
 - [x] Tilemap loading from txt file.
 - [ ] Tilemap loading from json file.
 
-**Dependencies:**
-- TuzLib [My own library]
-	- https://github.com/Tuz1e/TuzLib
-- SFML (1.5.2)[Graphics Library and Game Logic]
-	- https://www.sfml-dev.org/
-	- https://github.com/SFML/SFML
-- Tiled [Tilemap editor]
-	- https://www.mapeditor.org/
-	
+## Information to run project
+###### OS Support
+- [x] Windows 10 Pro
+
+###### IDE
+
+- [x] Visual Studio Community 2017
+- [x] Visual Studio Community 2019
+
+
+## Cloning 
+If you are too clone this project, here is the simple commands.
+```
+git clone https://github.com/Tuz1e/Tocepi [Location]
+git submodule update --init
+```
+
+## Dependencies:
+- TuzLib [My own library] (https://github.com/Tuz1e/TuzLib)
+- SFML (Version 1.5.2)[Graphics Library and Game Logic](https://www.sfml-dev.org/, https://github.com/SFML/SFML)
+
+## Tools
+- Tiled [Tilemap editor] (https://www.mapeditor.org/)
+
+## Licensing
+
+[Apache License 2.0](https://github.com/Tuz1e/Tocepi/blob/master/LICENSE)
