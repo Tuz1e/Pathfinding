@@ -13,9 +13,7 @@ Program::~Program()
 
 void Program::Init()
 {
-	myRenderOffset = 75.0f;
-	myFadeOffset = myRenderOffset + 25.0f;
-	myMap = new TileMap(MAP);
+	myMap = new TileMap(MAP, 65.0f, 90.0f);
 	myMap->LoadMapData();
 
 	myPlayer = new Player(100.0f, 100.0f);
@@ -34,7 +32,8 @@ void Program::Init()
 
 void Program::Update(float& aDelta)
 {
-	myView.move(myPlayer->GetVelocity() * aDelta);
+	myView.move(sf::Vector2f(myPlayer->GetVelocity().X, myPlayer->GetVelocity().Y) * aDelta);
+	myMap->Update(*myPlayer);
 	myPlayer->Update(aDelta);
 }
 
@@ -43,7 +42,7 @@ void Program::Draw(sf::RenderWindow& aWindow)
 	aWindow.setView(myView);
 
 
-	myMap->Draw(aWindow, *myPlayer, myRenderOffset, myFadeOffset);
+	myMap->Draw(aWindow, *myPlayer);
 	myPlayer->Draw(aWindow);
 }
 

@@ -10,13 +10,21 @@ tx::Sprite::Sprite(std::string aTextureLocation, tz::Vector2f& aPos)
 	myPos = aPos;
 }
 
+tx::Sprite::Sprite(sf::Sprite& aSprite)
+{
+	mySprite = aSprite;
+	myLoadedFlag = true;
+	myTextureWidth = aSprite.getTextureRect().width;
+	myTextureHeight = aSprite.getTextureRect().height;
+}
+
 tx::Sprite::~Sprite()
 {
 }
 
 void tx::Sprite::LoadTexture(tz::Vector2f aScale = tz::Vector2f(1.0f, 1.0f))
 {
-	if (myTextureLocation != "")
+	if (myTextureLocation != "" && !myLoadedFlag)
 	{
 		myTexture.loadFromFile(myTextureLocation);
 		mySprite = sf::Sprite(myTexture);
@@ -27,12 +35,11 @@ void tx::Sprite::LoadTexture(tz::Vector2f aScale = tz::Vector2f(1.0f, 1.0f))
 		{
 			mySprite.setScale(sf::Vector2f(aScale.X, aScale.Y));
 		}
+		myTextureWidth = mySprite.getTextureRect().width;
+		myTextureHeight = mySprite.getTextureRect().height;
 
 		myLoadedFlag = true;
 	}
-	myTextureWidth = mySprite.getTextureRect().width;
-	myTextureHeight = mySprite.getTextureRect().height;
-
 }
 
 void tx::Sprite::SetAnimation(int someColumns, int someRows)
@@ -43,7 +50,7 @@ void tx::Sprite::UpdateAnimation()
 {
 }
 
-sf::Sprite tx::Sprite::GetSprite()
+sf::Sprite& tx::Sprite::GetSprite()
 {
 	return mySprite;
 }
@@ -65,14 +72,16 @@ std::string tx::Sprite::GetTextureLocation()
 
 sf::IntRect tx::Sprite::GetFrame()
 {
-	if (myLoadedFlag)
+	if (myLoadedFlag && !myAnimationFlag)
 	{
-		sf::IntRect
-		(
-			
-		);
+		return mySprite.getTextureRect();
 	}
-	return (myLoadedFlag) ? myFrames[myCurrentFrame] : mySprite.getTextureRect();
+	else if (myLoadedFlag && myAnimationFlag)
+	{
+		return myFrames[myCurrentFrame];
+	}
+
+	return sf::IntRect();
 }
 
 void tx::Sprite::SetScale(tz::Vector2f aScale)

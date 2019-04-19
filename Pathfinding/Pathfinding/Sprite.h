@@ -12,6 +12,7 @@ namespace tx
 	public:
 		Sprite();
 		Sprite(std::string aTextureLocation, tz::Vector2f& aPos);
+		Sprite(sf::Sprite& aSprite);
 		~Sprite();
 
 		void
@@ -22,7 +23,7 @@ namespace tx
 			LoadTexture(tz::Vector2f aScale),
 			SetPosition(tz::Vector2f& aPos);
 
-		sf::Sprite GetSprite();
+		sf::Sprite &GetSprite();
 		tz::Vector2f 
 			GetPosition(), 
 			GetScale();
@@ -34,7 +35,7 @@ namespace tx
 		sf::Sprite mySprite;
 		tz::Vector2f myPos, myScale;
 		sf::Texture myTexture;
-		bool myLoadedFlag = false;
+		bool myLoadedFlag = false, myAnimationFlag = false;
 		int myCurrentFrame, myTextureWidth, myTextureHeight;
 		std::vector<sf::IntRect> myFrames;
 	};

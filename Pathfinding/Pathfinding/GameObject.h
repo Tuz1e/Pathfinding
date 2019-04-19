@@ -17,20 +17,27 @@ public:
 		Draw(sf::RenderWindow& aWindow);
 
 	virtual std::string GetName();
-	virtual int& GetWeaponID(), &GetBackpackSpace();
 	virtual tx::Sprite* GetSprite();
 	virtual tz::Vector2f& GetPosition();
 	virtual sf::IntRect GetBoundingBox();
+
+	bool GetCollidableFlag();
+	bool CheckColliding(const sf::RectangleShape& anObj);
+
+	void SetBody(sf::Vector2f aPos, sf::Color aColour, sf::Vector2f aScale, sf::Vector2f aSize);
+	void SetBody(sf::Vector2f aPos, sf::Color aColour, sf::Vector2f aScale, sf::Vector2f aSize, sf::Vector2f anOrigin);
+	void SetBody(sf::RectangleShape aShape);
+	void DrawBody(sf::RenderWindow& aWindow);
+	sf::RectangleShape& GetBody();
 
 protected:
 	std::string 
 		myTextureLocation, 
 		myName;
-	int 
-		myWeaponId, 
-		myBackpackSpace;
+	sf::RectangleShape myBody;
 	tx::Sprite* mySprite;
-	tz::Vector2f myPos, mySpeed;
+	tz::Vector2f myPos;
+	bool myCollidableFlag = false;
 };
 
 #endif //GAMEOBJECT_H

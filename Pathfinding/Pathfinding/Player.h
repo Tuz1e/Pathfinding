@@ -1,10 +1,12 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include "GameObject.h"
+#include "Entity.h"
 #include "Input.h"
 
-class Player : public GameObject
+class TileMap;
+
+class Player : public Entity
 {
 public:
 	Player();
@@ -16,13 +18,22 @@ public:
 		Init(Input& anInput),
 		Update(float& aDelta),
 		Draw(sf::RenderWindow& aWindow);
-	sf::Vector2f GetVelocity();
+
+	void SetColliding(bool aCollisionFlag);
+
+	int 
+		&GetWeaponID(), 
+		&GetBackpackSpace();
 
 private:
 	void LoadDefaults();
 	Input myInput;
 
-	tz::Vector2f myVelocity;
+	int
+		myWeaponId,
+		myBackpackSpace;
+
+	bool myCorrectingFlag;
 };
 
 #endif //PLAYER_H

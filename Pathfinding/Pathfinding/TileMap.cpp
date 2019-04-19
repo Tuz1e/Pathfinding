@@ -5,10 +5,12 @@
 //Could be fixed by only rendering that which are inside of the window
 //TODO: Implement multithreading
 
-TileMap::TileMap(std::string aMapLocation)
+TileMap::TileMap(std::string aMapLocation, float aRenderOffset, float aFadeOffset)
 {
 	myMapLocation = aMapLocation;
 	myMap = new std::vector<std::vector<Tile>>();
+	myRenderOffset = aRenderOffset;
+	myFadeOffset = aFadeOffset;
 }
 
 
@@ -50,6 +52,7 @@ void TileMap::LoadMapData()
 	for (size_t i = 9; i < tempMapDataVec.size(); i++)
 	{
 		tempData = SplitString(tempMapDataVec[i], ';');
+
 		for (size_t j = 0; j < tempData.size(); j++)
 		{
 			tempData2Dim.push_back(SplitString(tempData[j], ','));
@@ -69,33 +72,58 @@ void TileMap::LoadMapData()
 
 	CleanMapData(myMap);
 
+	SetColliders(myMap);
+
 	PrintLoaded("Finished: Map data");
 }
 
-void TileMap::Draw(sf::RenderWindow& aWindow, Player& aPlayer, float& aRenderOffset, float& aFadeOffset)
+void TileMap::Update(Player& aPlayer)
 {
-	tz::Vector2f tempMapPos;
+	for (size_t i = 0; i < myMap->size(); i++)
+	{
+		for (size_t j = 0; j < myMap->at(i).size(); j++)
+		{
+			if (tz::DisBetweenVec(aPlayer.GetPosition(), myMap->at(i)[j].GetPosition()) < myFadeOffset)
+			{
+				if (myMap->at(i)[j].GetCollidableFlag())
+				{
+					if (aPlayer.CheckColliding(myMap->at(i)[j].GetBody()))
+					{
+						//std::cout << "COLLISION" << std::endl;
+						aPlayer.SetColliding(true);
+					}
+				}
+			}
+
+		}
+	}
+}
+
+void TileMap::Draw(sf::RenderWindow& aWindow, Player& aPlayer)
+{
 	float tempDis = 0;
 	sf::Color tempC;
-	float tempOffset = aRenderOffset / 4;
 
 	for (size_t i = 0; i < myMap->size(); i++)
 	{
 		for (size_t j = 0; j < myMap->at(i).size(); j++)
 		{
-			tempMapPos = tz::Vector2f(myMap->at(i)[j].Position.x, myMap->at(i)[j].Position.y);
-			float tempDis = tz::DisBetweenVec(aPlayer.GetPosition(), tempMapPos);
+			tempDis = tz::DisBetweenVec(aPlayer.GetPosition(), myMap->at(i)[j].GetPosition());
 
-			if (tempDis < aFadeOffset)
+			if (tempDis < myFadeOffset)
 			{
-				mySprite->setTextureRect(myTextureTiles[myMap->at(i)[j].TextureID - 1]);
-				mySprite->setPosition(myMap->at(i)[j].Position);
+				mySprite->setTextureRect(myMap->at(i)[j].GetBoundingBox());
+				mySprite->setPosition(GetSFVector(myMap->at(i)[j].GetPosition()));
 
 				tempC = mySprite->getColor();
-				tempC.a = (tempDis > aRenderOffset) ? 190 : 255;
+				tempC.a = (tempDis > myRenderOffset) ? 175 : 255;
 
 				mySprite->setColor(tempC);
 				aWindow.draw(*mySprite);
+				//if (myMap->at(i)[j].GetCollidableFlag())
+				//{
+				//	myMap->at(i)[j].DrawBody(aWindow);
+				//}
 			}
 
 		}
@@ -111,6 +139,28 @@ void TileMap::LoadSprite()
 	PrintLoaded("Map data: sprite");
 }
 
+void TileMap::SetColliders(std::vector<std::vector<Tile>>* aMap)
+{
+	for (size_t i = 0; i < aMap->size(); i++)
+	{
+		for (size_t j = 0; j < aMap->at(i).size(); j++)
+		{
+			aMap->at(i)[j].SetBody
+			(
+				GetSFVector(aMap->at(i)[j].GetPosition()),
+				sf::Color(220, 20, 60, 128),
+				mySprite->getScale(),
+				sf::Vector2f
+				(
+					myTextureTiles[myMap->at(i)[j].GetTextureID() - 1].width,
+					myTextureTiles[myMap->at(i)[j].GetTextureID() - 1].height
+				)
+
+			);
+		}
+	}
+}
+
 void TileMap::CleanMapData(std::vector<std::vector<Tile>>* aMap)
 {
 	for (size_t i = 0; i < aMap->size(); i++)
@@ -118,7 +168,7 @@ void TileMap::CleanMapData(std::vector<std::vector<Tile>>* aMap)
 		std::vector<Tile> tempData;
 		for (size_t j = 0; j < aMap->at(i).size(); j++)
 		{
-			if (aMap->at(i)[j].TextureID != 0)
+			if (aMap->at(i)[j].GetTextureID() != 0)
 			{
 				tempData.push_back(aMap->at(i)[j]);
 			}
@@ -128,6 +178,11 @@ void TileMap::CleanMapData(std::vector<std::vector<Tile>>* aMap)
 	}
 
 	Print("Cleaned map data");
+}
+
+sf::Vector2f TileMap::GetSFVector(tz::Vector2f aPos)
+{
+	return sf::Vector2f(aPos.X, aPos.Y);
 }
 
 void TileMap::LoadSheetData(std::vector<sf::IntRect>* someTextureTiles)
@@ -164,11 +219,17 @@ std::vector<Tile> TileMap::LoadMap(std::vector<std::vector<std::string>>* someMa
 		{
 			for (size_t i = 0; i < someMapData->size(); i++)
 			{
-				Tile tempTile =
-				{
-					sf::Vector2f(x * myMapTileDimension, y * myMapTileDimension),
+				Tile tempTile = Tile
+				(
+					tz::Vector2f(x * myMapTileDimension, y * myMapTileDimension),
 					ConvertToInt(someMapData->at(i)[tempTileId]),
-				};
+					IsCollidable(someMapData->at(i))
+				);
+				if (tempTile.GetTextureID() != 0)
+				{
+					tempTile.SetBoundingBox(myTextureTiles[ConvertToInt(someMapData->at(i)[tempTileId]) - 1]);
+				}
+
 				tempMap.push_back(tempTile);
 			}
 
@@ -178,4 +239,9 @@ std::vector<Tile> TileMap::LoadMap(std::vector<std::vector<std::string>>* someMa
 
 	PrintLoaded("Map data: Map");
 	return tempMap;
+}
+
+bool TileMap::IsCollidable(std::vector<std::string>& someData)
+{
+	return (SplitString(someData[0], ':')[0] == "1");
 }
