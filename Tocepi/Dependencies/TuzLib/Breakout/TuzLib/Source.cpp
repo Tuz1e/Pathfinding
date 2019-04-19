@@ -1,0 +1,1 @@
+//Mandatory file to be able to create the .lib file
