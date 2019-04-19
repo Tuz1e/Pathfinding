@@ -1,8 +1,6 @@
 #include "TileMap.h"
 
-//TODO: Implement specific layers for collisions etc
 //OPTIMIZE: Eats up ALOT of resources when running larger maps. 
-//Could be fixed by only rendering that which are inside of the window
 //TODO: Implement multithreading
 
 TileMap::TileMap(std::string aMapLocation, float aRenderOffset, float aFadeOffset)
@@ -180,7 +178,7 @@ void TileMap::CleanMapData(std::vector<std::vector<Tile>>* aMap)
 	Print("Cleaned map data");
 }
 
-sf::Vector2f TileMap::GetSFVector(tz::Vector2f aPos)
+sf::Vector2f TileMap::GetSFVector(const tz::Vector2f& aPos)
 {
 	return sf::Vector2f(aPos.X, aPos.Y);
 }

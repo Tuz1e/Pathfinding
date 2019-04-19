@@ -28,7 +28,7 @@ private:
 		CleanMapData(std::vector<std::vector<Tile>>* aMap),
 		SetColliders(std::vector<std::vector<Tile>>* aMap);
 
-	sf::Vector2f GetSFVector(tz::Vector2f aPos);
+	sf::Vector2f GetSFVector(const tz::Vector2f& aPos);
 
 	std::vector<Tile> LoadMap(std::vector<std::vector<std::string>>* someMapData);
 	bool IsCollidable(std::vector<std::string>& someData);
