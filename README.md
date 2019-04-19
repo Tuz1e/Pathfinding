@@ -26,7 +26,7 @@ The loading of the tilemap is setup to easily be changed depending on map file w
 If you are too clone this project, here is the simple commands.
 ```
 git clone https://github.com/Tuz1e/Tocepi [Location]
-git submodule update --init
+git submodule update --init --recursive
 ```
 
 ## Dependencies:

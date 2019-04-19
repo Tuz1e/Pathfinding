@@ -1,12 +1,12 @@
 #pragma once
 
-#define CONTENTPROFILES "Content/Profiles"
-#define CONTENTTEXTURES "Content/Textures"
-#define CONTENTMAPS "Content/Maps"
+#define CONTENTPROFILES "Content/profiles"
+#define CONTENTTEXTURES "Content/textures"
+#define CONTENTMAPS "Content/maps"
 
-#define GAMEINFO "Content/Profiles/gameinfo.xml"
-#define DEFAULT_SETTINGS "Content/Profiles/settings_default.xml"
+#define GAMEINFO "Content/profiles/gameinfo.xml"
+#define DEFAULT_SETTINGS "Content/profiles/settings_default.xml"
 
-#define PLAYER_DEFAULT "Content/Profiles/player/player_default.xml"
+#define PLAYER_DEFAULT "Content/profiles/player/player_default.xml"
 
-#define MAP "Content/Maps/map.txt"
+#define MAP "Content/maps/map.txt"
