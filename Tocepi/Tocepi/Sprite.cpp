@@ -46,6 +46,7 @@ void tx::Sprite::LoadTexture()
 
 void tx::Sprite::SetAnimation(int someColumns, int someRows)
 {
+	//TODO: Animator logic
 }
 
 void tx::Sprite::UpdateAnimation()
