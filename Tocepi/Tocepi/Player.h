@@ -33,7 +33,7 @@ private:
 	int
 		myWeaponId,
 		myBackpackSpace;
-	bool myCorrectingFlag = false;
+	bool myCorrectingFlag = false, myMovingFlag = false;
 	DataLoader myDataLoader;
 	TextureType myTextureType;
 };

@@ -42,6 +42,8 @@ namespace tx
 			GetScale();
 		sf::IntRect GetFrame();
 
+		TextureType& GetCurrentTextureType();
+
 		void SetTexture(TextureType aType);
 		void Flip(FlipView aSide);
 

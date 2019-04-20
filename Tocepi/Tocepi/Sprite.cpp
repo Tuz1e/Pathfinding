@@ -107,6 +107,11 @@ sf::IntRect tx::Sprite::GetFrame()
 	return sf::IntRect();
 }
 
+TextureType& tx::Sprite::GetCurrentTextureType()
+{
+	return myTextureType;
+}
+
 void tx::Sprite::SetTexture(TextureType aType)
 {
 	//TODO: Scale correctly when switching to another texture

@@ -58,19 +58,23 @@ void Player::Update(float& aDelta)
 		if (myInput.GetLeftKey())
 		{
 			myVelocity.X = -mySpeed.X;
+			myMovingFlag = true;
 		}
 		else if (myInput.GetRightKey())
 		{
 			myVelocity.X = mySpeed.X;
+			myMovingFlag = true;
 		}
 
 		if (myInput.GetUpKey())
 		{
 			myVelocity.Y = -mySpeed.Y;
+			myMovingFlag = true;
 		}
 		else if (myInput.GetDownKey())
 		{
 			myVelocity.Y = mySpeed.Y;
+			myMovingFlag = true;
 		}
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Q))
@@ -80,6 +84,15 @@ void Player::Update(float& aDelta)
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::E))
 		{
 			mySprite->SetTexture(TextureType::RUN);
+		}
+
+		if (myMovingFlag && mySprite->GetCurrentTextureType() != TextureType::RUN)
+		{
+			mySprite->SetTexture(TextureType::RUN);
+		}
+		else if (!myMovingFlag && mySprite->GetCurrentTextureType() != TextureType::IDLE)
+		{
+			mySprite->SetTexture(TextureType::IDLE);
 		}
 	}
 	else if (myCollidingFlag && !myCorrectingFlag)
@@ -107,11 +120,14 @@ void Player::Update(float& aDelta)
 		myCorrectingFlag = true;
 	}
 
+
+
 	myPos = myPos + myVelocity * aDelta;
 	mySprite->SetPosition(myPos);
 	myBody.setPosition(GetBoundingBox().left, GetBoundingBox().top);
 	mySprite->UpdateAnimation(aDelta); //Update the animation
 	myCollidingFlag = false;
+	myMovingFlag = false;
 
 	//std::cout << "Player X: " << myPos.X << " Y: " << myPos.Y << std::endl;
 	//std::cout << "Sprite X: " << mySprite->GetPosition().X << " Y: " << mySprite->GetPosition().Y << std::endl;
@@ -128,11 +144,8 @@ void Player::Draw(sf::RenderWindow& aWindow)
 		? FlipView::Left : FlipView::Right
 	);
 
-	std::cout << "Mouse X: " << sf::Mouse::getPosition(aWindow).x << " Y: " << sf::Mouse::getPosition(aWindow).y << std::endl;
-	std::cout << "Sprite X: " << mySprite->GetSprite().getPosition().x << " Y: " << mySprite->GetSprite().getPosition().y << std::endl;
-
 	mySprite->Draw(aWindow);
-	DrawBody(aWindow);
+	//DrawBody(aWindow);
 }
 
 void Player::SetColliding(bool aCollisionFlag)

@@ -3,8 +3,8 @@
 	<Username>Elf</Username>
 	<BackpackSpace>20</BackpackSpace>
 	<Speed>
-		<SpeedX>1.5</SpeedX>
-		<SpeedY>1.5</SpeedY>
+		<SpeedX>0.6</SpeedX>
+		<SpeedY>0.6</SpeedY>
 	</Speed>
 	<TextureProfile>
 		<TXP0>Content/profiles/textures/player_texture_elf.xml</TXP0>

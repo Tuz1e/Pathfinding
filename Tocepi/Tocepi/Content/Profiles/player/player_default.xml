@@ -3,8 +3,8 @@
 	<Username>Default</Username>
 	<BackpackSpace>20</BackpackSpace>
 	<Speed>
-		<SpeedX>1.2</SpeedX>
-		<SpeedY>1.2</SpeedY>
+		<SpeedX>1.5</SpeedX>
+		<SpeedY>1.5</SpeedY>
 	</Speed>
 	<Texture>
 		<TX0>Content/Textures/player/player_temp_texture.png</TX0>
