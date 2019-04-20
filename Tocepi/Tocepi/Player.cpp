@@ -54,8 +54,8 @@ void Player::Init(Input& anInput)
 
 void Player::Update(float& aDelta)
 {
-	if (!myCollidingFlag)
-	{
+	//if (!myCollidingFlag)
+	//{
 		myVelocity = tz::Vector2f();
 		myCorrectingFlag = false;
 
@@ -76,31 +76,44 @@ void Player::Update(float& aDelta)
 		{
 			myVelocity.Y = mySpeed.Y;
 		}
-	}
-	else if (myCollidingFlag && !myCorrectingFlag)
-	{
-		//Not the most perfect system but it works for now
-		//TODO: Fix the "bugginess" when colliding
-		if (myVelocity.X > 0.0f)
-		{
-			myVelocity.X = -mySpeed.X;
-		}
-		else if (myVelocity.X < 0.0f)
-		{
-			myVelocity.X = mySpeed.X;
-		}
 
-		if (myVelocity.Y > 0.0f)
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Z))
 		{
-			myVelocity.Y = -mySpeed.Y;
+			mySprite->SetTexture(TextureType::IDLE);
 		}
-		else if (myVelocity.Y < 0.0f)
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::X))
 		{
-			myVelocity.Y = mySpeed.Y;
+			mySprite->SetTexture(TextureType::RUN);
 		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::C))
+		{
+			mySprite->SetTexture(TextureType::HIT);
+		}
+	//}
+	//else if (myCollidingFlag && !myCorrectingFlag)
+	//{
+	//	//Not the most perfect system but it works for now
+	//	//TODO: Fix the "bugginess" when colliding
+	//	if (myVelocity.X > 0.0f)
+	//	{
+	//		myVelocity.X = -mySpeed.X;
+	//	}
+	//	else if (myVelocity.X < 0.0f)
+	//	{
+	//		myVelocity.X = mySpeed.X;
+	//	}
 
-		myCorrectingFlag = true;
-	}
+	//	if (myVelocity.Y > 0.0f)
+	//	{
+	//		myVelocity.Y = -mySpeed.Y;
+	//	}
+	//	else if (myVelocity.Y < 0.0f)
+	//	{
+	//		myVelocity.Y = mySpeed.Y;
+	//	}
+
+	//	myCorrectingFlag = true;
+	//}
 	myPos = myPos + myVelocity * aDelta;
 	mySprite->SetPosition(myPos);
 	myBody.setPosition(GetBoundingBox().left, GetBoundingBox().top);
@@ -110,7 +123,7 @@ void Player::Update(float& aDelta)
 void Player::Draw(sf::RenderWindow& aWindow)
 {
 	mySprite->Draw(aWindow);
-	//DrawBody(aWindow);
+	DrawBody(aWindow);
 }
 
 void Player::SetColliding(bool aCollisionFlag)
@@ -130,30 +143,13 @@ int& Player::GetBackpackSpace()
 
 void Player::LoadDefaults()
 {
-	try 
-	{
-		mySprite = new tx::Sprite(GetFromXml(PLAYER_DEFAULT, "TX00"), myPos);
+	myTextureType = TextureType::IDLE;
+	myDataLoader = DataLoader(PLAYER_ELF);
+	myDataLoader.LoadData();
 
-		mySprite->SetScale
-		(
-			tz::Vector2f
-			(
-				ConvertToFloat(GetFromXml(PLAYER_DEFAULT, "TX00-ScaleX")),
-				ConvertToFloat(GetFromXml(PLAYER_DEFAULT, "TX00-ScaleY"))
-			)
-		);
+	mySprite = new tx::Sprite(myDataLoader.GetTextures(), myPos, myTextureType);
+	mySprite->LoadTexture();
+	mySpeed = myDataLoader.GetSpeed();
 
-		mySprite->LoadTexture(mySprite->GetScale());
-
-		mySpeed = tz::Vector2f
-		(
-			ConvertToFloat(GetFromXml(PLAYER_DEFAULT, "SpeedX")),
-			ConvertToFloat(GetFromXml(PLAYER_DEFAULT, "SpeedY"))
-		);
-
-		PrintLoaded("Player Defaults");
-	}
-	catch (...) {}
-
-	myCorrectingFlag = false;
+	PrintLoaded("Player defaults");
 }

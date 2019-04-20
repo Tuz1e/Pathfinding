@@ -3,12 +3,17 @@
 tx::Sprite::Sprite()
 {
 }
-
-tx::Sprite::Sprite(std::string aTextureLocation, tz::Vector2f& aPos)
+tx::Sprite::Sprite(Texture aTexture, tz::Vector2f& aPos, TextureType aType):
+	myPos(aPos),
+	myTextureType(aType)
 {
-	myTextureLocation = aTextureLocation;
-	myPos = aPos;
+	myTextures.push_back(aTexture);
 }
+tx::Sprite::Sprite(std::vector<Texture> someTextures, tz::Vector2f& aPos, TextureType aType): 
+	myTextures(someTextures), 
+	myPos(aPos), 
+	myTextureType(aType) 
+{}
 
 tx::Sprite::Sprite(sf::Sprite& aSprite)
 {
@@ -22,21 +27,18 @@ tx::Sprite::~Sprite()
 {
 }
 
-void tx::Sprite::LoadTexture(tz::Vector2f aScale = tz::Vector2f(1.0f, 1.0f))
+void tx::Sprite::LoadTexture()
 {
-	if (myTextureLocation != "" && !myLoadedFlag)
+	if (!myLoadedFlag)
 	{
-		myTexture.loadFromFile(myTextureLocation);
-		mySprite = sf::Sprite(myTexture);
-		mySprite.setPosition(sf::Vector2f(myPos.X, myPos.Y));
-		std::cout << "Loaded in texture: " << myTextureLocation << std::endl;
-
-		if (aScale.X != 1.0f && aScale.Y != 1.0f) 
+		sf::Texture tempTxtr;
+		for (size_t i = 0; i < myTextures.size(); i++)
 		{
-			mySprite.setScale(sf::Vector2f(aScale.X, aScale.Y));
+			tempTxtr.loadFromFile(myTextures[i].GetLocation());
+			myTextures[i].SetTexture(tempTxtr);
 		}
-		myTextureWidth = mySprite.getTextureRect().width;
-		myTextureHeight = mySprite.getTextureRect().height;
+
+		SetTexture(myTextureType);
 
 		myLoadedFlag = true;
 	}
@@ -65,11 +67,6 @@ tz::Vector2f tx::Sprite::GetScale()
 	return myScale;
 }
 
-std::string tx::Sprite::GetTextureLocation()
-{
-	return myTextureLocation;
-}
-
 sf::IntRect tx::Sprite::GetFrame()
 {
 	if (myLoadedFlag && !myAnimationFlag)
@@ -82,6 +79,23 @@ sf::IntRect tx::Sprite::GetFrame()
 	}
 
 	return sf::IntRect();
+}
+
+void tx::Sprite::SetTexture(TextureType aType)
+{
+	//TODO: Scale correctly when switching to another texture
+
+	myTextureType = aType;
+	myTexture = myTextures[aType].GetTexture();
+	mySprite.setTexture(myTexture);
+	mySprite.setPosition(myPos.X, myPos.Y);
+	mySprite.setScale(
+		myTextures[aType].GetScale().X,
+		myTextures[aType].GetScale().X
+	);
+
+	myTextureWidth = mySprite.getTextureRect().width;
+	myTextureHeight = mySprite.getTextureRect().height;
 }
 
 void tx::Sprite::SetScale(tz::Vector2f aScale)

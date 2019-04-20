@@ -1,6 +1,6 @@
 #include "TileMap.h"
 
-//OPTIMIZE: Eats up ALOT of resources when running larger maps. 
+//OPTIMIZE: Eats up A LOT of resources when running larger maps. 
 //TODO: Implement multithreading
 
 TileMap::TileMap(std::string aMapLocation, float aRenderOffset, float aFadeOffset)

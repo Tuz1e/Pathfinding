@@ -1,7 +1,5 @@
 #include "GameObject.h"
 
-//TODO: Bounding Box
-
 GameObject::GameObject()
 {
 }

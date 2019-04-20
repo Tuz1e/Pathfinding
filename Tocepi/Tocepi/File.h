@@ -28,7 +28,6 @@ inline std::string GetFromXml(const std::string& aPath, const std::string& aFind
 					tempLine = tempLine.substr(0, tempFind) + tempLine.substr(tempFind + aFindLine.length());
 				}
 			} while (tempFind != -1);
-			//tempLine.erase(std::remove_if(tempLine.begin(), tempLine.end(), &ispunct), tempLine.end());
 			tempLine.erase(std::remove_if(tempLine.begin(), tempLine.end(), &isspace), tempLine.end());
 			tempLine = tempLine.substr(2, tempLine.length() - 5);
 			break;
@@ -38,6 +37,24 @@ inline std::string GetFromXml(const std::string& aPath, const std::string& aFind
 	std::cout << "Loaded in data: " << aFindLine << ", " << tempLine << std::endl;
 
 	return tempLine;
+}
+
+inline bool ExistsInXml(const std::string& aPath, const std::string& aFindLine)
+{
+	bool tempB = false; //The bool to return
+	std::ifstream tempIn(aPath);
+	std::string tempLine;
+	while (std::getline(tempIn, tempLine))
+	{
+		tempB = (tempLine.find(aFindLine) != std::string::npos);
+		if (tempLine.find(aFindLine) != std::string::npos)
+		{
+			tempB = true;
+			break;
+		}
+	}
+
+	return tempB;
 }
 
 inline std::string GetMapData(const std::string& aPath) 

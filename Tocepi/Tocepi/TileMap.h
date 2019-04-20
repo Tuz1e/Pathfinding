@@ -3,10 +3,8 @@
 
 #include "pch.h"
 #include "File.h"
-#include "Info.h"
 #include "TZ/GameKit.hpp"
 #include "SFML/Graphics.hpp"
-#include "Sprite.h"
 #include "Player.h"
 #include "Tile.h"
 

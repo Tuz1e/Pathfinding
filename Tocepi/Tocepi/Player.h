@@ -3,8 +3,9 @@
 
 #include "Entity.h"
 #include "Input.h"
+#include "DataLoader.h"
 
-class TileMap;
+#define PLAYER_ELF "Content/profiles/player/player_elf.xml"
 
 class Player : public Entity
 {
@@ -27,13 +28,14 @@ public:
 
 private:
 	void LoadDefaults();
-	Input myInput;
 
+	Input myInput;
 	int
 		myWeaponId,
 		myBackpackSpace;
-
-	bool myCorrectingFlag;
+	bool myCorrectingFlag = false;
+	DataLoader myDataLoader;
+	TextureType myTextureType;
 };
 
 #endif //PLAYER_H

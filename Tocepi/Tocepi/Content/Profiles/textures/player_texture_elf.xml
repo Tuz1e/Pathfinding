@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tocipe>
+	<Texture>
+		<TX0>Content/textures/player/elf/player_elf_idle_m.png</TX0>
+			<TX0-ScaleX>1</TX0-ScaleX>
+			<TX0-ScaleY>1</TX0-ScaleY>
+			<TX0-Column>1</TX0-Column>
+			<TX0-Row>4</TX0-Row>
+			<TX0-Animate>1</TX0-Animate>
+		<TX1>Content/textures/player/elf/player_elf_run_m.png</TX1>
+			<TX1-ScaleX>1</TX1-ScaleX>
+			<TX1-ScaleY>1</TX1-ScaleY>
+			<TX1-Column>1</TX1-Column>
+			<TX1-Row>4</TX1-Row>
+			<TX1-Animate>1</TX1-Animate>
+		<TX2>Content/textures/player/elf/player_elf_hit_m.png</TX2>
+			<TX2-ScaleX>1</TX2-ScaleX>
+			<TX2-ScaleY>1</TX2-ScaleY>
+			<TX2-Column>1</TX2-Column>
+			<TX2-Row>1</TX2-Row>
+			<TX2-Animate>0</TX2-Animate>
+	</Texture>
+</Tocipe>

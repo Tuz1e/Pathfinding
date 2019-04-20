@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tocipe>
-	<Username>Ghost Boy</Username>
+	<Username>Elf</Username>
 	<BackpackSpace>20</BackpackSpace>
 	<Speed>
 		<SpeedX>1.5</SpeedX>
 		<SpeedY>1.5</SpeedY>
 	</Speed>
-	<Texture>
-		<TX0>Content/Textures/player/player_temp_texture.png</TX0>
-	</Texture>
+	<TextureProfile>
+		<TXP0>Content/profiles/textures/player_texture_elf.xml</TXP0>
+	</TextureProfile>
 </Tocipe>
