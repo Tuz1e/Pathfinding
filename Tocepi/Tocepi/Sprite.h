@@ -7,6 +7,15 @@
 #include "TextureType.h"
 #include "Texture.h"
 
+//ROWS: Horizontal/Sideways
+//COLUMNS: Vertical/Down
+
+enum FlipView
+{
+	Left,
+	Right
+};
+
 namespace tx
 {
 	class Sprite
@@ -20,9 +29,9 @@ namespace tx
 
 		void
 			SetScale(tz::Vector2f aScale),
+			SetScale(float x, float y),
 			Draw(sf::RenderWindow& aWindow),
-			UpdateAnimation(),
-			SetAnimation(int someColumns, int someRows),			
+			UpdateAnimation(float& aDelta),			
 			SetPosition(tz::Vector2f& aPos);
 
 		void LoadTexture();
@@ -34,8 +43,11 @@ namespace tx
 		sf::IntRect GetFrame();
 
 		void SetTexture(TextureType aType);
+		void Flip(FlipView aSide);
 
 	private:
+		void SetAnimation();
+
 		sf::Sprite mySprite;
 		tz::Vector2f myPos, myScale;
 		sf::Texture myTexture;
@@ -44,9 +56,12 @@ namespace tx
 
 		TextureType myTextureType;
 
+		tz::Vector2f myCurrentFrame;
+		int myColumns, myRows;
+		float myFramerate;
+
 		bool myLoadedFlag = false, myAnimationFlag = false;
-		int myCurrentFrame, myTextureWidth, myTextureHeight;
-		std::vector<sf::IntRect> myFrames;
+		int myTextureWidth, myTextureHeight;
 	};
 }
 

@@ -29,10 +29,6 @@ Player::~Player()
 void Player::Init(Input& anInput)
 {
 	myInput = anInput;
-	mySprite->GetSprite().setOrigin(
-		sf::Vector2f(
-			mySprite->GetSprite().getTexture()->getSize().x / 2.0f, 
-			mySprite->GetSprite().getTexture()->getSize().y / 2.0f));
 
 	SetBody
 	(
@@ -54,8 +50,8 @@ void Player::Init(Input& anInput)
 
 void Player::Update(float& aDelta)
 {
-	//if (!myCollidingFlag)
-	//{
+	if (!myCollidingFlag)
+	{
 		myVelocity = tz::Vector2f();
 		myCorrectingFlag = false;
 
@@ -77,51 +73,64 @@ void Player::Update(float& aDelta)
 			myVelocity.Y = mySpeed.Y;
 		}
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Z))
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Q))
 		{
 			mySprite->SetTexture(TextureType::IDLE);
 		}
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::X))
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::E))
 		{
 			mySprite->SetTexture(TextureType::RUN);
 		}
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::C))
+	}
+	else if (myCollidingFlag && !myCorrectingFlag)
+	{
+		//Not the most perfect system but it works for now
+		//TODO: Fix the "bugginess" when colliding
+		if (myVelocity.X > 0.0f)
 		{
-			mySprite->SetTexture(TextureType::HIT);
+			myVelocity.X = -mySpeed.X;
 		}
-	//}
-	//else if (myCollidingFlag && !myCorrectingFlag)
-	//{
-	//	//Not the most perfect system but it works for now
-	//	//TODO: Fix the "bugginess" when colliding
-	//	if (myVelocity.X > 0.0f)
-	//	{
-	//		myVelocity.X = -mySpeed.X;
-	//	}
-	//	else if (myVelocity.X < 0.0f)
-	//	{
-	//		myVelocity.X = mySpeed.X;
-	//	}
+		else if (myVelocity.X < 0.0f)
+		{
+			myVelocity.X = mySpeed.X;
+		}
 
-	//	if (myVelocity.Y > 0.0f)
-	//	{
-	//		myVelocity.Y = -mySpeed.Y;
-	//	}
-	//	else if (myVelocity.Y < 0.0f)
-	//	{
-	//		myVelocity.Y = mySpeed.Y;
-	//	}
+		if (myVelocity.Y > 0.0f)
+		{
+			myVelocity.Y = -mySpeed.Y;
+		}
+		else if (myVelocity.Y < 0.0f)
+		{
+			myVelocity.Y = mySpeed.Y;
+		}
 
-	//	myCorrectingFlag = true;
-	//}
+		myCorrectingFlag = true;
+	}
+
 	myPos = myPos + myVelocity * aDelta;
 	mySprite->SetPosition(myPos);
 	myBody.setPosition(GetBoundingBox().left, GetBoundingBox().top);
+	mySprite->UpdateAnimation(aDelta); //Update the animation
 	myCollidingFlag = false;
+
+	//std::cout << "Player X: " << myPos.X << " Y: " << myPos.Y << std::endl;
+	//std::cout << "Sprite X: " << mySprite->GetPosition().X << " Y: " << mySprite->GetPosition().Y << std::endl;
+	//std::cout << "Body X: " << myBody.getPosition().x << " Y: " << myBody.getPosition().y << std::endl;
+
 }
 
 void Player::Draw(sf::RenderWindow& aWindow)
 {
+	
+	mySprite->Flip
+	(
+		((sf::Mouse::getPosition(aWindow).x) < (aWindow.getSize().x/2))
+		? FlipView::Left : FlipView::Right
+	);
+
+	std::cout << "Mouse X: " << sf::Mouse::getPosition(aWindow).x << " Y: " << sf::Mouse::getPosition(aWindow).y << std::endl;
+	std::cout << "Sprite X: " << mySprite->GetSprite().getPosition().x << " Y: " << mySprite->GetSprite().getPosition().y << std::endl;
+
 	mySprite->Draw(aWindow);
 	DrawBody(aWindow);
 }

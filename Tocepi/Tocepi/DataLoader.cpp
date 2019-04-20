@@ -29,13 +29,9 @@ void DataLoader::LoadData()
 		{
 			if (ExistsInXml(tempTextureProfileLocation, "TX" + std::to_string(i)))
 			{
-				tempTexture.SetLocation(GetFromXml(tempTextureProfileLocation, "TX" + std::to_string(i)));
-
-				tempScale.X = ConvertToFloat(GetFromXml(tempTextureProfileLocation, "TX" + std::to_string(i) + "-ScaleX"));
-				std::cout << tempStr << std::endl;
-
-				tempScale.Y = ConvertToFloat(
-					GetFromXml(tempTextureProfileLocation, "TX" + std::to_string(i) + "-ScaleY"));
+				tempTexture.SetLocation(
+					GetFromXml(
+						tempTextureProfileLocation, "TX" + std::to_string(i)));
 
 				tempTexture.SetScale
 				(
@@ -46,19 +42,31 @@ void DataLoader::LoadData()
 				tempTexture.SetColumns(
 					ConvertToInt(
 						GetFromXml(
-							tempTextureProfileLocation, "TX" + std::to_string(i) + "-Column")
+							tempTextureProfileLocation, "TX" + std::to_string(i) + "-Columns")
 					));
 
 				tempTexture.SetRows(
 					ConvertToInt(
 						GetFromXml(
-							tempTextureProfileLocation, "TX" + std::to_string(i) + "-Row")));
+							tempTextureProfileLocation, "TX" + std::to_string(i) + "-Rows")));
+
+				tempTexture.SetFrames(
+					ConvertToInt(
+						GetFromXml(
+							tempTextureProfileLocation, "TX" + std::to_string(i) + "-Frames")));
+
+				//If equals 1, true : else false
 				tempTexture.SetAnimationFlag(
 					(
 						ConvertToInt(
 							GetFromXml(
 								tempTextureProfileLocation, "TX" + std::to_string(i) + "-Animate")
 						) == 1));
+
+				tempTexture.SetFramerate(
+					ConvertToFloat(
+						GetFromXml(
+							tempTextureProfileLocation, "TX" + std::to_string(i) + "-Framerate")));
 
 				myTextures.push_back(tempTexture);
 			}

@@ -193,10 +193,10 @@ void TileMap::LoadSheetData(std::vector<sf::IntRect>* someTextureTiles)
 			(
 				sf::IntRect
 				(
-					mySheet.getSize().x / mySheetHorizontalSize * x, // 16 * x
-					mySheet.getSize().y / mySheetVerticalSize * y, // = 16 * y
-					mySheet.getSize().x / mySheetHorizontalSize, // = 16
-					mySheet.getSize().y / mySheetVerticalSize // = 16
+					mySheet.getSize().x / mySheetHorizontalSize * x,
+					mySheet.getSize().y / mySheetVerticalSize * y,
+					mySheet.getSize().x / mySheetHorizontalSize,
+					mySheet.getSize().y / mySheetVerticalSize
 				)
 			);
 		}

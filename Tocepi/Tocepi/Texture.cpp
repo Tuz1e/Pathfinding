@@ -10,12 +10,14 @@ tx::Texture::Texture():
 	myAnimationFlag(false)
 {}
 
-tx::Texture::Texture(std::string aLocation, tz::Vector2f aScale, int someColumns, int someRows, bool anAnimationFlag):
+tx::Texture::Texture(std::string aLocation, tz::Vector2f aScale, int someColumns, int someRows, int someFrames, bool anAnimationFlag, float aFramerate):
 	myLocation(aLocation),
 	myScale(aScale),
 	myColumns(someColumns),
 	myRows(someRows),
-	myAnimationFlag(anAnimationFlag)
+	myFrames(someFrames),
+	myAnimationFlag(anAnimationFlag),
+	myFramerate(aFramerate)
 {}
 
 tx::Texture::~Texture()
@@ -37,6 +39,11 @@ int tx::Texture::GetColumns()
 	return myColumns;
 }
 
+int tx::Texture::GetFrames()
+{
+	return myFrames;
+}
+
 int tx::Texture::GetRows()
 {
 	return myRows;
@@ -52,9 +59,24 @@ sf::Texture tx::Texture::GetTexture()
 	return myTexture;
 }
 
+float tx::Texture::GetFramerate()
+{
+	return myFramerate;
+}
+
 void tx::Texture::SetLocation(std::string aLocation)
 {
 	myLocation = aLocation;
+}
+
+void tx::Texture::SetFramerate(float aFramerate)
+{
+	myFramerate = aFramerate;
+}
+
+void tx::Texture::SetFrames(int someFrames)
+{
+	myFrames = someFrames;
 }
 
 void tx::Texture::SetScale(float aX, float aY)

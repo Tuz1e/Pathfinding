@@ -44,13 +44,43 @@ void tx::Sprite::LoadTexture()
 	}
 }
 
-void tx::Sprite::SetAnimation(int someColumns, int someRows)
+void tx::Sprite::SetAnimation()
 {
-	//TODO: Animator logic
+	mySprite.setTextureRect
+	(
+		sf::IntRect
+		(
+			myTexture.getSize().x / myRows * static_cast<int>(myCurrentFrame.X),
+			myTexture.getSize().y / myColumns * static_cast<int>(myCurrentFrame.Y),
+			myTexture.getSize().x / myRows,
+			myTexture.getSize().y / myColumns
+		)
+	);
+
 }
 
-void tx::Sprite::UpdateAnimation()
+void tx::Sprite::UpdateAnimation(float& aDelta)
 {
+	if (myCurrentFrame.X * myCurrentFrame.Y >= myTextures[myTextureType].GetFrames())
+	{
+		myCurrentFrame = tz::Vector2i();
+	}
+	else 
+	{
+		if (myCurrentFrame.X >= myRows)
+		{
+			myCurrentFrame.X = 0;
+			if (myColumns > 1)
+			{
+				myCurrentFrame.Y += (myFramerate * aDelta) / 60.0f; // Divided by 60 due to gameloop
+			}
+		}
+		else if (myCurrentFrame.X < myRows)
+		{
+			myCurrentFrame.X += (myFramerate * aDelta) / 60.0f; // Divided by 60 due to gameloop
+		}
+	}
+	SetAnimation();
 }
 
 sf::Sprite& tx::Sprite::GetSprite()
@@ -70,15 +100,10 @@ tz::Vector2f tx::Sprite::GetScale()
 
 sf::IntRect tx::Sprite::GetFrame()
 {
-	if (myLoadedFlag && !myAnimationFlag)
+	if (myLoadedFlag)
 	{
 		return mySprite.getTextureRect();
 	}
-	else if (myLoadedFlag && myAnimationFlag)
-	{
-		return myFrames[myCurrentFrame];
-	}
-
 	return sf::IntRect();
 }
 
@@ -95,8 +120,37 @@ void tx::Sprite::SetTexture(TextureType aType)
 		myTextures[aType].GetScale().X
 	);
 
+	myScale = myTextures[aType].GetScale();
+
+	if (myTextures[aType].GetAnimationFlag())
+	{
+		myRows = myTextures[aType].GetRows();
+		myColumns = myTextures[aType].GetColumns();
+		myCurrentFrame = tz::Vector2i();
+		SetAnimation();
+		myFramerate = myTextures[aType].GetFramerate();
+	}
+
+	mySprite.setOrigin
+	(
+		(myTexture.getSize().x / myRows / 2.0f)*myScale.X, 
+		(myTexture.getSize().y / myColumns / 2.0f)*myScale.Y
+	);
+
 	myTextureWidth = mySprite.getTextureRect().width;
 	myTextureHeight = mySprite.getTextureRect().height;
+}
+
+void tx::Sprite::Flip(FlipView aSide)
+{
+	if (aSide == FlipView::Left)
+	{
+		SetScale(-myTextures[myTextureType].GetScale().X, myTextures[myTextureType].GetScale().Y);
+	}
+	else
+	{
+		SetScale(myTextures[myTextureType].GetScale().X, myTextures[myTextureType].GetScale().Y);
+	}
 }
 
 void tx::Sprite::SetScale(tz::Vector2f aScale)
@@ -108,9 +162,16 @@ void tx::Sprite::SetScale(tz::Vector2f aScale)
 	myScale = aScale;
 }
 
+void tx::Sprite::SetScale(float x, float y)
+{
+	mySprite.setScale(x, y);
+	myScale = tz::Vector2f(x, y);
+}
+
 void tx::Sprite::SetPosition(tz::Vector2f& aPos)
 {
 	mySprite.setPosition(sf::Vector2f(aPos.X, aPos.Y));
+	myPos = aPos;
 }
 
 void tx::Sprite::Draw(sf::RenderWindow& aWindow)
