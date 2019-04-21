@@ -22,7 +22,7 @@ void GameObject::Draw(sf::RenderWindow& aWindow)
 {
 }
 
-std::string GameObject::GetName()
+std::string& GameObject::GetName()
 {
 	return myName;
 }
@@ -39,7 +39,11 @@ tz::Vector2f& GameObject::GetPosition()
 
 sf::IntRect GameObject::GetBoundingBox()
 {
-	return mySprite->GetFrame();
+	return sf::IntRect(
+		myPos.X,
+		myPos.Y,
+		mySprite->GetFrame().width,
+		mySprite->GetFrame().height);
 }
 
 bool GameObject::GetCollidableFlag()

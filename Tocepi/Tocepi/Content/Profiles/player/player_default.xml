@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Tocipe>
+<Tocepi>
 	<Username>Default</Username>
 	<BackpackSpace>20</BackpackSpace>
 	<Speed>
-		<SpeedX>1.5</SpeedX>
-		<SpeedY>1.5</SpeedY>
+		<SpeedX>90</SpeedX>
+		<SpeedY>90</SpeedY>
 	</Speed>
 	<Texture>
-		<TX0>Content/Textures/player/player_temp_texture.png</TX0>
+		<TXP0>Content/profiles/textures/player/player_texture_default.xml</TXP0>
 	</Texture>
-</Tocipe>
+</Tocepi>

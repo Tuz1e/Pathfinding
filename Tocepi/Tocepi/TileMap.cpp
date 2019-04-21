@@ -1,7 +1,7 @@
 #include "TileMap.h"
 
 //OPTIMIZE: Eats up A LOT of resources when running larger maps. 
-//TODO: Implement multithreading
+//OPTIMIZE: Implement multithreading
 
 TileMap::TileMap(std::string aMapLocation, float aRenderOffset, float aFadeOffset)
 {
@@ -118,10 +118,10 @@ void TileMap::Draw(sf::RenderWindow& aWindow, Player& aPlayer)
 
 				mySprite->setColor(tempC);
 				aWindow.draw(*mySprite);
-				//if (myMap->at(i)[j].GetCollidableFlag())
-				//{
-				//	myMap->at(i)[j].DrawBody(aWindow);
-				//}
+				if (myMap->at(i)[j].GetCollidableFlag())
+				{
+					myMap->at(i)[j].DrawBody(aWindow);
+				}
 			}
 
 		}

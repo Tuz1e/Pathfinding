@@ -32,11 +32,13 @@ namespace tx
 			SetScale(float x, float y),
 			Draw(sf::RenderWindow& aWindow),
 			UpdateAnimation(float& aDelta),			
-			SetPosition(tz::Vector2f& aPos);
+			SetPosition(tz::Vector2f& aPos),
+			SetPosition(float aX, float aY);
 
 		void LoadTexture();
 
 		sf::Sprite &GetSprite();
+		tz::Vector2f GetOrigin();
 		tz::Vector2f 
 			GetPosition(), 
 			GetScale();

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tocepi>
+	<Texture>
+		<TX0>Content/textures/items/weapons/weapon_axe.png</TX0>
+			<TX0-ScaleX>0.6</TX0-ScaleX>
+			<TX0-ScaleY>0.6</TX0-ScaleY>
+			<TX0-Columns>1</TX0-Columns>
+			<TX0-Rows>1</TX0-Rows>
+			<TX0-Frames>1</TX0-Frames>
+			<TX0-Animate>0</TX0-Animate>
+			<TX0-Framerate>1</TX0-Framerate>
+	</Texture>
+</Tocepi>

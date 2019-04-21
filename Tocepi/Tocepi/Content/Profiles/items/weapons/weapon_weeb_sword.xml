@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tocepi>
+	<Username>Weeb Sword</Username>
+	<Durability>2750</Durability>
+	<BaseDamage>10</BaseDamage>
+	<Range>0</Range>
+	<RangeProjectileTexture></RangeProjectileTexture>
+	<Throwable>0</Throwable>
+	<Stun>0</Stun>
+	<Description>A sword for all the weebs out there.</Description>
+	<RotationSpeed>
+		<Speed>5.0</Speed>
+	</RotationSpeed>
+	<Texture>
+		<TXP0>Content/profiles/textures/items/weapons/weapon_texture_anime_sword.xml</TXP0>
+	</Texture>
+</Tocepi>

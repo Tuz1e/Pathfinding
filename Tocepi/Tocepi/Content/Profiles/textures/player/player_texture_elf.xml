@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Tocipe>
+<Tocepi>
 	<Texture>
 		<TX0>Content/textures/player/elf/player_elf_idle_m.png</TX0>
 			<TX0-ScaleX>1</TX0-ScaleX>
@@ -16,6 +16,6 @@
 			<TX1-Rows>4</TX1-Rows>
 			<TX1-Frames>4</TX1-Frames>
 			<TX1-Animate>1</TX1-Animate>
-			<TX1-Framerate>2.5</TX1-Framerate>
+			<TX1-Framerate>3.5</TX1-Framerate>
 	</Texture>
-</Tocipe>
+</Tocepi>

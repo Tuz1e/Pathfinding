@@ -1,6 +1,7 @@
 #include "Sprite.h"
 
-tx::Sprite::Sprite()
+tx::Sprite::Sprite() : 
+	myTextureType(TextureType::IDLE)
 {
 }
 tx::Sprite::Sprite(Texture aTexture, tz::Vector2f& aPos, TextureType aType):
@@ -72,12 +73,12 @@ void tx::Sprite::UpdateAnimation(float& aDelta)
 			myCurrentFrame.X = 0;
 			if (myColumns > 1)
 			{
-				myCurrentFrame.Y += (myFramerate * aDelta) / 60.0f; // Divided by 60 due to gameloop
+				myCurrentFrame.Y += (myFramerate * aDelta);
 			}
 		}
 		else if (myCurrentFrame.X < myRows)
 		{
-			myCurrentFrame.X += (myFramerate * aDelta) / 60.0f; // Divided by 60 due to gameloop
+			myCurrentFrame.X += (myFramerate * aDelta);
 		}
 	}
 	SetAnimation();
@@ -86,6 +87,11 @@ void tx::Sprite::UpdateAnimation(float& aDelta)
 sf::Sprite& tx::Sprite::GetSprite()
 {
 	return mySprite;
+}
+
+tz::Vector2f tx::Sprite::GetOrigin()
+{
+	return tz::Vector2f(mySprite.getOrigin().x, mySprite.getOrigin().y);
 }
 
 tz::Vector2f tx::Sprite::GetPosition()
@@ -114,32 +120,28 @@ TextureType& tx::Sprite::GetCurrentTextureType()
 
 void tx::Sprite::SetTexture(TextureType aType)
 {
-	//TODO: Scale correctly when switching to another texture
-
 	myTextureType = aType;
 	myTexture = myTextures[aType].GetTexture();
 	mySprite.setTexture(myTexture);
 	mySprite.setPosition(myPos.X, myPos.Y);
 	mySprite.setScale(
 		myTextures[aType].GetScale().X,
-		myTextures[aType].GetScale().X
+		myTextures[aType].GetScale().Y
 	);
 
 	myScale = myTextures[aType].GetScale();
 
-	if (myTextures[aType].GetAnimationFlag())
-	{
-		myRows = myTextures[aType].GetRows();
-		myColumns = myTextures[aType].GetColumns();
-		myCurrentFrame = tz::Vector2i();
-		SetAnimation();
-		myFramerate = myTextures[aType].GetFramerate();
-	}
+	myRows = myTextures[aType].GetRows();
+	myColumns = myTextures[aType].GetColumns();
+	myFramerate = myTextures[aType].GetFramerate();
+
+	myCurrentFrame = tz::Vector2i();
+	SetAnimation();
 
 	mySprite.setOrigin
 	(
-		(myTexture.getSize().x / myRows / 2.0f)*myScale.X, 
-		(myTexture.getSize().y / myColumns / 2.0f)*myScale.Y
+		(myTexture.getSize().x / myRows / 2.0f),
+		(myTexture.getSize().y / myColumns / 2.0f)
 	);
 
 	myTextureWidth = mySprite.getTextureRect().width;
@@ -165,6 +167,12 @@ void tx::Sprite::SetScale(tz::Vector2f aScale)
 		mySprite.setScale(sf::Vector2f(aScale.X, aScale.Y));
 	}
 	myScale = aScale;
+}
+
+void tx::Sprite::SetPosition(float aX, float aY)
+{
+	mySprite.setPosition(aX, aY);
+	myPos = tz::Vector2f(aX, aY);
 }
 
 void tx::Sprite::SetScale(float x, float y)

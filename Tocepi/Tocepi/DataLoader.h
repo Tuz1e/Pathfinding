@@ -15,16 +15,27 @@ public:
 	DataLoader(std::string aProfileLocation);
 	~DataLoader();
 
-	void LoadData();
+	void LoadTextureData();
 
 	std::vector<tx::Texture>& GetTextures();
-
-	tz::Vector2f& GetSpeed();
-
 	std::string& GetName();
 
+	std::string GetDataString(std::string aFindLine);
+	std::string GetDataString(std::string& aPath, std::string aFindLine);
+
+	int GetDataInteger(std::string aFindLine);
+	int GetDataInteger(std::string& aPath, std::string aFindLine);
+
+	float GetDataFloat(std::string aFindLine);
+	float GetDataFloat(std::string& aPath, std::string aFindLine);
+
+	bool GetDataBoolean(std::string aFindLine);
+	bool GetDataBoolean(std::string& aPath, std::string aFindLine);
+
+	tz::Vector2f GetSpeedVec();
+	float GetSpeed();
+
 private:
-	tz::Vector2f mySpeed;
 	std::vector<tx::Texture> myTextures;
 	std::string myProfileLocation, myName;
 };

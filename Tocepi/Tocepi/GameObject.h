@@ -2,8 +2,10 @@
 #define GAMEOBJECT_H
 
 #include "pch.h"
+#include "TZ/GameKit.hpp"
 #include "SFML/Graphics.hpp"
 #include "Sprite.h"
+#include "DataLoader.h"
 
 class GameObject
 {
@@ -16,7 +18,7 @@ public:
 		Update(float& aDelta), 
 		Draw(sf::RenderWindow& aWindow);
 
-	virtual std::string GetName();
+	virtual std::string& GetName();
 	virtual tx::Sprite* GetSprite();
 	virtual tz::Vector2f& GetPosition();
 	virtual sf::IntRect GetBoundingBox();
@@ -38,6 +40,7 @@ protected:
 	tx::Sprite* mySprite;
 	tz::Vector2f myPos;
 	bool myCollidableFlag = false;
+	DataLoader myDataLoader;
 };
 
 #endif //GAMEOBJECT_H

@@ -1,7 +1,5 @@
 #include "Player.h"
 
-
-
 Player::Player()
 {
 	myPos = tz::Vector2f(0, 0);
@@ -46,12 +44,17 @@ void Player::Init(Input& anInput)
 		),
 		mySprite->GetSprite().getOrigin()
 	);
+
+	myWeapon = new Weapon(WEAPON_DEV, myPos);
+	myWeapon->LoadWeapon();
 }
 
-void Player::Update(float& aDelta)
+void Player::Update(float& aDelta, sf::RenderWindow& aWindow)
 {
-	if (!myCollidingFlag)
-	{
+	//FIX: Player getting stuck in walls
+
+	//if (!myCollidingFlag)
+	//{
 		myVelocity = tz::Vector2f();
 		myCorrectingFlag = false;
 
@@ -77,15 +80,6 @@ void Player::Update(float& aDelta)
 			myMovingFlag = true;
 		}
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Q))
-		{
-			mySprite->SetTexture(TextureType::IDLE);
-		}
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::E))
-		{
-			mySprite->SetTexture(TextureType::RUN);
-		}
-
 		if (myMovingFlag && mySprite->GetCurrentTextureType() != TextureType::RUN)
 		{
 			mySprite->SetTexture(TextureType::RUN);
@@ -94,31 +88,31 @@ void Player::Update(float& aDelta)
 		{
 			mySprite->SetTexture(TextureType::IDLE);
 		}
-	}
-	else if (myCollidingFlag && !myCorrectingFlag)
-	{
-		//Not the most perfect system but it works for now
-		//TODO: Fix the "bugginess" when colliding
-		if (myVelocity.X > 0.0f)
-		{
-			myVelocity.X = -mySpeed.X;
-		}
-		else if (myVelocity.X < 0.0f)
-		{
-			myVelocity.X = mySpeed.X;
-		}
+	//}
+	//else if (myCollidingFlag && !myCorrectingFlag)
+	//{
+	//	//Not the most perfect system but it works for now
+	//	//FIX: Buggy when colliding
+	//	if (myVelocity.X > 0.0f)
+	//	{
+	//		myVelocity.X = -mySpeed.X;
+	//	}
+	//	else if (myVelocity.X < 0.0f)
+	//	{
+	//		myVelocity.X = mySpeed.X;
+	//	}
 
-		if (myVelocity.Y > 0.0f)
-		{
-			myVelocity.Y = -mySpeed.Y;
-		}
-		else if (myVelocity.Y < 0.0f)
-		{
-			myVelocity.Y = mySpeed.Y;
-		}
+	//	if (myVelocity.Y > 0.0f)
+	//	{
+	//		myVelocity.Y = -mySpeed.Y;
+	//	}
+	//	else if (myVelocity.Y < 0.0f)
+	//	{
+	//		myVelocity.Y = mySpeed.Y;
+	//	}
 
-		myCorrectingFlag = true;
-	}
+	//	myCorrectingFlag = true;
+	//}
 
 
 
@@ -126,6 +120,7 @@ void Player::Update(float& aDelta)
 	mySprite->SetPosition(myPos);
 	myBody.setPosition(GetBoundingBox().left, GetBoundingBox().top);
 	mySprite->UpdateAnimation(aDelta); //Update the animation
+	myWeapon->Update(aDelta, myPos, aWindow);
 	myCollidingFlag = false;
 	myMovingFlag = false;
 
@@ -135,7 +130,7 @@ void Player::Update(float& aDelta)
 
 }
 
-void Player::Draw(sf::RenderWindow& aWindow)
+void Player::Draw(sf::RenderWindow& aWindow, sf::View& aView)
 {
 	
 	mySprite->Flip
@@ -143,9 +138,14 @@ void Player::Draw(sf::RenderWindow& aWindow)
 		((sf::Mouse::getPosition(aWindow).x) < (aWindow.getSize().x/2))
 		? FlipView::Left : FlipView::Right
 	);
-
+	myWeapon->Draw(aWindow);
 	mySprite->Draw(aWindow);
-	//DrawBody(aWindow);
+	DrawBody(aWindow);
+}
+
+Weapon* Player::GetWeapon()
+{
+	return myWeapon;
 }
 
 void Player::SetColliding(bool aCollisionFlag)
@@ -167,11 +167,11 @@ void Player::LoadDefaults()
 {
 	myTextureType = TextureType::IDLE;
 	myDataLoader = DataLoader(PLAYER_ELF);
-	myDataLoader.LoadData();
+	myDataLoader.LoadTextureData();
 
 	mySprite = new tx::Sprite(myDataLoader.GetTextures(), myPos, myTextureType);
 	mySprite->LoadTexture();
-	mySpeed = myDataLoader.GetSpeed();
+	mySpeed = myDataLoader.GetSpeedVec();
 
 	PrintLoaded("Player defaults");
 }

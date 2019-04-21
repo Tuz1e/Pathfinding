@@ -3,9 +3,11 @@
 
 #include "Entity.h"
 #include "Input.h"
-#include "DataLoader.h"
+#include "Weapon.h"
 
 #define PLAYER_ELF "Content/profiles/player/player_elf.xml"
+
+#define WEAPON_DEV "Content/profiles/items/weapons/weapon_dev_sword.xml"
 
 class Player : public Entity
 {
@@ -17,9 +19,10 @@ public:
 
 	void
 		Init(Input& anInput),
-		Update(float& aDelta),
-		Draw(sf::RenderWindow& aWindow);
+		Update(float& aDelta, sf::RenderWindow& aWindow),
+		Draw(sf::RenderWindow& aWindow, sf::View& aView);
 
+	Weapon* GetWeapon();
 	void SetColliding(bool aCollisionFlag);
 
 	int 
@@ -34,8 +37,8 @@ private:
 		myWeaponId,
 		myBackpackSpace;
 	bool myCorrectingFlag = false, myMovingFlag = false;
-	DataLoader myDataLoader;
 	TextureType myTextureType;
+	Weapon* myWeapon;
 };
 
 #endif //PLAYER_H

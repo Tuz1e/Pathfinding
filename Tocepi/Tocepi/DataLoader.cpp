@@ -10,63 +10,35 @@ DataLoader::~DataLoader()
 {
 }
 
-void DataLoader::LoadData()
+void DataLoader::LoadTextureData()
 {
 	try
 	{
-		std::string tempTextureProfileLocation = GetFromXml(myProfileLocation, "TXP0");
-		myName = GetFromXml(myProfileLocation, "Username");
-		mySpeed = tz::Vector2f
-		(
-			ConvertToFloat(GetFromXml(myProfileLocation, "SpeedX")),
-			ConvertToFloat(GetFromXml(myProfileLocation, "SpeedY"))
-		);
+		std::string tempTextureProfileLocation = GetDataString("TXP0");
+		myName = GetDataString("Username");
 
 		tx::Texture tempTexture;
 		std::string tempStr;
 		tz::Vector2f tempScale;
+		std::string tempLine;
 		for (int i = 0; i < TextureType::LENGTH; i++)
 		{
-			if (ExistsInXml(tempTextureProfileLocation, "TX" + std::to_string(i)))
+			tempLine = "TX" + std::to_string(i);
+			if (ExistsInXml(tempTextureProfileLocation, tempLine))
 			{
-				tempTexture.SetLocation(
-					GetFromXml(
-						tempTextureProfileLocation, "TX" + std::to_string(i)));
+				tempTexture.SetLocation(GetDataString(tempTextureProfileLocation, tempLine));
 
 				tempTexture.SetScale
 				(
-					ConvertToFloat(GetFromXml(tempTextureProfileLocation, "TX" + std::to_string(i) + "-ScaleY")),
-					ConvertToFloat(GetFromXml(tempTextureProfileLocation, "TX" + std::to_string(i) + "-ScaleX"))
+					GetDataFloat(tempTextureProfileLocation, tempLine + "-ScaleX"),
+					GetDataFloat(tempTextureProfileLocation, tempLine + "-ScaleY")
 				);
 
-				tempTexture.SetColumns(
-					ConvertToInt(
-						GetFromXml(
-							tempTextureProfileLocation, "TX" + std::to_string(i) + "-Columns")
-					));
-
-				tempTexture.SetRows(
-					ConvertToInt(
-						GetFromXml(
-							tempTextureProfileLocation, "TX" + std::to_string(i) + "-Rows")));
-
-				tempTexture.SetFrames(
-					ConvertToInt(
-						GetFromXml(
-							tempTextureProfileLocation, "TX" + std::to_string(i) + "-Frames")));
-
-				//If equals 1, true : else false
-				tempTexture.SetAnimationFlag(
-					(
-						ConvertToInt(
-							GetFromXml(
-								tempTextureProfileLocation, "TX" + std::to_string(i) + "-Animate")
-						) == 1));
-
-				tempTexture.SetFramerate(
-					ConvertToFloat(
-						GetFromXml(
-							tempTextureProfileLocation, "TX" + std::to_string(i) + "-Framerate")));
+				tempTexture.SetColumns(GetDataInteger(tempTextureProfileLocation, tempLine + "-Columns"));
+				tempTexture.SetRows(GetDataInteger(tempTextureProfileLocation, tempLine + "-Rows"));
+				tempTexture.SetFrames(GetDataInteger(tempTextureProfileLocation, tempLine + "-Frames"));
+				tempTexture.SetAnimationFlag(GetDataBoolean(tempTextureProfileLocation, tempLine + "-Animate"));
+				tempTexture.SetFramerate(GetDataFloat(tempTextureProfileLocation, tempLine + "-Framerate"));
 
 				myTextures.push_back(tempTexture);
 			}
@@ -81,12 +53,57 @@ std::vector<tx::Texture>& DataLoader::GetTextures()
 	return myTextures;
 }
 
-tz::Vector2f& DataLoader::GetSpeed()
+tz::Vector2f DataLoader::GetSpeedVec()
 {
-	return mySpeed;
+	return tz::Vector2f(GetDataFloat("SpeedX"), GetDataFloat("SpeedY"));
+}
+
+float DataLoader::GetSpeed()
+{
+	return GetDataFloat("Speed");
 }
 
 std::string& DataLoader::GetName()
 {
 	return myName;
+}
+
+std::string DataLoader::GetDataString(std::string aFindLine)
+{
+	return GetFromXml(myProfileLocation, aFindLine);
+}
+
+std::string DataLoader::GetDataString(std::string& aPath, std::string aFindLine)
+{
+	return GetFromXml(aPath, aFindLine);
+}
+
+int DataLoader::GetDataInteger(std::string aFindLine)
+{
+	return ConvertToInt(GetFromXml(myProfileLocation, aFindLine));
+}
+
+int DataLoader::GetDataInteger(std::string& aPath, std::string aFindLine)
+{
+	return ConvertToInt(GetFromXml(aPath, aFindLine));
+}
+
+float DataLoader::GetDataFloat(std::string aFindLine)
+{
+	return ConvertToFloat(GetFromXml(myProfileLocation, aFindLine));
+}
+
+float DataLoader::GetDataFloat(std::string& aPath, std::string aFindLine)
+{
+	return ConvertToFloat(GetFromXml(aPath, aFindLine));
+}
+
+bool DataLoader::GetDataBoolean(std::string aFindLine)
+{
+	return (ConvertToInt(GetFromXml(myProfileLocation, aFindLine)) == 1);
+}
+
+bool DataLoader::GetDataBoolean(std::string& aPath, std::string aFindLine)
+{
+	return (ConvertToInt(GetFromXml(aPath, aFindLine)) == 1);
 }

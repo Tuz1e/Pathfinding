@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Tocipe>
+<Tocepi>
 	<ScreenSize>
 		<SS_Width>1280</SS_Width>
 		<SS_Height>720</SS_Height>
@@ -10,4 +10,4 @@
 	</ScreenAspectRatio>
 	<Fullscreen>0</Fullscreen>
 	<FrameCounter>0</FrameCounter>
-</Tocipe>
+</Tocepi>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tocepi>
+	<Username>Basic Axe</Username>
+	<Durability>1000</Durability>
+	<BaseDamage>14</BaseDamage>
+	<Range>0</Range>
+	<RangeProjectileTexture></RangeProjectileTexture>
+	<Throwable>0</Throwable>
+	<Stun>0</Stun>
+	<Description>A basic axe.</Description>
+	<RotationSpeed>
+		<Speed>3.5</Speed>
+	</RotationSpeed>
+	<Texture>
+		<TXP0>Content/profiles/textures/items/weapons/weapon_texture_axe.xml</TXP0>
+	</Texture>
+</Tocepi>

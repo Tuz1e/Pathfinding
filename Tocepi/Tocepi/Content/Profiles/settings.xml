@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Tocipe>
+<Tocepi>
 	<AspectRatio>
 		<AR00>
 			<Width>4</Width>
@@ -134,4 +134,4 @@
 	</ScreenSize>
 	<Fullscreen>1</Fullscreen>
 	<FrameCounter>1</FrameCounter>
-</Tocipe>
+</Tocepi>

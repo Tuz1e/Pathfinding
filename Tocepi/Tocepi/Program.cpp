@@ -11,8 +11,9 @@ Program::~Program()
 	DelPtr(myMap);
 }
 
-void Program::Init()
+void Program::Init(sf::RenderWindow& aWindow)
 {
+	myWindow = &aWindow;
 	myMap = new TileMap(MAP, 65.0f, 90.0f);
 	myMap->LoadMapData();
 
@@ -31,7 +32,7 @@ void Program::Init()
 void Program::Update(float& aDelta)
 {
 	myView.move(sf::Vector2f(myPlayer->GetVelocity().X, myPlayer->GetVelocity().Y) * aDelta);
-	myPlayer->Update(aDelta);
+	myPlayer->Update(aDelta, *myWindow);
 	myMap->Update(*myPlayer);
 }
 
@@ -41,7 +42,7 @@ void Program::Draw(sf::RenderWindow& aWindow)
 
 
 	myMap->Draw(aWindow, *myPlayer);
-	myPlayer->Draw(aWindow);
+	myPlayer->Draw(aWindow, myView);
 }
 
 void Program::LateDraw(sf::RenderWindow& aWindow)

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tocepi>
+	<Username>Sword</Username>
+	<Durability>2500</Durability>
+	<BaseDamage>17</BaseDamage>
+	<Range>0</Range>
+	<RangeProjectileTexture></RangeProjectileTexture>
+	<Throwable>0</Throwable>
+	<Stun>0</Stun>
+	<Description>A regular sword, nothing special with it.</Description>
+	<RotationSpeed>
+		<Speed>6.0</Speed>
+	</RotationSpeed>
+	<Texture>
+		<TXP0>Content/profiles/textures/items/weapons/weapon_texture_regular_sword.xml</TXP0>
+	</Texture>
+</Tocepi>

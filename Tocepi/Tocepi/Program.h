@@ -7,13 +7,17 @@
 #include "Player.h"
 #include "TileMap.h"
 
+//TODO: Main menu
+//TODO: Pause Screen
+//TODO: Item/Weapon manager
+
 class Program
 {
 public:
 	Program();
 	~Program();
 
-	void Init();
+	void Init(sf::RenderWindow& aWindow);
 	void Update(float& aDelta);
 	void Draw(sf::RenderWindow& aWindow);
 	void LateDraw(sf::RenderWindow& aWindow);
@@ -23,7 +27,7 @@ private:
 	Input myInput;
 	TileMap* myMap;
 	sf::View myView;
-	sf::RenderWindow myWindow;
+	sf::RenderWindow* myWindow;
 };
 
 #endif //PROGRAM_H

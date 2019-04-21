@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tocepi>
+	<Username>Sword of Camelot</Username>
+	<Durability>5000</Durability>
+	<BaseDamage>17</BaseDamage>
+	<Range>0</Range>
+	<RangeProjectileTexture></RangeProjectileTexture>
+	<Throwable>0</Throwable>
+	<Stun>0</Stun>
+	<Description>It's a normal sword with a cool name, deal with it</Description>
+	<RotationSpeed>
+		<Speed>4.0</Speed>
+	</RotationSpeed>
+	<Texture>
+		<TXP0>Content/profiles/textures/items/weapons/weapon_texture_knight_sword.xml</TXP0>
+	</Texture>
+</Tocepi>

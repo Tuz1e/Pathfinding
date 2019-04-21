@@ -146,6 +146,7 @@
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="TileMap.cpp" />
+    <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h" />
@@ -164,6 +165,7 @@
     <ClInclude Include="TextureType.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="TileMap.h" />
+    <ClInclude Include="Weapon.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

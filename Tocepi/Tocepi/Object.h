@@ -10,6 +10,7 @@ public:
 	~Object();
 
 	void SetSprite(sf::Sprite& aSprite);
+
 };
 
 #endif //OBJECT_H
