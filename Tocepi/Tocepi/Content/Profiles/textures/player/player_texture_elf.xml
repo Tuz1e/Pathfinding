@@ -8,7 +8,7 @@
 			<TX0-Rows>4</TX0-Rows>
 			<TX0-Frames>4</TX0-Frames>
 			<TX0-Animate>1</TX0-Animate>
-			<TX0-Framerate>1.2</TX0-Framerate>
+			<TX0-Framerate>1.4</TX0-Framerate>
 		<TX1>Content/textures/player/elf/player_elf_run_m.png</TX1>
 			<TX1-ScaleX>1</TX1-ScaleX>
 			<TX1-ScaleY>1</TX1-ScaleY>
@@ -16,6 +16,6 @@
 			<TX1-Rows>4</TX1-Rows>
 			<TX1-Frames>4</TX1-Frames>
 			<TX1-Animate>1</TX1-Animate>
-			<TX1-Framerate>3.5</TX1-Framerate>
+			<TX1-Framerate>5.5</TX1-Framerate>
 	</Texture>
 </Tocepi>

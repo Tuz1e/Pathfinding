@@ -2,23 +2,18 @@
 
 Weapon::Weapon()
 {
-	PI = 3.14159265358979323846;
 }
 
 Weapon::Weapon(std::string aLocation, tz::Vector2f aPos):
 	myProfileLocation(aLocation)
 {
 	myPos = aPos;
-	PI = 3.14159265358979323846;
-	myAngle = 1;
 }
 
 Weapon::Weapon(std::string aLocation, float aX, float aY):
 	myProfileLocation(aLocation)
 {
 	myPos = tz::Vector2f(aX, aY);
-	PI = 3.14159265358979323846;
-	myAngle = 1;
 }
 
 Weapon::~Weapon()
@@ -71,107 +66,45 @@ void Weapon::LoadWeapon()
 
 void Weapon::Update(float& aDelta, tz::Vector2f aPos, sf::RenderWindow& aWindow)
 {
-	//float tempAngle = 90 * aDelta;
-	//myRotationSpeed *= aDelta;
-	//tempAngle *= 3.14159265358979323846 / 180; //Angle * PI/180
+	//TODO: Make weapon movement smoother
 
-	//float s = sin(tempAngle);
-	//float c = cos(tempAngle);
-
-	//float xnew = aCenterPos.X * c - aCenterPos.Y * s;
-	//float ynew = aCenterPos.X * s - aCenterPos.Y * c;
-
-	//float tempRotatedX = xnew + myPos.X;
-	//float tempRotatedY = ynew + myPos.Y;
-
-	//float tempRotatedX = + cos(tempAngle) * (aPos.X - aCenterPos.X) - sin(tempAngle)
-	//	* (aPos.Y - aCenterPos.Y) + aCenterPos.X;
-
-	//float tempRotatedY = myPos.Y + sin(tempAngle) * (aPos.X - aCenterPos.X) + cos(tempAngle)
-	//	* (aPos.Y - aCenterPos.Y) + aCenterPos.Y;
-
-	//mySprite->SetPosition(tempRotatedX, tempRotatedY);
-	//myPos = tz::Vector2f(tempRotatedX, tempRotatedY);
-	//myBody.setPosition(tempRotatedX, tempRotatedY);
-
-	//This worked, ish
-	//myAngle = PI / 2;
-	//myAngle = myAngle * (180 / PI);
-
-	//float dx = ((10) * cos(myAngle)) - ((10) * sin(myAngle)) + aCenterPos.X;
-	//float dy = ((10) * cos(myAngle)) + ((10) * sin(myAngle)) + aCenterPos.Y;
-
-
-
-	//float tempX = aCenterPos.X * cos(myAngle);
-	//float tempY = aCenterPos.Y * sin(myAngle);
-
-	//float tempDx = tempX + aCenterPos.X * 10;
-	//float tempDy = tempY + aCenterPos.Y * sin(myAngle);
-
-	//std::cout << "Angle: " << myAngle << std::endl;
-	//std::cout << "Derivative X: " << dx << " Y: " << dy << std::endl;
-	//std::cout << "Weapon X: " << myPos.X << " Y: " << myPos.Y << std::endl;
-
-	//myPos = tz::Vector2f(tempX, tempY);
-	//mySprite->SetPosition(tempX, tempY);
-	//myBody.setPosition(tempX, tempY);
-
-	//If position is smaller than '15' move towards mouse, otherwise don't
-
+	//Weapon movement
 	sf::Vector2f tempMouseWorldPos = aWindow.mapPixelToCoords(sf::Mouse::getPosition(aWindow));
 	tz::Vector2f tempMousePos = tz::Vector2f(tempMouseWorldPos.x, tempMouseWorldPos.y);
 
 	tz::Vector2f tempPos = myPos;
-
-	//if (tz::DisBetweenVec(myPos, aPos) > 5)
-	//{
-	//	tempPos.X += ((aPos.X - myPos.X) * 2) * aDelta;
-	//	tempPos.Y += ((aPos.Y - myPos.Y) * 2) * aDelta;
-	//}
-
-	//TODO: Add weapon rotation logic
-	//TODO: Move weapon
-	if (tz::DisBetweenVec(myPos, tempMousePos) >= 10 && (tz::DisBetweenVec(myPos, aPos) <= 5))
+	if (tz::DisBetweenVec(myPreviousMousePos, tempMousePos) > 0.1)
 	{
-		tempPos.X += ((tempMousePos.X - myPos.X) * 2) * aDelta;
-		tempPos.Y += ((tempMousePos.Y - myPos.Y) * 2) * aDelta;
+		tempPos.X += ((tempMousePos.X - tempPos.X)*2) * aDelta;
+		tempPos.Y += ((tempMousePos.Y - tempPos.Y)*2) * aDelta;
 	}
+
+	if (tz::DisBetweenVec(tempPos, aPos) > 15)
+	{
+		tempPos.X += ((aPos.X - tempPos.X) * 15) * aDelta;
+		tempPos.Y += ((aPos.Y - tempPos.Y) * 15) * aDelta;
+	}
+
+	myPreviousMousePos = tempMousePos;
+
+	//Weapon rotation
+	float tempAngle = atan2((tempMousePos.Y - tempPos.Y) * -1, (tempMousePos.X - tempPos.X) * -1);
+	tempAngle -= PI / 2;
+	tempAngle *= (180 / PI); //Convert from radians to degrees
 
 	myPos = tempPos;
 	
 	mySprite->SetPosition(myPos);
+	mySprite->GetSprite().setRotation(tempAngle);
+
 	myBody.setPosition(sf::Vector2f(myPos.X, myPos.Y));
+	myBody.setRotation(tempAngle);
 }
 
 void Weapon::Draw(sf::RenderWindow& aWindow)
 {
-	//sf::Vector2f tempCurrentPos;
-	//tempCurrentPos.x = GetBoundingBox().left;
-	//tempCurrentPos.y = GetBoundingBox().top;
-	//sf::Vector2i tempPos = sf::Mouse::getPosition(aWindow);
-	//tempPos = sf::Vector2i(aWindow.mapPixelToCoords(tempPos, aView));
-
-	//float dx = tempCurrentPos.x - tempPos.x;
-	//float dy = tempCurrentPos.y - tempPos.y;
-	//float rotation = (atan2(dy, dy)) * (180 / PI);
-
-	//mySprite->GetSprite().setRotation(rotation);
-	//myBody.setRotation(rotation);
-
-	//float angle = atan2(sf::Mouse::getPosition(aWindow).y - myPos.Y, sf::Mouse::getPosition(aWindow).x - myPos.X);
-	//angle = angle * (180 / PI);
-
-	//if (angle < 0)
-	//{
-	//	angle = 360 - (-angle);
-	//}
-
-	//mySprite->GetSprite().rotate(90 + angle);
-	//myBody.rotate(90 + angle);
-
 	mySprite->Draw(aWindow);
-	DrawBody(aWindow);
+	//DrawBody(aWindow);
 }
 
 std::string& Weapon::GetRangeProjectileTextureLocation()

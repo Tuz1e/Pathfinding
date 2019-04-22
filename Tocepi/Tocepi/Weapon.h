@@ -9,6 +9,8 @@
 #include "TextureType.h"
 #include <math.h>
 
+#define PI 3.14159265358979323846
+
 class Weapon : public Object
 {
 public:
@@ -48,16 +50,12 @@ private:
 		myBaseDamage, 
 		myRotationSpeed;
 
-	float PI;
-
 	bool 
 		myRangeFlag, 
 		myThrowableFlag, 
 		myStunFlag;
 
-	float myAngle;
-
-	//Rotation Variables
+	tz::Vector2f myPreviousMousePos;
 };
 
 #endif //WEAPON_H

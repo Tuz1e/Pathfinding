@@ -53,8 +53,8 @@ void Player::Update(float& aDelta, sf::RenderWindow& aWindow)
 {
 	//FIX: Player getting stuck in walls
 
-	//if (!myCollidingFlag)
-	//{
+	if (!myCollidingFlag)
+	{
 		myVelocity = tz::Vector2f();
 		myCorrectingFlag = false;
 
@@ -88,31 +88,31 @@ void Player::Update(float& aDelta, sf::RenderWindow& aWindow)
 		{
 			mySprite->SetTexture(TextureType::IDLE);
 		}
-	//}
-	//else if (myCollidingFlag && !myCorrectingFlag)
-	//{
-	//	//Not the most perfect system but it works for now
-	//	//FIX: Buggy when colliding
-	//	if (myVelocity.X > 0.0f)
-	//	{
-	//		myVelocity.X = -mySpeed.X;
-	//	}
-	//	else if (myVelocity.X < 0.0f)
-	//	{
-	//		myVelocity.X = mySpeed.X;
-	//	}
+	}
+	else if (myCollidingFlag && !myCorrectingFlag)
+	{
+		//Not the most perfect system but it works for now
+		//FIX: Buggy when colliding
+		if (myVelocity.X > 0.0f)
+		{
+			myVelocity.X = -mySpeed.X;
+		}
+		else if (myVelocity.X < 0.0f)
+		{
+			myVelocity.X = mySpeed.X;
+		}
 
-	//	if (myVelocity.Y > 0.0f)
-	//	{
-	//		myVelocity.Y = -mySpeed.Y;
-	//	}
-	//	else if (myVelocity.Y < 0.0f)
-	//	{
-	//		myVelocity.Y = mySpeed.Y;
-	//	}
+		if (myVelocity.Y > 0.0f)
+		{
+			myVelocity.Y = -mySpeed.Y;
+		}
+		else if (myVelocity.Y < 0.0f)
+		{
+			myVelocity.Y = mySpeed.Y;
+		}
 
-	//	myCorrectingFlag = true;
-	//}
+		myCorrectingFlag = true;
+	}
 
 
 
@@ -140,7 +140,7 @@ void Player::Draw(sf::RenderWindow& aWindow, sf::View& aView)
 	);
 	myWeapon->Draw(aWindow);
 	mySprite->Draw(aWindow);
-	DrawBody(aWindow);
+	//DrawBody(aWindow);
 }
 
 Weapon* Player::GetWeapon()

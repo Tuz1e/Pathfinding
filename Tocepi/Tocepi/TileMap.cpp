@@ -118,10 +118,10 @@ void TileMap::Draw(sf::RenderWindow& aWindow, Player& aPlayer)
 
 				mySprite->setColor(tempC);
 				aWindow.draw(*mySprite);
-				if (myMap->at(i)[j].GetCollidableFlag())
-				{
-					myMap->at(i)[j].DrawBody(aWindow);
-				}
+				//if (myMap->at(i)[j].GetCollidableFlag())
+				//{
+				//	myMap->at(i)[j].DrawBody(aWindow);
+				//}
 			}
 
 		}
