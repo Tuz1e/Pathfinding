@@ -137,6 +137,8 @@
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Map.cpp" />
+    <ClCompile Include="MapManager.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Program.cpp" />
@@ -145,6 +147,7 @@
     <ClCompile Include="DataLoader.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Tile.cpp" />
+    <ClCompile Include="TileLayer.cpp" />
     <ClCompile Include="TileMap.cpp" />
     <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
@@ -154,6 +157,8 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Info.h" />
     <ClInclude Include="Input.h" />
+    <ClInclude Include="Map.h" />
+    <ClInclude Include="MapManager.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Player.h" />
@@ -164,6 +169,7 @@
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TextureType.h" />
     <ClInclude Include="Tile.h" />
+    <ClInclude Include="TileLayer.h" />
     <ClInclude Include="TileMap.h" />
     <ClInclude Include="Weapon.h" />
   </ItemGroup>

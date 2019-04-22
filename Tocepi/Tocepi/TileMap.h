@@ -40,7 +40,6 @@ private:
 	sf::Texture mySheet;
 	std::vector<sf::IntRect> myTextureTiles;
 	float myMapTileDimension, myMapTileScale;
-	std::vector<Tile> myCollidableTiles;
 };
 
 #endif //TILEMAP_H
