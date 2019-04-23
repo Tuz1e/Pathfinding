@@ -1,51 +1,71 @@
 #ifndef MAP_H
 #define MAP_H
 
+#include "SFML/Graphics.hpp"
 #include "TileLayer.h"
 #include "DataLoader.h"
+#include "Player.h"
 
 class Map
 {
 public:
-	Map(std::string aLocation);
+	Map(std::string aLocation, float aRenderOffset, float aFadeOffset);
 	~Map();
 
-	void LoadData();
+	void 
+		LoadData(),
+		Update(Player& aPlayer),
+		Draw(sf::RenderWindow& aWindow, Player& aPlayer);
 
 	int
 		&GetLayersAmount(),
 		&GetWidth(),
 		&GetHeight(),
-		&GetTileDimension(),
 		&GetHorizontalSize(),
 		&GetVerticalSize();
+
+	float
+		&GetTileDimension(),
+		&GetScale();;
 
 	std::string 
 		&GetTextureLocation(),
 		&GetLocation();
 
-	sf::Vector2f& GetScale();
-
-	std::vector<TileLayer>& GetLayers();
+	std::vector<TileLayer>* GetLayers();
 
 private:
+	void
+		LoadSheetData(std::vector<sf::IntRect>* someTextureTiles),
+		LoadSprite(sf::Sprite& aSprite, sf::Texture* aSheet),
+		SetColliders(std::vector<Tile>* aLayer, sf::Sprite& aSprite);
+
+	std::vector<Tile> 
+		GetTileData(std::vector<std::string>* someData),
+		CleanData(std::vector<Tile>& aLayer);
+
 	int 
 		myLayerAmount, 
 		myWidth, 
 		myHeight,
-		myTileDimension,
-		myHorizontalSize,
-		myVerticalSize,
+		mySheetHorizontalSize,
+		mySheetVerticalSize,
 		mySheetSize;
 
-	sf::Vector2i myScale;
+	float 
+		myTileScale, 
+		myTileDimension,
+		myRenderOffset,
+		myFadeOffset;
 	std::string 
 		myName,
 		myTextureLocation,
 		myDataLocation;
 
-	std::vector<TileLayer> myLayers;
-
+	sf::Texture mySheet;
+	sf::Sprite* mySprite;
+	std::vector<sf::IntRect>* myTextureTiles;
+	std::vector<TileLayer>* myLayers;
 	DataLoader myDataLoader;
 };
 

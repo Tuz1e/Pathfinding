@@ -7,7 +7,6 @@ GameObject::GameObject()
 
 GameObject::~GameObject()
 {
-	DelPtr(mySprite);
 }
 
 void GameObject::Init()

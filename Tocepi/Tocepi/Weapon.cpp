@@ -66,8 +66,6 @@ void Weapon::LoadWeapon()
 
 void Weapon::Update(float& aDelta, tz::Vector2f aPos, sf::RenderWindow& aWindow)
 {
-	//TODO: Make weapon movement smoother
-
 	//Weapon movement
 	sf::Vector2f tempMouseWorldPos = aWindow.mapPixelToCoords(sf::Mouse::getPosition(aWindow));
 	tz::Vector2f tempMousePos = tz::Vector2f(tempMouseWorldPos.x, tempMouseWorldPos.y);
@@ -92,6 +90,8 @@ void Weapon::Update(float& aDelta, tz::Vector2f aPos, sf::RenderWindow& aWindow)
 	tempAngle -= PI / 2;
 	tempAngle *= (180 / PI); //Convert from radians to degrees
 
+
+	//Set position of hitbox & sprite
 	myPos = tempPos;
 	
 	mySprite->SetPosition(myPos);

@@ -1,29 +1,87 @@
 #include "TileLayer.h"
 
-
+//TODO: Logic for trap spawning
+//TODO: Logic for Exit locations
+//TODO: Logic for player spawns
+//TODO: Logic for enemy spawns
 
 TileLayer::TileLayer()
 {
 }
 
 
-TileLayer::TileLayer(bool aCollisionStatement, bool aTrapStatement, bool aExitStatement, bool aLootStatement, bool aPlayerSpawnStatement, bool aEnemySpawnStatement):
-	myCollision(aCollisionStatement),
-	myTrapSpawn(aTrapStatement),
-	myExit(aExitStatement),
-	myLoot(aLootStatement),
-	myPlayerSpawn(aPlayerSpawnStatement),
-	myEnemySpawn(aEnemySpawnStatement)
-{
-}
+TileLayer::TileLayer(
+	bool aCollisionStatement, 
+	bool aTrapStatement, 
+	bool aExitStatement,
+	bool aLootStatement, 
+	bool aPlayerSpawnStatement, 
+	bool aEnemySpawnStatement, 
+	float aRenderOffset, 
+	float aFadeOffset):
+
+	myCollidableFlag(aCollisionStatement),
+	myTrapSpawnFlag(aTrapStatement),
+	myExitFlag(aExitStatement),
+	myLootFlag(aLootStatement),
+	myPlayerSpawnFlag(aPlayerSpawnStatement),
+	myEnemySpawnFlag(aEnemySpawnStatement),
+	myRenderOffset(aRenderOffset),
+	myFadeOffset(aFadeOffset) 
+{}
 
 TileLayer::~TileLayer()
 {
 }
 
-void TileLayer::SetCollision(bool aStatement)
+void TileLayer::DrawCollisionBoxes(sf::RenderWindow& aWindow, Player& aPlayer)
 {
-	myCollision = aStatement;
+	if (myCollidableFlag)
+	{
+		float tempDis;
+		for (size_t i = 0; i < myData.size(); i++)
+		{
+			tempDis = tz::DisBetweenVec(aPlayer.GetPosition(), myData[i].GetPosition());
+
+			if (tempDis < myFadeOffset)
+			{
+				myData[i].DrawBody(aWindow);
+			}
+		}
+	}
+}
+
+void TileLayer::Draw(sf::RenderWindow& aWindow, Player& aPlayer, sf::Sprite& aSprite)
+{
+	float tempDis;
+	sf::Color tempC;
+	sf::Vector2f tempVec;
+
+	for (size_t i = 0; i < myData.size(); i++)
+	{
+		tempDis = tz::DisBetweenVec(aPlayer.GetPosition(), myData[i].GetPosition());
+
+		if (tempDis < myFadeOffset)
+		{
+			aSprite.setTextureRect(myData[i].GetBoundingBox());
+
+			
+			tempVec = sf::Vector2f(myData[i].GetPosition().X, myData[i].GetPosition().Y);
+			aSprite.setPosition(tempVec);
+
+			tempC = aSprite.getColor();
+			tempC.a = (tempDis > myRenderOffset) ? 175 : 255;
+
+			aSprite.setColor(tempC);
+			aWindow.draw(aSprite);
+		}
+	}
+}
+
+#pragma region Get&Set
+void TileLayer::SetCollidable(bool aStatement)
+{
+	myCollidableFlag = aStatement;
 }
 
 void TileLayer::SetData(std::vector<Tile>& someData)
@@ -33,17 +91,17 @@ void TileLayer::SetData(std::vector<Tile>& someData)
 
 void TileLayer::SetEnemySpawn(bool aStatement)
 {
-	myEnemySpawn = aStatement;
+	myEnemySpawnFlag = aStatement;
 }
 
 bool TileLayer::GetCollision()
 {
-	return myCollision;
+	return myCollidableFlag;
 }
 
 bool TileLayer::GetEnemySpawn()
 {
-	return myEnemySpawn;
+	return myEnemySpawnFlag;
 }
 
 std::vector<Tile>& TileLayer::GetData()
@@ -53,40 +111,41 @@ std::vector<Tile>& TileLayer::GetData()
 
 bool TileLayer::GetPlayerSpawn()
 {
-	return myPlayerSpawn;
+	return myPlayerSpawnFlag;
 }
 
 bool TileLayer::GetLoot()
 {
-	return myLoot;
+	return myLootFlag;
 }
 
 bool TileLayer::GetExit()
 {
-	return myExit;
+	return myExitFlag;
 }
 
 bool TileLayer::GetTrapSpawn()
 {
-	return myTrapSpawn;
+	return myTrapSpawnFlag;
 }
 
 void TileLayer::SetPlayerSpawn(bool aStatement)
 {
-	myPlayerSpawn = aStatement;
+	myPlayerSpawnFlag = aStatement;
 }
 
 void TileLayer::SetExit(bool aStatement)
 {
-	myExit = aStatement;
+	myExitFlag = aStatement;
 }
 
 void TileLayer::SetLoot(bool aStatement)
 {
-	myLoot = aStatement;
+	myLootFlag = aStatement;
 }
 
 void TileLayer::SetTrapSpawn(bool aStatement)
 {
-	myTrapSpawn = aStatement;
+	myTrapSpawnFlag = aStatement;
 }
+#pragma endregion

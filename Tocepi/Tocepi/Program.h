@@ -5,7 +5,7 @@
 #include "SFML/Graphics.hpp"
 #include "Input.h"
 #include "Player.h"
-#include "TileMap.h"
+#include "Map.h"
 
 //TODO: Main menu
 //TODO: Pause Screen
@@ -25,7 +25,7 @@ public:
 private:
 	Player* myPlayer;
 	Input myInput;
-	TileMap* myMap;
+	Map* myMap;
 	sf::View myView;
 	sf::RenderWindow* myWindow;
 };

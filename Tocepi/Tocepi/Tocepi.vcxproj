@@ -148,7 +148,6 @@
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="TileLayer.cpp" />
-    <ClCompile Include="TileMap.cpp" />
     <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -170,7 +169,6 @@
     <ClInclude Include="TextureType.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="TileLayer.h" />
-    <ClInclude Include="TileMap.h" />
     <ClInclude Include="Weapon.h" />
   </ItemGroup>
   <ItemGroup>

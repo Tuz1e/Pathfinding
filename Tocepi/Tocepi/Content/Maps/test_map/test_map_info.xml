@@ -4,10 +4,9 @@
 	<Layers>7</Layers>
 	<Width>20</Width>
 	<Height>20</Height>
-	<Data>Content/maps/test_map.txt</Data>
+	<Data>Content/maps/test_map/test_map.txt</Data>
 	<TX>Content/textures/maps/map_texture_dungeontileset.png</TX>
-	<TileScaleX>1</TileScaleX>
-	<TileScaleY>1</TileScaleY>
+	<TileScale>1</TileScale>
 	<TileDimension>16</TileDimension>
 	<TXTiles>1024</TXTiles>
 	<TXVertical>32</TXVertical>
@@ -27,7 +26,7 @@
 	<L1-PlayerSpawn>0</L1-PlayerSpawn>
 	<L1-EnemySpawn>0</L1-EnemySpawn>
 	
-	<L2-Collision>1</L2-Collision>
+	<L2-Collision>0</L2-Collision>
 	<L2-TrapSpawn>1</L2-TrapSpawn>
 	<L2-Exit>0</L2-Exit>
 	<L2-Loot>0</L2-Loot>
@@ -41,7 +40,7 @@
 	<L3-PlayerSpawn>0</L3-PlayerSpawn>
 	<L3-EnemySpawn>0</L3-EnemySpawn>
 	
-	<L4-Collision>1</L4-Collision>
+	<L4-Collision>0</L4-Collision>
 	<L4-TrapSpawn>0</L4-TrapSpawn>
 	<L4-Exit>0</L4-Exit>
 	<L4-Loot>1</L4-Loot>

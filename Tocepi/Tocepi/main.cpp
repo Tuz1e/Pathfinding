@@ -28,7 +28,7 @@ int main()
 			tempSettings.GetScreen().Width,
 			tempSettings.GetScreen().Height), 
 		tempSettings.GetTitle());
-	//tempWindow.setFramerateLimit(60);
+	tempWindow.setFramerateLimit(60);
 
 	sf::Clock tempClock;
 	float tempDelta;

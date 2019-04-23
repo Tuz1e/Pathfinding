@@ -3,10 +3,13 @@
 
 #include "Object.h"
 
+//TODO: Remove Collidable Flag, it is redundant with the reformed tilemap loader
+
 class Tile : public Object
 {
 public:
 	Tile();
+	Tile(tz::Vector2f aPos, int anID);
 	Tile(tz::Vector2f aPos, int anID, bool aCollidable);
 	~Tile();
 

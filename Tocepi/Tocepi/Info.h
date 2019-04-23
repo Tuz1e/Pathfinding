@@ -10,3 +10,4 @@
 #define PLAYER_DEFAULT "Content/profiles/player/player_default.xml"
 
 #define MAP "Content/maps/map.txt"
+#define TESTMAP "Content/maps/test_map/test_map_info.xml"

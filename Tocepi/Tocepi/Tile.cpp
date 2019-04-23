@@ -9,6 +9,12 @@ Tile::Tile()
 	myCollidableFlag = false;
 }
 
+Tile::Tile(tz::Vector2f aPos, int anID)
+	: myTextureId(anID)
+{
+	myPos = aPos;
+}
+
 
 Tile::Tile(tz::Vector2f aPos, int anID, bool aCollidable)
 	: myTextureId(anID)

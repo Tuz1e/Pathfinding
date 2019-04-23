@@ -3,6 +3,9 @@
 
 #include "pch.h"
 #include "Tile.h"
+#include "SFML/Graphics.hpp"
+#include "Player.h"
+#include "TZ/GameKit.hpp"
 
 class TileLayer
 {
@@ -14,11 +17,17 @@ public:
 		bool aExitStatement, 
 		bool aLootStatement, 
 		bool aPlayerSpawnStatement,
-		bool aEnemySpawnStatement);
+		bool aEnemySpawnStatement,
+		float aRenderOffset,
+		float aFadeOffset);
 	~TileLayer();
 
+	void 
+		Draw(sf::RenderWindow& aWindow, Player& aPlayer, sf::Sprite& aSprite),
+		DrawCollisionBoxes(sf::RenderWindow& aWindow, Player& aPlayer);
+
 	void
-		SetCollision(bool aStatement),
+		SetCollidable(bool aStatement),
 		SetTrapSpawn(bool aStatement),
 		SetExit(bool aStatement),
 		SetLoot(bool aStatement),
@@ -38,12 +47,16 @@ public:
 
 private:
 	bool
-		myCollision,
-		myTrapSpawn,
-		myExit,
-		myLoot,
-		myPlayerSpawn,
-		myEnemySpawn;
+		myCollidableFlag,
+		myTrapSpawnFlag,
+		myExitFlag,
+		myLootFlag,
+		myPlayerSpawnFlag,
+		myEnemySpawnFlag;
+
+	float 
+		myRenderOffset,
+		myFadeOffset;
 
 	std::vector<Tile> myData;
 };

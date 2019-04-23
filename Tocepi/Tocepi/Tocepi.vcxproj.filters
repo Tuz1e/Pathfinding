@@ -36,9 +36,6 @@
     <ClCompile Include="Input.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TileMap.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Entity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -93,9 +90,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Input.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TileMap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Entity.h">

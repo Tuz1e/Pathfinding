@@ -14,8 +14,9 @@ Program::~Program()
 void Program::Init(sf::RenderWindow& aWindow)
 {
 	myWindow = &aWindow;
-	myMap = new TileMap(MAP, 65.0f, 90.0f);
-	myMap->LoadMapData();
+
+	myMap = new Map(TESTMAP, 65.0f, 90.0f);
+	myMap->LoadData();
 
 	myPlayer = new Player(125.0f, 125.0f);
 	myPlayer->Init(myInput);
@@ -34,6 +35,7 @@ void Program::Update(float& aDelta)
 	myView.move(sf::Vector2f(myPlayer->GetVelocity().X, myPlayer->GetVelocity().Y) * aDelta);
 	myPlayer->Update(aDelta, *myWindow);
 	myMap->Update(*myPlayer);
+	//myMap->Update(*myPlayer);
 }
 
 void Program::Draw(sf::RenderWindow& aWindow)
@@ -41,7 +43,9 @@ void Program::Draw(sf::RenderWindow& aWindow)
 	aWindow.setView(myView);
 
 
+	//myMap->Draw(aWindow, *myPlayer);
 	myMap->Draw(aWindow, *myPlayer);
+
 	myPlayer->Draw(aWindow, myView);
 }
 
