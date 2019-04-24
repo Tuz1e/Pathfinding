@@ -17,6 +17,7 @@ TileLayer::TileLayer(
 	bool aLootStatement, 
 	bool aPlayerSpawnStatement, 
 	bool aEnemySpawnStatement, 
+	bool aRenderStatement,
 	float aRenderOffset, 
 	float aFadeOffset):
 
@@ -26,6 +27,7 @@ TileLayer::TileLayer(
 	myLootFlag(aLootStatement),
 	myPlayerSpawnFlag(aPlayerSpawnStatement),
 	myEnemySpawnFlag(aEnemySpawnStatement),
+	myRenderFlag(aRenderStatement),
 	myRenderOffset(aRenderOffset),
 	myFadeOffset(aFadeOffset) 
 {}
@@ -84,6 +86,11 @@ void TileLayer::SetCollidable(bool aStatement)
 	myCollidableFlag = aStatement;
 }
 
+void TileLayer::SetRenderFlag(bool aStatement)
+{
+	myRenderFlag = aStatement;
+}
+
 void TileLayer::SetData(std::vector<Tile>& someData)
 {
 	myData = someData;
@@ -97,6 +104,11 @@ void TileLayer::SetEnemySpawn(bool aStatement)
 bool TileLayer::GetCollision()
 {
 	return myCollidableFlag;
+}
+
+bool TileLayer::GetRenderFlag()
+{
+	return myRenderFlag;
 }
 
 bool TileLayer::GetEnemySpawn()

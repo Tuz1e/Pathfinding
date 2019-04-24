@@ -5,6 +5,8 @@ Map::Map(std::string aLocation, float aRenderOffset, float aFadeOffset):
 	myRenderOffset(aRenderOffset),
 	myFadeOffset(aFadeOffset)
 {
+	myDataLoader = DataLoader(myDataLocation);
+	myName = myDataLoader.GetDataString("Username");
 }
 
 Map::~Map()
@@ -16,9 +18,7 @@ Map::~Map()
 
 void Map::LoadData()
 {
-	myDataLoader = DataLoader(myDataLocation);
 
-	myName = myDataLoader.GetDataString("Username");
 	myLayerAmount = myDataLoader.GetDataInteger("Layers");
 	myWidth = myDataLoader.GetDataInteger("Width");
 	myHeight = myDataLoader.GetDataInteger("Height");
@@ -58,7 +58,6 @@ void Map::LoadData()
 
 	for (size_t i = 0; i < tempData2Dim.size(); i++)
 	{
-		//TODO: Load in map layer
 		tempTiles.clear();
 
 		tempStr = "L" + std::to_string(i);
@@ -71,13 +70,12 @@ void Map::LoadData()
 			myDataLoader.GetDataBoolean(tempStr + "-Loot"),
 			myDataLoader.GetDataBoolean(tempStr + "-PlayerSpawn"),
 			myDataLoader.GetDataBoolean(tempStr + "-EnemySpawn"),
+			myDataLoader.GetDataBoolean(tempStr + "-Renderable"),
 			myRenderOffset,
 			myFadeOffset
 		);
 
 		tempTiles = GetTileData(&tempData2Dim[i]);
-
-		//TODO: Set tile body if collidable
 
 		tempTiles = CleanData(tempTiles);
 
@@ -92,14 +90,31 @@ void Map::LoadData()
 void Map::Update(Player& aPlayer)
 {
 	//TODO: Map update logic including collision
+
+	for (size_t i = 0; i < myLayers->size(); i++)
+	{
+		if (myLayers->at(i).GetCollision())
+		{
+			for (size_t u = 0; u < myLayers->at(i).GetData().size(); u++)
+			{
+				if (myLayers->at(i).GetData()[u].CheckColliding(aPlayer.GetBody()))
+				{
+					aPlayer.SetColliding(true);
+				}
+			}
+		}
+	}
 }
 
 void Map::Draw(sf::RenderWindow& aWindow, Player& aPlayer)
 {
 	for (size_t i = 0; i < myLayers->size(); i++)
 	{
-		myLayers->at(i).Draw(aWindow, aPlayer, *mySprite);
-		myLayers->at(i).DrawCollisionBoxes(aWindow, aPlayer);
+		if (myLayers->at(i).GetRenderFlag())
+		{
+			myLayers->at(i).Draw(aWindow, aPlayer, *mySprite);
+		}
+		//myLayers->at(i).DrawCollisionBoxes(aWindow, aPlayer);
 	}
 }
 
@@ -140,8 +155,6 @@ std::vector<Tile> Map::CleanData(std::vector<Tile>& aLayer)
 
 void Map::SetColliders(std::vector<Tile>* aLayer, sf::Sprite& aSprite)
 {
-	//TODO: Set colliders
-
 	for (size_t i = 0; i < aLayer->size(); i++)
 	{
 		aLayer->at(i).SetBody
@@ -172,8 +185,6 @@ void Map::LoadSprite(sf::Sprite& aSprite, sf::Texture* aSheet)
 
 std::vector<Tile> Map::GetTileData(std::vector<std::string>* someData)
 {
-	//TODO: Get tile data logic
-
 	std::vector<Tile> tempData;
 	Tile tempTile;
 	int tempTileId = 0;
@@ -252,6 +263,11 @@ std::string& Map::GetTextureLocation()
 std::string& Map::GetLocation()
 {
 	return myDataLocation;
+}
+
+bool& Map::GetLoadedFlag()
+{
+	return myLoadedFlag;
 }
 
 #pragma endregion

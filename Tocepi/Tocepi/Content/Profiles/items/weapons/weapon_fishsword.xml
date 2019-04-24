@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tocepi>
+	<Username>Dev Sword</Username>
+	<Durability>999999</Durability>
+	<BaseDamage>999999</BaseDamage>
+	<Range>1</Range>
+	<RangeProjectileTexture></RangeProjectileTexture>
+	<Throwable>0</Throwable>
+	<Stun>1</Stun>
+	<Description>A sword for the developer, mostly used for testing purposes</Description>
+	<RotationSpeed>
+		<Speed>90.0</Speed>
+	</RotationSpeed>
+	<Texture>
+		<TXP0>Content/profiles/textures/items/weapons/weapon_texture_red_gem_sword.xml</TXP0>
+	</Texture>
+</Tocepi>

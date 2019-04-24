@@ -2,53 +2,75 @@
 
 Program::Program()
 {
+	myState = GameState::SESSION;
 }
 
 
 Program::~Program()
 {
-	DelPtr(myPlayer);
-	DelPtr(myMap);
+	DelPtr(mySession);
 }
 
 void Program::Init(sf::RenderWindow& aWindow)
 {
-	myWindow = &aWindow;
-
-	myMap = new Map(TESTMAP, 65.0f, 90.0f);
-	myMap->LoadData();
-
-	myPlayer = new Player(125.0f, 125.0f);
-	myPlayer->Init(myInput);
-
-	myView = sf::View
-	(
-		sf::Vector2f(myPlayer->GetPosition().X, myPlayer->GetPosition().Y),
-		sf::Vector2f(1280, 720)
-	);
-	myView.zoom(0.5);
-	myView.setCenter(myPlayer->GetPosition().X, myPlayer->GetPosition().Y);
+	InitSession(mySession, aWindow);
 }
 
 void Program::Update(float& aDelta)
 {
-	myView.move(sf::Vector2f(myPlayer->GetVelocity().X, myPlayer->GetVelocity().Y) * aDelta);
-	myPlayer->Update(aDelta, *myWindow);
-	myMap->Update(*myPlayer);
-	//myMap->Update(*myPlayer);
+	switch (myState)
+	{
+	case GameState::MENU:
+
+		break;
+	case GameState::SESSION:
+		mySession->Update(aDelta);
+		break;
+	case GameState::OPTIONS:
+
+		break;
+	}
 }
 
 void Program::Draw(sf::RenderWindow& aWindow)
 {
-	aWindow.setView(myView);
+	switch (myState)
+	{
+	case GameState::MENU:
 
+		break;
+	case GameState::SESSION:
+		mySession->Draw(aWindow);
+		break;
+	case GameState::OPTIONS:
 
-	//myMap->Draw(aWindow, *myPlayer);
-	myMap->Draw(aWindow, *myPlayer);
-
-	myPlayer->Draw(aWindow, myView);
+		break;
+	}
 }
 
 void Program::LateDraw(sf::RenderWindow& aWindow)
 {
+	switch (myState)
+	{
+	case GameState::MENU:
+
+		break;
+	case GameState::SESSION:
+		mySession->LateDraw(aWindow);
+		break;
+	case GameState::OPTIONS:
+
+		break;
+	}
+}
+
+void Program::InitSession(SessionHandler* aSession, sf::RenderWindow& aWindow)
+{
+	//TODO: Session handler to be more flexible
+	if (myState == GameState::SESSION)
+	{
+		aSession = new SessionHandler();
+		aSession->Init(aWindow.getView().getSize().x, aWindow.getView().getSize().y,
+			65.0f, 90.0f, myInput, aWindow);
+	}
 }

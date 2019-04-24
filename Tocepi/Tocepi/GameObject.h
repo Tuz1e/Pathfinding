@@ -23,6 +23,8 @@ public:
 	virtual tz::Vector2f& GetPosition();
 	virtual sf::IntRect GetBoundingBox();
 
+	void SetPosition(tz::Vector2f aPos);
+
 	bool GetCollidableFlag();
 	bool CheckColliding(const sf::RectangleShape& anObj);
 

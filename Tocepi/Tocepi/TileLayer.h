@@ -18,11 +18,12 @@ public:
 		bool aLootStatement, 
 		bool aPlayerSpawnStatement,
 		bool aEnemySpawnStatement,
+		bool aRenderStatement,
 		float aRenderOffset,
 		float aFadeOffset);
 	~TileLayer();
 
-	void 
+	void
 		Draw(sf::RenderWindow& aWindow, Player& aPlayer, sf::Sprite& aSprite),
 		DrawCollisionBoxes(sf::RenderWindow& aWindow, Player& aPlayer);
 
@@ -33,6 +34,7 @@ public:
 		SetLoot(bool aStatement),
 		SetPlayerSpawn(bool aStatement),
 		SetEnemySpawn(bool aStatement),
+		SetRenderFlag(bool aStatement),
 		SetData(std::vector<Tile>& someData);
 
 	bool 
@@ -41,7 +43,8 @@ public:
 		GetExit(),
 		GetLoot(),
 		GetPlayerSpawn(),
-		GetEnemySpawn();
+		GetEnemySpawn(),
+		GetRenderFlag();
 
 	std::vector<Tile>& GetData();
 
@@ -52,11 +55,13 @@ private:
 		myExitFlag,
 		myLootFlag,
 		myPlayerSpawnFlag,
-		myEnemySpawnFlag;
+		myEnemySpawnFlag,
+		myRenderFlag;
 
 	float 
 		myRenderOffset,
 		myFadeOffset;
+
 
 	std::vector<Tile> myData;
 };

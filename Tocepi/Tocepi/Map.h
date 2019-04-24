@@ -32,6 +32,8 @@ public:
 		&GetTextureLocation(),
 		&GetLocation();
 
+	bool &GetLoadedFlag();
+
 	std::vector<TileLayer>* GetLayers();
 
 private:
@@ -61,6 +63,8 @@ private:
 		myName,
 		myTextureLocation,
 		myDataLocation;
+
+	bool myLoadedFlag = false;
 
 	sf::Texture mySheet;
 	sf::Sprite* mySprite;

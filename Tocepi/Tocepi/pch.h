@@ -52,6 +52,15 @@ inline void Print(std::string str)
 	catch (...) {}
 }
 
+inline int Randomize(const int& aLowAmount, const int& aHighAmount)
+{
+	if ((aHighAmount - aLowAmount) <= 1)
+	{
+		return 0;
+	}
+	return (aLowAmount + (rand() % aHighAmount));
+}
+
 template<typename T>
 void DelPtr(T*& ptr) 
 {

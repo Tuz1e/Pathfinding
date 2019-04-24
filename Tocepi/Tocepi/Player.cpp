@@ -3,20 +3,18 @@
 Player::Player()
 {
 	myPos = tz::Vector2f(0, 0);
-	LoadDefaults();
 }
 
 
 Player::Player(tz::Vector2f aPos)
 {
 	myPos = aPos;
-	LoadDefaults();
+
 }
 
 Player::Player(float x, float y)
 {
 	myPos = tz::Vector2f(x, y);
-	LoadDefaults();
 }
 
 Player::~Player()
@@ -26,6 +24,7 @@ Player::~Player()
 
 void Player::Init(Input& anInput)
 {
+	LoadDefaults();
 	myInput = anInput;
 
 	SetBody
