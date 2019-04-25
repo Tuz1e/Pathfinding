@@ -58,6 +58,7 @@ inline int Randomize(const int& aLowAmount, const int& aHighAmount)
 	{
 		return 0;
 	}
+
 	return (aLowAmount + (rand() % aHighAmount));
 }
 

@@ -26,11 +26,11 @@ public:
 	~Program();
 
 	void Init(sf::RenderWindow& aWindow);
-	void Update(float& aDelta);
+	void Update(float& aDelta, sf::Event& anEvent);
 	void Draw(sf::RenderWindow& aWindow);
 	void LateDraw(sf::RenderWindow& aWindow);
 
-	void InitSession(SessionHandler* aSession, sf::RenderWindow& aWindow);
+	void InitSession(SessionHandler& aSession, sf::RenderWindow& aWindow);
 
 private:
 	SessionHandler* mySession;

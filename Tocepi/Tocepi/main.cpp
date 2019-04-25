@@ -20,6 +20,8 @@ int main()
 	Program tempGame;
 	bool tempRunFlag = true;
 
+	srand(time(NULL));
+
 	Settings tempSettings;
 	tempSettings.LoadDefault();
 
@@ -45,13 +47,15 @@ int main()
 
 		tempDelta = tempClock.restart().asSeconds();
 
-		tempGame.Update(tempDelta);
+		tempGame.Update(tempDelta, tempEvent);
 
 		tempWindow.clear(sf::Color(32, 32, 32));
 		tempGame.Draw(tempWindow);
 		tempGame.LateDraw(tempWindow);
 		tempWindow.display();
 	}
+
+	return 0;
 
 	//auto tempNs = std::chrono::high_resolution_clock::now();
 	//long tempPreviousTime =

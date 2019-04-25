@@ -104,7 +104,7 @@ void Weapon::Update(float& aDelta, tz::Vector2f aPos, sf::RenderWindow& aWindow)
 void Weapon::Draw(sf::RenderWindow& aWindow)
 {
 	mySprite->Draw(aWindow);
-	DrawBody(aWindow);
+	//DrawBody(aWindow);
 }
 
 std::string& Weapon::GetRangeProjectileTextureLocation()

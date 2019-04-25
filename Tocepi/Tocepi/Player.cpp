@@ -50,7 +50,7 @@ void Player::Init(Input& anInput)
 
 void Player::Update(float& aDelta, sf::RenderWindow& aWindow)
 {
-	//FIX: Player getting stuck in walls
+	//FIX: Player getting stuck in walls when colliding
 
 	if (!myCollidingFlag)
 	{
@@ -92,22 +92,26 @@ void Player::Update(float& aDelta, sf::RenderWindow& aWindow)
 	{
 		//Not the most perfect system but it works for now
 		//FIX: Buggy when colliding
-		if (myVelocity.X > 0.0f)
-		{
-			myVelocity.X = -mySpeed.X;
-		}
-		else if (myVelocity.X < 0.0f)
-		{
-			myVelocity.X = mySpeed.X;
-		}
 
-		if (myVelocity.Y > 0.0f)
+		if (myVelocity.X != 0.0f || myVelocity.Y != 0.0f)
 		{
-			myVelocity.Y = -mySpeed.Y;
-		}
-		else if (myVelocity.Y < 0.0f)
-		{
-			myVelocity.Y = mySpeed.Y;
+			if (myVelocity.X > 0.0f)
+			{
+				myVelocity.X = -mySpeed.X;
+			}
+			else if (myVelocity.X < 0.0f)
+			{
+				myVelocity.X = mySpeed.X;
+			}
+
+			if (myVelocity.Y > 0.0f)
+			{
+				myVelocity.Y = -mySpeed.Y;
+			}
+			else if (myVelocity.Y < 0.0f)
+			{
+				myVelocity.Y = mySpeed.Y;
+			}
 		}
 
 		myCorrectingFlag = true;
@@ -122,10 +126,6 @@ void Player::Update(float& aDelta, sf::RenderWindow& aWindow)
 	myWeapon->Update(aDelta, myPos, aWindow);
 	myCollidingFlag = false;
 	myMovingFlag = false;
-
-	//std::cout << "Player X: " << myPos.X << " Y: " << myPos.Y << std::endl;
-	//std::cout << "Sprite X: " << mySprite->GetPosition().X << " Y: " << mySprite->GetPosition().Y << std::endl;
-	//std::cout << "Body X: " << myBody.getPosition().x << " Y: " << myBody.getPosition().y << std::endl;
 
 }
 

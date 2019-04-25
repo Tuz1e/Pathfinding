@@ -19,7 +19,7 @@ public:
 			float aFadeOffset,
 			Input& anInput,
 			sf::RenderWindow& aWindow),
-		Update(float& aDelta),
+		Update(float& aDelta, sf::Event& anEvent),
 		Draw(sf::RenderWindow& aWindow),
 		LateDraw(sf::RenderWindow& aWindow);
 
@@ -31,18 +31,23 @@ private:
 		LoadMap(
 			std::vector<Map>& someMaps,
 			float& aRenderOffset,
-			float& aFadeOffset,
-			Input& anInput);
+			float& aFadeOffset),
+		LoadPlayer(Input& anInput),
+		SetView(sf::View& aView, float& aViewZoom, Player& aPlayer, float& aWidth, float& aHeight),
+		MouseScroll(sf::View& aView, sf::Event& anEvent);
 
 	float 
 		myRenderOffset, 
-		myFadeOffset;
+		myFadeOffset,
+		myViewZoom;
 
 	tz::Vector2f myScreen;
 
 	std::vector<Map> myMaps;
 	Player* myPlayer;
-	sf::View myView;
+	sf::View 
+		myView,
+		myMinimap;
 	sf::RenderWindow* myWindow;
 	Input myInput;
 };

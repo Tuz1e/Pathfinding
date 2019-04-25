@@ -13,10 +13,11 @@ Program::~Program()
 
 void Program::Init(sf::RenderWindow& aWindow)
 {
-	InitSession(mySession, aWindow);
+	mySession = new SessionHandler();
+	InitSession(*mySession, aWindow);
 }
 
-void Program::Update(float& aDelta)
+void Program::Update(float& aDelta, sf::Event& anEvent)
 {
 	switch (myState)
 	{
@@ -24,7 +25,7 @@ void Program::Update(float& aDelta)
 
 		break;
 	case GameState::SESSION:
-		mySession->Update(aDelta);
+		mySession->Update(aDelta, anEvent);
 		break;
 	case GameState::OPTIONS:
 
@@ -64,13 +65,12 @@ void Program::LateDraw(sf::RenderWindow& aWindow)
 	}
 }
 
-void Program::InitSession(SessionHandler* aSession, sf::RenderWindow& aWindow)
+void Program::InitSession(SessionHandler& aSession, sf::RenderWindow& aWindow)
 {
 	//TODO: Session handler to be more flexible
 	if (myState == GameState::SESSION)
 	{
-		aSession = new SessionHandler();
-		aSession->Init(aWindow.getView().getSize().x, aWindow.getView().getSize().y,
+		aSession.Init(aWindow.getView().getSize().x, aWindow.getView().getSize().y,
 			65.0f, 90.0f, myInput, aWindow);
 	}
 }
