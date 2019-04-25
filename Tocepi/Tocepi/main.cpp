@@ -55,8 +55,6 @@ int main()
 		tempWindow.display();
 	}
 
-	return 0;
-
 	//auto tempNs = std::chrono::high_resolution_clock::now();
 	//long tempPreviousTime =
 	//	(long)std::chrono::duration_cast<std::chrono::nanoseconds>
