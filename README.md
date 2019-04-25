@@ -9,17 +9,14 @@ my own tilemap loader.
 
 The loading of the tilemap is setup to easily be changed depending on map file where examples of this could be txt, json or xml files.
 
-- [x] Tilemap loading from txt file.
-- [ ] Tilemap loading from json file.
-
 ## Information to run project
 ###### OS Support
 - [x] Windows 10 Pro
 
 ###### IDE
 
-- [x] Visual Studio Community 2017
 - [x] Visual Studio Community 2019
+- [x] Visual Studio Community 2017
 
 
 ## Cloning 
