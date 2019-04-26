@@ -57,23 +57,23 @@ void Player::Update(float& aDelta, sf::RenderWindow& aWindow)
 		myVelocity = tz::Vector2f();
 		myCorrectingFlag = false;
 
-		if (myInput.GetLeftKey())
+		if (myInput.GetLeftKeyPressed())
 		{
 			myVelocity.X = -mySpeed.X;
 			myMovingFlag = true;
 		}
-		else if (myInput.GetRightKey())
+		else if (myInput.GetRightKeyPressed())
 		{
 			myVelocity.X = mySpeed.X;
 			myMovingFlag = true;
 		}
 
-		if (myInput.GetUpKey())
+		if (myInput.GetUpKeyPressed())
 		{
 			myVelocity.Y = -mySpeed.Y;
 			myMovingFlag = true;
 		}
-		else if (myInput.GetDownKey())
+		else if (myInput.GetDownKeyPressed())
 		{
 			myVelocity.Y = mySpeed.Y;
 			myMovingFlag = true;

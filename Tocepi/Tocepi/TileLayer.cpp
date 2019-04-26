@@ -10,11 +10,11 @@
 
 //TODO: Logic for trap spawning
 //TODO: Logic for Exit locations
-//TODO: Logic for player spawns
 //TODO: Logic for enemy spawns
 
 TileLayer::TileLayer()
 {
+	
 }
 
 

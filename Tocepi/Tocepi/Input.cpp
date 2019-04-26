@@ -10,22 +10,94 @@ Input::~Input()
 {
 }
 
-bool Input::GetLeftKey()
+bool Input::GetLeftKeyPressed()
 {
-	return (sf::Keyboard::isKeyPressed(myLeftKey)) ? true : false;
+	if (sf::Keyboard::isKeyPressed(myLeftKey) && myLockedKey != myLeftKey)
+	{
+		myPreviousKey = myLeftKey;
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
-bool Input::GetRightKey()
+bool Input::KeyLocked(sf::Keyboard::Key aKey)
 {
-	return (sf::Keyboard::isKeyPressed(myRightKey)) ? true : false;
+	return (aKey == myLockedKey) ? true : false;
 }
 
-bool Input::GetUpKey()
+bool Input::GetRightKeyPressed()
 {
-	return (sf::Keyboard::isKeyPressed(myUpKey)) ? true : false;
+	if (sf::Keyboard::isKeyPressed(myRightKey) && myLockedKey != myRightKey)
+	{
+		myPreviousKey = myRightKey;
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
-bool Input::GetDownKey()
+bool Input::GetUpKeyPressed()
 {
-	return (sf::Keyboard::isKeyPressed(myDownKey)) ? true : false;
+	if (sf::Keyboard::isKeyPressed(myUpKey) && myLockedKey != myUpKey)
+	{
+		myPreviousKey = myUpKey;
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+bool Input::GetDownKeyPressed()
+{
+	if (sf::Keyboard::isKeyPressed(myDownKey) && myLockedKey != myDownKey)
+	{
+		myPreviousKey = myDownKey;
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+void Input::SetLockKey(sf::Keyboard::Key aKey)
+{
+	myLockedKey = aKey;
+}
+
+sf::Keyboard::Key Input::GetPreviousKey()
+{
+	return myPreviousKey;
+}
+
+sf::Keyboard::Key Input::GetLockedKey()
+{
+	return myLockedKey;
+}
+
+sf::Keyboard::Key Input::GetDownKey()
+{
+	return myDownKey;
+}
+
+sf::Keyboard::Key Input::GetUpKey()
+{
+	return myUpKey;
+}
+
+sf::Keyboard::Key Input::GetRightKey()
+{
+	return myRightKey;
+}
+
+sf::Keyboard::Key Input::GetLeftKey()
+{
+	return myLeftKey;
 }
