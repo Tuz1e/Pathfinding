@@ -9,4 +9,4 @@
 
 #define PLAYER_DEFAULT "Content/profiles/player/player_default.xml"
 
-#define MAPSLOCATION "Content/profiles/maps"
+#define MAPLOCATIONS "Content/profiles/maps"

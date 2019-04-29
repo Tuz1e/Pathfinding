@@ -47,7 +47,7 @@ void SessionHandler::GetMaps(
 	float& aFadeOffset)
 {
 	//Gets map profiles from folder
-	std::vector<std::string> tempMaps = GetXmlFiles(MAPSLOCATION);
+	std::vector<std::string> tempMaps = GetXmlFiles(MAPLOCATIONS);
 
 	for (size_t i = 0; i < tempMaps.size(); i++)
 	{

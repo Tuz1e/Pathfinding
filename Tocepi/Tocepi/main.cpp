@@ -1,4 +1,4 @@
-// CrossActionGame.cpp : This file contains the 'main' function. Program execution begins and ends there.
+//Tocepi.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 
 #include "pch.h"
@@ -13,7 +13,7 @@
 #include <thread>
 #include <atomic>
 
-timeb myTb;
+//timeb myTb;
 
 int main()
 {
