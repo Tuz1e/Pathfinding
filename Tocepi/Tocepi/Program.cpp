@@ -8,13 +8,11 @@ Program::Program()
 
 Program::~Program()
 {
-	DelPtr(mySession);
 }
 
 void Program::Init(sf::RenderWindow& aWindow)
 {
-	mySession = new SessionHandler();
-	InitSession(*mySession, aWindow);
+	InitSession(mySession, aWindow);
 }
 
 void Program::Update(float& aDelta, sf::Event& anEvent)
@@ -25,7 +23,7 @@ void Program::Update(float& aDelta, sf::Event& anEvent)
 
 		break;
 	case GameState::SESSION:
-		mySession->Update(aDelta, anEvent);
+		mySession.Update(aDelta, anEvent);
 		break;
 	case GameState::OPTIONS:
 
@@ -41,7 +39,7 @@ void Program::Draw(sf::RenderWindow& aWindow)
 
 		break;
 	case GameState::SESSION:
-		mySession->Draw(aWindow);
+		mySession.Draw(aWindow);
 		break;
 	case GameState::OPTIONS:
 
@@ -57,7 +55,7 @@ void Program::LateDraw(sf::RenderWindow& aWindow)
 
 		break;
 	case GameState::SESSION:
-		mySession->LateDraw(aWindow);
+		mySession.LateDraw(aWindow);
 		break;
 	case GameState::OPTIONS:
 
@@ -70,7 +68,15 @@ void Program::InitSession(SessionHandler& aSession, sf::RenderWindow& aWindow)
 	//TODO: Session handler to be more flexible
 	if (myState == GameState::SESSION)
 	{
-		aSession.Init(aWindow.getView().getSize().x, aWindow.getView().getSize().y,
-			65.0f, 90.0f, myInput, aWindow);
+		aSession.Init
+		(
+			aWindow.getView().getSize().x,
+			aWindow.getView().getSize().y,
+			65.0f,
+			90.0f,
+			0.4f,
+			myInput,
+			aWindow
+		);
 	}
 }

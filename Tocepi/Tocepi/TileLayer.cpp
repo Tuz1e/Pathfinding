@@ -71,18 +71,26 @@ void TileLayer::Draw(sf::RenderWindow& aWindow, Player& aPlayer, sf::Sprite& aSp
 	{
 		tempDis = tz::DisBetweenVec(aPlayer.GetPosition(), myData[i].GetPosition());
 
-		if (tempDis < myFadeOffset)
+		if (myFadeOffset > 0 && myRenderOffset > 0)
+		{
+			if (tempDis < myFadeOffset)
+			{
+				aSprite.setTextureRect(myData[i].GetBoundingBox());
+				tempVec = sf::Vector2f(myData[i].GetPosition().X, myData[i].GetPosition().Y);
+				aSprite.setPosition(tempVec);
+
+				tempC = aSprite.getColor();
+				tempC.a = (tempDis > myRenderOffset) ? 175 : 255;
+
+				aSprite.setColor(tempC);
+				aWindow.draw(aSprite);
+			}
+		}
+		else
 		{
 			aSprite.setTextureRect(myData[i].GetBoundingBox());
-
-			
 			tempVec = sf::Vector2f(myData[i].GetPosition().X, myData[i].GetPosition().Y);
 			aSprite.setPosition(tempVec);
-
-			tempC = aSprite.getColor();
-			tempC.a = (tempDis > myRenderOffset) ? 175 : 255;
-
-			aSprite.setColor(tempC);
 			aWindow.draw(aSprite);
 		}
 	}

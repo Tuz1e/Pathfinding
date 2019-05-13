@@ -12,22 +12,25 @@ SessionHandler::SessionHandler()
 SessionHandler::~SessionHandler()
 {
 	DelPtr(myPlayer);
-	DelPtr(myWindow);
 }
 
+///<summary>
+///Initialize the session
+///</summary>
+///<param name="aRenderOffset">The render distance from the player</param>
+///<param name="aFadeOffset">The distance at which the tiles start fading</param>
 void SessionHandler::Init(
 	float aScreenWidth, 
 	float aScreenHeight,
 	float aRenderOffset,
 	float aFadeOffset,
+	float aViewZoom,
 	Input& anInput,
 	sf::RenderWindow& aWindow)
 {
 	myRenderOffset = aRenderOffset;
 	myFadeOffset = aFadeOffset;
 	myInput = anInput;
-
-	myViewZoom = 0.5f;
 
 	myWindow = &aWindow;
 
@@ -36,7 +39,7 @@ void SessionHandler::Init(
 	LoadMap(myMaps, aRenderOffset, aFadeOffset);
 	LoadPlayer(anInput);
 
-	SetView(myView, myViewZoom, *myPlayer, aScreenWidth, aScreenHeight);
+	SetView(myView, aViewZoom, *myPlayer, aScreenWidth, aScreenHeight);
 
 	myMinimap.setViewport(sf::FloatRect(0.75f, 0.f, 0.25f, 0.25f));
 }
@@ -97,6 +100,12 @@ void SessionHandler::LoadPlayer(Input& anInput)
 			myPlayer->Init(anInput);
 			break;
 		}
+	}
+
+	if (myPlayer == NULL)
+	{
+		myPlayer = new Player(tz::Vector2f(200, 200));
+		myPlayer->Init(anInput);
 	}
 
 	PrintLoaded("Player");

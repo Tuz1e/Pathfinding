@@ -7,7 +7,7 @@
 
 #define PLAYER_ELF "Content/profiles/player/player_elf.xml"
 
-#define WEAPON_DEV "Content/profiles/items/weapons/weapon_dev_sword.xml"
+#define WEAPON_DEV "Content/profiles/items/weapons/weapon_sword_of_camelot.xml"
 
 class Player : public Entity
 {

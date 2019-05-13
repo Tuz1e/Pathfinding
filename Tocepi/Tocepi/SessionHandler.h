@@ -17,6 +17,7 @@ public:
 			float aScreenHeight, 
 			float aRenderOffset, 
 			float aFadeOffset,
+			float aViewZoom,
 			Input& anInput,
 			sf::RenderWindow& aWindow),
 		Update(float& aDelta, sf::Event& anEvent),

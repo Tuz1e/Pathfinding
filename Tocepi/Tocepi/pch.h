@@ -65,8 +65,11 @@ inline int Randomize(const int& aLowAmount, const int& aHighAmount)
 template<typename T>
 void DelPtr(T*& ptr) 
 {
-	delete ptr;
-	ptr = nullptr;
+	if (ptr != nullptr)
+	{
+		delete ptr;
+		ptr = nullptr;
+	}
 }
 
 #endif //PCH_H

@@ -6,7 +6,10 @@
 //you may not use this file except in compliance with the License.
 //You may obtain a copy of the License at
 
-//http ://www.apache.org/licenses/LICENSE-2.0
+//http://www.apache.org/licenses/LICENSE-2.0
+
+//TODO: Load map xml using tinyxml
+//TODO: Chunk loading
 
 Map::Map(std::string aLocation, float aRenderOffset, float aFadeOffset):
 	myDataLocation(aLocation), 

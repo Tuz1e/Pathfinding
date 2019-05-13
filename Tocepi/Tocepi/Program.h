@@ -33,7 +33,7 @@ public:
 	void InitSession(SessionHandler& aSession, sf::RenderWindow& aWindow);
 
 private:
-	SessionHandler* mySession;
+	SessionHandler mySession;
 	Input myInput;
 	GameState myState;
 };

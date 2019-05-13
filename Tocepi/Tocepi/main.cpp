@@ -18,12 +18,12 @@
 int main()
 {
 	Program tempGame;
-	bool tempRunFlag = true;
+	//bool tempRunFlag = true;
 
 	srand(time(NULL));
 
 	Settings tempSettings;
-	tempSettings.LoadDefault();
+	tempSettings.LoadDefault(); //Load default settings
 
 	sf::RenderWindow tempWindow(
 		sf::VideoMode(
@@ -42,7 +42,11 @@ int main()
 		sf::Event tempEvent;
 		while (tempWindow.pollEvent(tempEvent))
 		{
-			if (tempEvent.type == sf::Event::Closed) { tempWindow.close(); } //Makes sure the game closes when X is pressed.
+			//Makes sure the game closes when X is pressed.
+			if (tempEvent.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape)) 
+			{ 
+				tempWindow.close(); 
+			}
 		}
 
 		tempDelta = tempClock.restart().asSeconds();
@@ -54,6 +58,8 @@ int main()
 		tempGame.LateDraw(tempWindow);
 		tempWindow.display();
 	}
+
+	return 0;
 
 	//auto tempNs = std::chrono::high_resolution_clock::now();
 	//long tempPreviousTime =
