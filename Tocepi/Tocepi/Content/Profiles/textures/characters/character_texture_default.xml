@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tocepi>
 	<Texture>
-		<TX0>Content/textures/player/player_temp_texture.png</TX0>
+		<TX0>Content/textures/characters/character_temp_texture.png</TX0>
 			<TX0-ScaleX>1</TX0-ScaleX>
 			<TX0-ScaleY>1</TX0-ScaleY>
 			<TX0-Columns>1</TX0-Columns>

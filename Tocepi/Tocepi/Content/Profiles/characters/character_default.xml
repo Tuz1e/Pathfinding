@@ -7,6 +7,6 @@
 		<SpeedY>90</SpeedY>
 	</Speed>
 	<Texture>
-		<TXP0>Content/profiles/textures/player/player_texture_default.xml</TXP0>
+		<TXP0>Content/profiles/textures/characters/character_texture_default.xml</TXP0>
 	</Texture>
 </Tocepi>

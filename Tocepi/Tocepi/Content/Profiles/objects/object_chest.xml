@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tocepi>
+	<Username>Chest</Username>
+	<Durability>1</Durability>
+	<Texture>
+		<TXP0>Content/profiles/textures/items/weapons/weapon_texture_hammer.xml</TXP0>
+	</Texture>
+</Tocepi>
