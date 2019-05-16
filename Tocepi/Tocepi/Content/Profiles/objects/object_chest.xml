@@ -2,7 +2,9 @@
 <Tocepi>
 	<Username>Chest</Username>
 	<Durability>1</Durability>
+	<OpenAble>1</OpenAble>
+	<Locked>0</Locked>
 	<Texture>
-		<TXP0>Content/profiles/textures/items/weapons/weapon_texture_hammer.xml</TXP0>
+		<TXP0>Content/profiles/textures/objects/object_chest_template.xml</TXP0>
 	</Texture>
 </Tocepi>

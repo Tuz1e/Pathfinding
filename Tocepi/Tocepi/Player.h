@@ -36,7 +36,9 @@ private:
 	int
 		myWeaponId,
 		myBackpackSpace;
-	bool myCorrectingFlag = false, myMovingFlag = false;
+	bool 
+		myCorrectingFlag = false, 
+		myMovingFlag = false;
 	TextureType myTextureType;
 	Weapon* myWeapon;
 };
