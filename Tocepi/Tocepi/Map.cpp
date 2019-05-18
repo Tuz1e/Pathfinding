@@ -11,8 +11,8 @@
 //TODO: Load map xml using tinyxml
 //TODO: Chunk loading
 
-Map::Map(std::string aLocation, float aRenderOffset, float aFadeOffset):
-	myDataLocation(aLocation), 
+Map::Map(std::string aLocation, float aRenderOffset, float aFadeOffset) :
+	myDataLocation(aLocation),
 	myRenderOffset(aRenderOffset),
 	myFadeOffset(aFadeOffset)
 {
@@ -29,7 +29,6 @@ Map::~Map()
 
 void Map::LoadData()
 {
-
 	myLayerAmount = myDataLoader.GetDataInteger("Layers");
 	myWidth = myDataLoader.GetDataInteger("Width");
 	myHeight = myDataLoader.GetDataInteger("Height");
@@ -75,13 +74,13 @@ void Map::LoadData()
 
 		tempLayer = TileLayer
 		(
-			myDataLoader.GetDataBoolean(tempStr+"-Collision"),
-			myDataLoader.GetDataBoolean(tempStr + "-TrapSpawn"),
-			myDataLoader.GetDataBoolean(tempStr + "-Exit"),
-			myDataLoader.GetDataBoolean(tempStr + "-Loot"),
-			myDataLoader.GetDataBoolean(tempStr + "-PlayerSpawn"),
-			myDataLoader.GetDataBoolean(tempStr + "-EnemySpawn"),
-			myDataLoader.GetDataBoolean(tempStr + "-Renderable"),
+			myDataLoader.GetDataBoolean(tempStr + "-" + COLLIDABLE),
+			myDataLoader.GetDataBoolean(tempStr + "-" + TRAPSPAWN),
+			myDataLoader.GetDataBoolean(tempStr + "-" + DOOR),
+			myDataLoader.GetDataBoolean(tempStr + "-" + CHESTSPAWN),
+			myDataLoader.GetDataBoolean(tempStr + "-" + PLAYERSPAWN),
+			myDataLoader.GetDataBoolean(tempStr + "-" + ENEMYSPAWN),
+			myDataLoader.GetDataBoolean(tempStr + "-" + RENDERABLE),
 			myRenderOffset,
 			myFadeOffset
 		);
@@ -90,7 +89,7 @@ void Map::LoadData()
 
 		tempTiles = CleanData(tempTiles);
 
-		SetColliders(&tempTiles, *mySprite);	
+		SetColliders(&tempTiles, *mySprite);
 
 		tempLayer.SetData(tempTiles);
 
@@ -98,13 +97,13 @@ void Map::LoadData()
 	}
 }
 
-void Map::Update(Player& aPlayer)
+void Map::Update(Player & aPlayer)
 {
 	//TODO: Map update logic including collision
 
 	for (size_t i = 0; i < myLayers->size(); i++)
 	{
-		if (myLayers->at(i).GetCollision())
+		if (myLayers->at(i).GetCollisions())
 		{
 			for (size_t u = 0; u < myLayers->at(i).GetData().size(); u++)
 			{
@@ -117,7 +116,7 @@ void Map::Update(Player& aPlayer)
 	}
 }
 
-void Map::Draw(sf::RenderWindow& aWindow, Player& aPlayer)
+void Map::Draw(sf::RenderWindow & aWindow, Player & aPlayer)
 {
 	for (size_t i = 0; i < myLayers->size(); i++)
 	{
@@ -129,7 +128,7 @@ void Map::Draw(sf::RenderWindow& aWindow, Player& aPlayer)
 	}
 }
 
-void Map::LoadSheetData(std::vector<sf::IntRect>* someTextureTiles)
+void Map::LoadSheetData(std::vector<sf::IntRect> * someTextureTiles)
 {
 	for (size_t y = 0; y < mySheetVerticalSize; y++)
 	{
@@ -148,10 +147,10 @@ void Map::LoadSheetData(std::vector<sf::IntRect>* someTextureTiles)
 		}
 	}
 
-	PrintLoaded("Map data: Spritesheet data for Map->"+myName);
+	PrintLoaded("Map data: Spritesheet data for Map->" + myName);
 }
 
-std::vector<Tile> Map::CleanData(std::vector<Tile>& aLayer)
+std::vector<Tile> Map::CleanData(std::vector<Tile> & aLayer)
 {
 	std::vector<Tile> tempData;
 	for (size_t i = 0; i < aLayer.size(); i++)
@@ -164,7 +163,7 @@ std::vector<Tile> Map::CleanData(std::vector<Tile>& aLayer)
 	return tempData;
 }
 
-void Map::SetColliders(std::vector<Tile>* aLayer, sf::Sprite& aSprite)
+void Map::SetColliders(std::vector<Tile> * aLayer, sf::Sprite & aSprite)
 {
 	for (size_t i = 0; i < aLayer->size(); i++)
 	{
@@ -175,8 +174,8 @@ void Map::SetColliders(std::vector<Tile>* aLayer, sf::Sprite& aSprite)
 			mySprite->getScale(),
 			sf::Vector2f
 			(
-				myTextureTiles->at(aLayer->at(i).GetTextureID()-1).width,
-				myTextureTiles->at(aLayer->at(i).GetTextureID()-1).height
+				myTextureTiles->at(aLayer->at(i).GetTextureID() - 1).width,
+				myTextureTiles->at(aLayer->at(i).GetTextureID() - 1).height
 
 			)
 		);
@@ -185,16 +184,16 @@ void Map::SetColliders(std::vector<Tile>* aLayer, sf::Sprite& aSprite)
 	PrintLoaded("Map data: Colliders for map->" + myName);
 }
 
-void Map::LoadSprite(sf::Sprite& aSprite, sf::Texture* aSheet)
+void Map::LoadSprite(sf::Sprite & aSprite, sf::Texture * aSheet)
 {
 	aSheet->loadFromFile(myTextureLocation);
 	aSprite = sf::Sprite(*aSheet);
 	aSprite.setScale(myTileScale, myTileScale);
 
-	PrintLoaded("Map data: sprite for map->"+myName);
+	PrintLoaded("Map data: sprite for map->" + myName);
 }
 
-std::vector<Tile> Map::GetTileData(std::vector<std::string>* someData)
+std::vector<Tile> Map::GetTileData(std::vector<std::string> * someData)
 {
 	std::vector<Tile> tempData;
 	Tile tempTile;
@@ -219,7 +218,7 @@ std::vector<Tile> Map::GetTileData(std::vector<std::string>* someData)
 		}
 	}
 
-	PrintLoaded("Map data: Tile data for map->"+myName);
+	PrintLoaded("Map data: Tile data for map->" + myName);
 
 	return tempData;
 }

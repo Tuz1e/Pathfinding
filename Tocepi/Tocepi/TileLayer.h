@@ -15,15 +15,23 @@
 #include "Player.h"
 #include "TZ/GameKit.hpp"
 
+#define COLLIDABLE "Collision"
+#define TRAPSPAWN "TrapSpawn"
+#define DOOR "Door"
+#define CHESTSPAWN "Chest"
+#define PLAYERSPAWN "PlayerSpawn"
+#define ENEMYSPAWN "EnemySpawn"
+#define RENDERABLE "Renderable"
+
 class TileLayer
 {
 public:
 	TileLayer();
 	TileLayer(
-		bool aCollisionStatement, 
-		bool aTrapStatement, 
-		bool aExitStatement, 
-		bool aLootStatement, 
+		bool aCollisionStatement,
+		bool aTrapStatement,
+		bool aExitStatement,
+		bool aLootStatement,
 		bool aPlayerSpawnStatement,
 		bool aEnemySpawnStatement,
 		bool aRenderStatement,
@@ -38,20 +46,20 @@ public:
 	void
 		SetCollidable(bool aStatement),
 		SetTrapSpawn(bool aStatement),
-		SetExit(bool aStatement),
-		SetLoot(bool aStatement),
+		SetDoors(bool aStatement),
+		SetChest(bool aStatement),
 		SetPlayerSpawn(bool aStatement),
 		SetEnemySpawn(bool aStatement),
 		SetRenderFlag(bool aStatement),
 		SetData(std::vector<Tile>& someData);
 
-	bool 
-		GetCollision(),
-		GetTrapSpawn(),
-		GetExit(),
+	bool
+		GetCollisions(),
+		GetTrapSpawns(),
+		GetDoors(),
 		GetLoot(),
-		GetPlayerSpawn(),
-		GetEnemySpawn(),
+		GetPlayerSpawns(),
+		GetEnemySpawns(),
 		GetRenderFlag();
 
 	std::vector<Tile>& GetData();
@@ -60,16 +68,15 @@ private:
 	bool
 		myCollidableFlag,
 		myTrapSpawnFlag,
-		myExitFlag,
-		myLootFlag,
+		myDoorSpawnFlag,
+		myChestFlag,
 		myPlayerSpawnFlag,
 		myEnemySpawnFlag,
 		myRenderFlag;
 
-	float 
+	float
 		myRenderOffset,
 		myFadeOffset;
-
 
 	std::vector<Tile> myData;
 };

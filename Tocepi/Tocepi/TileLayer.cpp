@@ -14,30 +14,28 @@
 
 TileLayer::TileLayer()
 {
-	
 }
 
-
 TileLayer::TileLayer(
-	bool aCollisionStatement, 
-	bool aTrapStatement, 
+	bool aCollisionStatement,
+	bool aTrapStatement,
 	bool aExitStatement,
-	bool aLootStatement, 
-	bool aPlayerSpawnStatement, 
-	bool aEnemySpawnStatement, 
+	bool aLootStatement,
+	bool aPlayerSpawnStatement,
+	bool aEnemySpawnStatement,
 	bool aRenderStatement,
-	float aRenderOffset, 
-	float aFadeOffset):
+	float aRenderOffset,
+	float aFadeOffset) :
 
 	myCollidableFlag(aCollisionStatement),
 	myTrapSpawnFlag(aTrapStatement),
-	myExitFlag(aExitStatement),
-	myLootFlag(aLootStatement),
+	myDoorSpawnFlag(aExitStatement),
+	myChestFlag(aLootStatement),
 	myPlayerSpawnFlag(aPlayerSpawnStatement),
 	myEnemySpawnFlag(aEnemySpawnStatement),
 	myRenderFlag(aRenderStatement),
 	myRenderOffset(aRenderOffset),
-	myFadeOffset(aFadeOffset) 
+	myFadeOffset(aFadeOffset)
 {}
 
 TileLayer::~TileLayer()
@@ -117,7 +115,7 @@ void TileLayer::SetEnemySpawn(bool aStatement)
 	myEnemySpawnFlag = aStatement;
 }
 
-bool TileLayer::GetCollision()
+bool TileLayer::GetCollisions()
 {
 	return myCollidableFlag;
 }
@@ -127,7 +125,7 @@ bool TileLayer::GetRenderFlag()
 	return myRenderFlag;
 }
 
-bool TileLayer::GetEnemySpawn()
+bool TileLayer::GetEnemySpawns()
 {
 	return myEnemySpawnFlag;
 }
@@ -137,22 +135,22 @@ std::vector<Tile>& TileLayer::GetData()
 	return myData;
 }
 
-bool TileLayer::GetPlayerSpawn()
+bool TileLayer::GetPlayerSpawns()
 {
 	return myPlayerSpawnFlag;
 }
 
 bool TileLayer::GetLoot()
 {
-	return myLootFlag;
+	return myChestFlag;
 }
 
-bool TileLayer::GetExit()
+bool TileLayer::GetDoors()
 {
-	return myExitFlag;
+	return myDoorSpawnFlag;
 }
 
-bool TileLayer::GetTrapSpawn()
+bool TileLayer::GetTrapSpawns()
 {
 	return myTrapSpawnFlag;
 }
@@ -162,14 +160,14 @@ void TileLayer::SetPlayerSpawn(bool aStatement)
 	myPlayerSpawnFlag = aStatement;
 }
 
-void TileLayer::SetExit(bool aStatement)
+void TileLayer::SetDoors(bool aStatement)
 {
-	myExitFlag = aStatement;
+	myDoorSpawnFlag = aStatement;
 }
 
-void TileLayer::SetLoot(bool aStatement)
+void TileLayer::SetChest(bool aStatement)
 {
-	myLootFlag = aStatement;
+	myChestFlag = aStatement;
 }
 
 void TileLayer::SetTrapSpawn(bool aStatement)

@@ -4,10 +4,7 @@
 
 SessionHandler::SessionHandler()
 {
-
 }
-
-
 
 SessionHandler::~SessionHandler()
 {
@@ -20,7 +17,7 @@ SessionHandler::~SessionHandler()
 ///<param name="aRenderOffset">The render distance from the player</param>
 ///<param name="aFadeOffset">The distance at which the tiles start fading</param>
 void SessionHandler::Init(
-	float aScreenWidth, 
+	float aScreenWidth,
 	float aScreenHeight,
 	float aRenderOffset,
 	float aFadeOffset,
@@ -45,8 +42,8 @@ void SessionHandler::Init(
 }
 
 void SessionHandler::GetMaps(
-	std::vector<Map>& someMaps, 
-	float& aRenderOffset, 
+	std::vector<Map>& someMaps,
+	float& aRenderOffset,
 	float& aFadeOffset)
 {
 	//Gets map profiles from folder
@@ -68,7 +65,6 @@ void SessionHandler::MouseScroll(sf::View& aView, sf::Event& anEvent)
 		{
 			if (anEvent.MouseWheelScrolled)
 			{
-				
 			}
 		}
 	}
@@ -91,7 +87,7 @@ void SessionHandler::LoadPlayer(Input& anInput)
 
 	for (size_t i = 0; i < myMaps[0].GetLayers()->size(); i++)
 	{
-		if (myMaps[0].GetLayers()->at(i).GetPlayerSpawn())
+		if (myMaps[0].GetLayers()->at(i).GetPlayerSpawns())
 		{
 			tempData = myMaps[0].GetLayers()->at(i).GetData();
 
