@@ -1,8 +1,6 @@
 #include "Tile.h"
 
-
-
-Tile::Tile() 
+Tile::Tile()
 	: myTextureId(0)
 {
 	myPos = tz::Vector2f();
@@ -14,7 +12,6 @@ Tile::Tile(tz::Vector2f aPos, int anID)
 {
 	myPos = aPos;
 }
-
 
 Tile::Tile(tz::Vector2f aPos, int anID, bool aCollidable)
 	: myTextureId(anID)

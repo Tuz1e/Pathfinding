@@ -21,11 +21,11 @@ inline int ConvertToInt(const std::string& convertableStr)
 	return 0;
 }
 
-inline float ConvertToFloat(const std::string& convertableStr) 
+inline float ConvertToFloat(const std::string& convertableStr)
 {
-	if (!convertableStr.empty()) 
+	if (!convertableStr.empty())
 	{
-		try 
+		try
 		{
 			return std::stof(convertableStr);
 		}
@@ -34,7 +34,7 @@ inline float ConvertToFloat(const std::string& convertableStr)
 	return 0.0f;
 }
 
-inline void PrintLoaded(std::string str) 
+inline void PrintLoaded(std::string str)
 {
 	try
 	{
@@ -63,7 +63,7 @@ inline int Randomize(const int& aLowAmount, const int& aHighAmount)
 }
 
 template<typename T>
-void DelPtr(T*& ptr) 
+void DelPtr(T * &ptr)
 {
 	if (ptr != nullptr)
 	{

@@ -1,10 +1,12 @@
 #include "Program.h"
 
+//TODO: Render queue to make that of which object has the highest Y value
+//rendered above the other
+
 Program::Program()
 {
 	myState = GameState::SESSION;
 }
-
 
 Program::~Program()
 {

@@ -1,8 +1,6 @@
 #include "Texture.h"
 
-
-
-tx::Texture::Texture():
+tx::Texture::Texture() :
 	myLocation(""),
 	myScale(tz::Vector2f()),
 	myColumns(0),
@@ -10,7 +8,7 @@ tx::Texture::Texture():
 	myAnimationFlag(false)
 {}
 
-tx::Texture::Texture(std::string aLocation, tz::Vector2f aScale, int someColumns, int someRows, int someFrames, bool anAnimationFlag, float aFramerate):
+tx::Texture::Texture(std::string aLocation, tz::Vector2f aScale, int someColumns, int someRows, int someFrames, bool anAnimationFlag, float aFramerate) :
 	myLocation(aLocation),
 	myScale(aScale),
 	myColumns(someColumns),

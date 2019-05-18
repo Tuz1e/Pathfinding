@@ -14,13 +14,30 @@
 
 TileLayer::TileLayer()
 {
+	myCollidableFlag = false;
+	myEnemySpawnFlag = false;
+	myChestFlag = false;
+	myTrapSpawnFlag = false;
+	myDoorSpawnFlag = false;
+}
+
+TileLayer::TileLayer(float aRenderOffset, float aFadeOffset)
+	: myRenderOffset(aRenderOffset), myFadeOffset(aFadeOffset)
+{
+	myCollidableFlag = false;
+	myTrapSpawnFlag = false;
+	myDoorSpawnFlag = false;
+	myChestFlag = false;
+	myPlayerSpawnFlag = false;
+	myEnemySpawnFlag = false;
+	myRenderFlag = false;
 }
 
 TileLayer::TileLayer(
 	bool aCollisionStatement,
 	bool aTrapStatement,
-	bool aExitStatement,
-	bool aLootStatement,
+	bool aDoorStatement,
+	bool aChestStatement,
 	bool aPlayerSpawnStatement,
 	bool aEnemySpawnStatement,
 	bool aRenderStatement,
@@ -29,8 +46,8 @@ TileLayer::TileLayer(
 
 	myCollidableFlag(aCollisionStatement),
 	myTrapSpawnFlag(aTrapStatement),
-	myDoorSpawnFlag(aExitStatement),
-	myChestFlag(aLootStatement),
+	myDoorSpawnFlag(aDoorStatement),
+	myChestFlag(aChestStatement),
 	myPlayerSpawnFlag(aPlayerSpawnStatement),
 	myEnemySpawnFlag(aEnemySpawnStatement),
 	myRenderFlag(aRenderStatement),

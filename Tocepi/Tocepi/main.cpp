@@ -28,7 +28,7 @@ int main()
 	sf::RenderWindow tempWindow(
 		sf::VideoMode(
 			tempSettings.GetScreen().Width,
-			tempSettings.GetScreen().Height), 
+			tempSettings.GetScreen().Height),
 		tempSettings.GetTitle());
 	tempWindow.setFramerateLimit(60);
 
@@ -43,9 +43,9 @@ int main()
 		while (tempWindow.pollEvent(tempEvent))
 		{
 			//Makes sure the game closes when X is pressed.
-			if (tempEvent.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape)) 
-			{ 
-				tempWindow.close(); 
+			if (tempEvent.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape))
+			{
+				tempWindow.close();
 			}
 		}
 

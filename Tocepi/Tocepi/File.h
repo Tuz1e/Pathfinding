@@ -39,7 +39,7 @@ inline std::string GetFromXml(const std::string& aPath, const std::string& aFind
 	return tempLine;
 }
 
-inline bool ExistsInXml(const std::string& aPath, const std::string& aFindLine)
+inline bool ExistsInXml(const std::string & aPath, const std::string & aFindLine)
 {
 	bool tempB = false; //The bool to return
 	std::ifstream tempIn(aPath);
@@ -57,7 +57,7 @@ inline bool ExistsInXml(const std::string& aPath, const std::string& aFindLine)
 	return tempB;
 }
 
-inline std::string GetMapData(const std::string& aPath) 
+inline std::string GetMapData(const std::string & aPath)
 {
 	std::string tempLine, tempFullLine;
 	std::ifstream tempFile;
@@ -80,7 +80,7 @@ inline std::string GetMapData(const std::string& aPath)
 	return tempFullLine;
 }
 
-inline std::vector<std::string> SplitString(std::string& aStr, char aDelimiter)
+inline std::vector<std::string> SplitString(std::string & aStr, char aDelimiter)
 {
 	size_t tempStart, tempEnd = 0;
 	std::vector<std::string> tempStrVec;

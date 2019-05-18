@@ -9,14 +9,14 @@ public:
 	Entity();
 	~Entity();
 
-	virtual tz::Vector2f 
-		&GetVelocity(), 
-		&GetSpeed();
+	virtual tz::Vector2f
+		& GetVelocity(),
+		& GetSpeed();
 	sf::IntRect GetBoundingBox();
 
 protected:
-	tz::Vector2f 
-		myVelocity, 
+	tz::Vector2f
+		myVelocity,
 		mySpeed;
 	bool myCollidingFlag = false;
 };

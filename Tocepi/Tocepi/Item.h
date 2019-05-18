@@ -7,9 +7,7 @@ public:
 	Item();
 	~Item();
 
-
 private:
-
 };
 
 #endif //ITEM_H

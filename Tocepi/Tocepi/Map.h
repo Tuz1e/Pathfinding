@@ -20,27 +20,27 @@ public:
 	Map(std::string aLocation, float aRenderOffset, float aFadeOffset);
 	~Map();
 
-	void 
+	void
 		LoadData(),
 		Update(Player& aPlayer),
 		Draw(sf::RenderWindow& aWindow, Player& aPlayer);
 
 	int
-		&GetLayersAmount(),
-		&GetWidth(),
-		&GetHeight(),
-		&GetHorizontalSize(),
-		&GetVerticalSize();
+		& GetLayersAmount(),
+		& GetWidth(),
+		& GetHeight(),
+		& GetHorizontalSize(),
+		& GetVerticalSize();
 
 	float
-		&GetTileDimension(),
-		&GetScale();;
+		& GetTileDimension(),
+		& GetScale();;
 
-	std::string 
-		&GetTextureLocation(),
-		&GetLocation();
+	std::string
+		& GetTextureLocation(),
+		& GetLocation();
 
-	bool &GetLoadedFlag();
+	bool& GetLoadedFlag();
 
 	std::vector<TileLayer>* GetLayers();
 
@@ -50,24 +50,24 @@ private:
 		LoadSprite(sf::Sprite& aSprite, sf::Texture* aSheet),
 		SetColliders(std::vector<Tile>* aLayer, sf::Sprite& aSprite);
 
-	std::vector<Tile> 
+	std::vector<Tile>
 		GetTileData(std::vector<std::string>* someData),
 		CleanData(std::vector<Tile>& aLayer);
 
-	int 
-		myLayerAmount, 
-		myWidth, 
+	int
+		myLayerAmount,
+		myWidth,
 		myHeight,
 		mySheetHorizontalSize,
 		mySheetVerticalSize,
 		mySheetSize;
 
-	float 
-		myTileScale, 
+	float
+		myTileScale,
 		myTileDimension,
 		myRenderOffset,
 		myFadeOffset;
-	std::string 
+	std::string
 		myName,
 		myTextureLocation,
 		myDataLocation;

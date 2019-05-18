@@ -19,40 +19,37 @@ public:
 	Weapon(std::string aLocation, float aX, float aY);
 	~Weapon();
 
-	void 
+	void
 		LoadWeapon(),
 		Update(float& aDelta, tz::Vector2f aPos, sf::RenderWindow& aWindow),
 		Draw(sf::RenderWindow& aWindow);
 
 	std::string
-		&GetDescription(),
-		&GetRangeProjectileTextureLocation();
-	int &GetDurability();
-	float 
-		&GetBaseDamage(), 
-		&GetRotationSpeed();
+		& GetDescription(),
+		& GetRangeProjectileTextureLocation();
+	int& GetDurability();
+	float
+		& GetBaseDamage(),
+		& GetRotationSpeed();
 	bool
-		&GetRangeFlag(),
-		&GetThrowableFlag(),
-		&GetStunFlag();
-
-
-
+		& GetRangeFlag(),
+		& GetThrowableFlag(),
+		& GetStunFlag();
 
 private:
-	std::string 
-		myProfileLocation, 
+	std::string
+		myProfileLocation,
 		myDescription,
 		myRangeProjectileTextureLocation;
 
 	int myDurability;
-	float 
-		myBaseDamage, 
+	float
+		myBaseDamage,
 		myRotationSpeed;
 
-	bool 
-		myRangeFlag, 
-		myThrowableFlag, 
+	bool
+		myRangeFlag,
+		myThrowableFlag,
 		myStunFlag;
 
 	tz::Vector2f myPreviousMousePos;

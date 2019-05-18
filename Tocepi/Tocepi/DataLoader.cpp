@@ -1,10 +1,10 @@
 #include "DataLoader.h"
 
-DataLoader::DataLoader() 
-	: myProfileLocation(CONTENTPROFILES){}
+DataLoader::DataLoader()
+	: myProfileLocation(CONTENTPROFILES) {}
 
 DataLoader::DataLoader(std::string aProfileLocation)
-	: myProfileLocation(aProfileLocation){}
+	: myProfileLocation(aProfileLocation) {}
 
 DataLoader::~DataLoader()
 {
@@ -45,7 +45,7 @@ void DataLoader::LoadTextureData()
 		}
 		PrintLoaded("data from " + myProfileLocation);
 	}
-	catch(...) {}
+	catch (...) {}
 }
 
 std::vector<tx::Texture>& DataLoader::GetTextures()
@@ -73,7 +73,7 @@ std::string DataLoader::GetDataString(std::string aFindLine)
 	return GetFromXml(myProfileLocation, aFindLine);
 }
 
-std::string DataLoader::GetDataString(std::string& aPath, std::string aFindLine)
+std::string DataLoader::GetDataString(std::string & aPath, std::string aFindLine)
 {
 	return GetFromXml(aPath, aFindLine);
 }
@@ -83,7 +83,7 @@ int DataLoader::GetDataInteger(std::string aFindLine)
 	return ConvertToInt(GetFromXml(myProfileLocation, aFindLine));
 }
 
-int DataLoader::GetDataInteger(std::string& aPath, std::string aFindLine)
+int DataLoader::GetDataInteger(std::string & aPath, std::string aFindLine)
 {
 	return ConvertToInt(GetFromXml(aPath, aFindLine));
 }
@@ -93,7 +93,7 @@ float DataLoader::GetDataFloat(std::string aFindLine)
 	return ConvertToFloat(GetFromXml(myProfileLocation, aFindLine));
 }
 
-float DataLoader::GetDataFloat(std::string& aPath, std::string aFindLine)
+float DataLoader::GetDataFloat(std::string & aPath, std::string aFindLine)
 {
 	return ConvertToFloat(GetFromXml(aPath, aFindLine));
 }
@@ -103,7 +103,7 @@ bool DataLoader::GetDataBoolean(std::string aFindLine)
 	return (ConvertToInt(GetFromXml(myProfileLocation, aFindLine)) == 1);
 }
 
-bool DataLoader::GetDataBoolean(std::string& aPath, std::string aFindLine)
+bool DataLoader::GetDataBoolean(std::string & aPath, std::string aFindLine)
 {
 	return (ConvertToInt(GetFromXml(aPath, aFindLine)) == 1);
 }

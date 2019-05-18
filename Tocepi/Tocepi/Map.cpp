@@ -44,7 +44,7 @@ void Map::LoadData()
 	myTileDimension *= myTileScale;
 
 	std::string tempStr;
-	TileLayer tempLayer;
+	//TileLayer tempLayer;
 	std::vector<std::vector<std::string>> tempData2Dim;
 	std::vector<Tile> tempTiles;
 
@@ -72,28 +72,26 @@ void Map::LoadData()
 
 		tempStr = "L" + std::to_string(i);
 
-		tempLayer = TileLayer
-		(
-			myDataLoader.GetDataBoolean(tempStr + "-" + COLLIDABLE),
-			myDataLoader.GetDataBoolean(tempStr + "-" + TRAPSPAWN),
-			myDataLoader.GetDataBoolean(tempStr + "-" + DOOR),
-			myDataLoader.GetDataBoolean(tempStr + "-" + CHESTSPAWN),
-			myDataLoader.GetDataBoolean(tempStr + "-" + PLAYERSPAWN),
-			myDataLoader.GetDataBoolean(tempStr + "-" + ENEMYSPAWN),
-			myDataLoader.GetDataBoolean(tempStr + "-" + RENDERABLE),
-			myRenderOffset,
-			myFadeOffset
+		myLayers->push_back(
+			TileLayer
+			(
+				myDataLoader.GetDataBoolean(tempStr + "-Collision"),
+				myDataLoader.GetDataBoolean(tempStr + "-TrapSpawn"),
+				myDataLoader.GetDataBoolean(tempStr + "-Door"),
+				myDataLoader.GetDataBoolean(tempStr + "-Chest"),
+				myDataLoader.GetDataBoolean(tempStr + "-PlayerSpawn"),
+				myDataLoader.GetDataBoolean(tempStr + "-EnemySpawn"),
+				myDataLoader.GetDataBoolean(tempStr + "-Renderable"),
+				myRenderOffset,
+				myFadeOffset
+			)
 		);
 
 		tempTiles = GetTileData(&tempData2Dim[i]);
-
 		tempTiles = CleanData(tempTiles);
-
 		SetColliders(&tempTiles, *mySprite);
 
-		tempLayer.SetData(tempTiles);
-
-		myLayers->push_back(tempLayer);
+		myLayers->at(i).SetData(tempTiles);
 	}
 }
 

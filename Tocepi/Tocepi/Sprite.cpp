@@ -1,19 +1,19 @@
 #include "Sprite.h"
 
-tx::Sprite::Sprite() : 
+tx::Sprite::Sprite() :
 	myTextureType(TextureType::IDLE)
 {
 }
-tx::Sprite::Sprite(Texture aTexture, tz::Vector2f& aPos, TextureType aType):
+tx::Sprite::Sprite(Texture aTexture, tz::Vector2f& aPos, TextureType aType) :
 	myPos(aPos),
 	myTextureType(aType)
 {
 	myTextures.push_back(aTexture);
 }
-tx::Sprite::Sprite(std::vector<Texture> someTextures, tz::Vector2f& aPos, TextureType aType): 
-	myTextures(someTextures), 
-	myPos(aPos), 
-	myTextureType(aType) 
+tx::Sprite::Sprite(std::vector<Texture> someTextures, tz::Vector2f& aPos, TextureType aType) :
+	myTextures(someTextures),
+	myPos(aPos),
+	myTextureType(aType)
 {}
 
 tx::Sprite::Sprite(sf::Sprite& aSprite)
@@ -57,7 +57,6 @@ void tx::Sprite::SetAnimation()
 			myTexture.getSize().y / myColumns
 		)
 	);
-
 }
 
 void tx::Sprite::UpdateAnimation(float& aDelta)
@@ -66,7 +65,7 @@ void tx::Sprite::UpdateAnimation(float& aDelta)
 	{
 		myCurrentFrame = tz::Vector2i();
 	}
-	else 
+	else
 	{
 		if (myCurrentFrame.X >= myRows)
 		{
@@ -162,7 +161,7 @@ void tx::Sprite::Flip(FlipView aSide)
 
 void tx::Sprite::SetScale(tz::Vector2f aScale)
 {
-	if (myLoadedFlag) 
+	if (myLoadedFlag)
 	{
 		mySprite.setScale(sf::Vector2f(aScale.X, aScale.Y));
 	}
@@ -181,13 +180,13 @@ void tx::Sprite::SetScale(float x, float y)
 	myScale = tz::Vector2f(x, y);
 }
 
-void tx::Sprite::SetPosition(tz::Vector2f& aPos)
+void tx::Sprite::SetPosition(tz::Vector2f & aPos)
 {
 	mySprite.setPosition(sf::Vector2f(aPos.X, aPos.Y));
 	myPos = aPos;
 }
 
-void tx::Sprite::Draw(sf::RenderWindow& aWindow)
+void tx::Sprite::Draw(sf::RenderWindow & aWindow)
 {
 	aWindow.draw(mySprite);
 }

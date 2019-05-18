@@ -6,7 +6,6 @@ ObjectManager::ObjectManager()
 {
 }
 
-
 ObjectManager::~ObjectManager()
 {
 }

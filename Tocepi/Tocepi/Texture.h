@@ -5,7 +5,7 @@
 #include "TZ/GameKit.hpp"
 #include "SFML/Graphics.hpp"
 
-namespace tx 
+namespace tx
 {
 	class Texture
 	{
@@ -16,7 +16,7 @@ namespace tx
 
 		std::string GetLocation();
 		tz::Vector2f GetScale();
-		int 
+		int
 			GetColumns(),
 			GetRows(),
 			GetFrames();

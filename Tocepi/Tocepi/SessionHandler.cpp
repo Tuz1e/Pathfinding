@@ -4,6 +4,7 @@
 
 SessionHandler::SessionHandler()
 {
+	myMapId = 1; //Change this to change map
 }
 
 SessionHandler::~SessionHandler()
@@ -85,11 +86,12 @@ void SessionHandler::LoadPlayer(Input& anInput)
 {
 	std::vector<Tile> tempData;
 
-	for (size_t i = 0; i < myMaps[0].GetLayers()->size(); i++)
+	//Currently bound to only 1 map, should be more dynamic for use of other maps later on
+	for (size_t i = 0; i < myMaps[myMapId].GetLayers()->size(); i++)
 	{
-		if (myMaps[0].GetLayers()->at(i).GetPlayerSpawns())
+		if (myMaps[myMapId].GetLayers()->at(i).GetPlayerSpawns())
 		{
-			tempData = myMaps[0].GetLayers()->at(i).GetData();
+			tempData = myMaps[myMapId].GetLayers()->at(i).GetData();
 
 			//Sets player position to a random positition between available spawn positions
 			myPlayer = new Player(tempData[Randomize(0, tempData.size())].GetPosition());
@@ -121,7 +123,7 @@ void SessionHandler::LoadMap(std::vector<Map>& someMaps, float& aRenderOffset, f
 		return;
 	}
 
-	someMaps[0].LoadData();
+	someMaps[myMapId].LoadData();
 
 	PrintLoaded("Session map");
 }
@@ -134,7 +136,7 @@ void SessionHandler::Update(float& aDelta, sf::Event& anEvent)
 		sf::Vector2f(myPlayer->GetVelocity().X, myPlayer->GetVelocity().Y) * aDelta
 	);
 
-	myMaps[0].Update(*myPlayer);
+	myMaps[myMapId].Update(*myPlayer);
 
 	myPlayer->Update(aDelta, *myWindow);
 }
@@ -143,7 +145,7 @@ void SessionHandler::Draw(sf::RenderWindow& aWindow)
 {
 	aWindow.setView(myView);
 
-	myMaps[0].Draw(aWindow, *myPlayer);
+	myMaps[myMapId].Draw(aWindow, *myPlayer);
 
 	myPlayer->Draw(aWindow, myView);
 }
@@ -151,5 +153,5 @@ void SessionHandler::Draw(sf::RenderWindow& aWindow)
 void SessionHandler::LateDraw(sf::RenderWindow& aWindow)
 {
 	//aWindow.setView(myMinimap);
-	//myMaps[0].Draw(aWindow, *myPlayer);
+	//myMaps[myMapId].Draw(aWindow, *myPlayer);
 }

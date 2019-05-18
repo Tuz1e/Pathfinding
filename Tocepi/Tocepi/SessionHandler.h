@@ -13,9 +13,9 @@ public:
 	~SessionHandler();
 
 	void
-		Init(float aScreenWidth, 
-			float aScreenHeight, 
-			float aRenderOffset, 
+		Init(float aScreenWidth,
+			float aScreenHeight,
+			float aRenderOffset,
 			float aFadeOffset,
 			float aViewZoom,
 			Input& anInput,
@@ -26,9 +26,9 @@ public:
 
 private:
 	void GetMaps(
-			std::vector<Map>& someMaps, 
-			float& aRenderOffset,
-			float& aFadeOffset),
+		std::vector<Map>& someMaps,
+		float& aRenderOffset,
+		float& aFadeOffset),
 		LoadMap(
 			std::vector<Map>& someMaps,
 			float& aRenderOffset,
@@ -37,8 +37,8 @@ private:
 		SetView(sf::View& aView, float& aViewZoom, Player& aPlayer, float& aWidth, float& aHeight),
 		MouseScroll(sf::View& aView, sf::Event& anEvent);
 
-	float 
-		myRenderOffset, 
+	float
+		myRenderOffset,
 		myFadeOffset,
 		myViewZoom;
 
@@ -46,10 +46,11 @@ private:
 
 	std::vector<Map> myMaps;
 	Player* myPlayer;
-	sf::View 
+	sf::View
 		myView,
 		myMinimap;
 	sf::RenderWindow* myWindow;
+	int myMapId;
 	Input myInput;
 };
 

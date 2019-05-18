@@ -4,13 +4,13 @@ Weapon::Weapon()
 {
 }
 
-Weapon::Weapon(std::string aLocation, tz::Vector2f aPos):
+Weapon::Weapon(std::string aLocation, tz::Vector2f aPos) :
 	myProfileLocation(aLocation)
 {
 	myPos = aPos;
 }
 
-Weapon::Weapon(std::string aLocation, float aX, float aY):
+Weapon::Weapon(std::string aLocation, float aX, float aY) :
 	myProfileLocation(aLocation)
 {
 	myPos = tz::Vector2f(aX, aY);
@@ -61,7 +61,6 @@ void Weapon::LoadWeapon()
 		),
 		mySprite->GetSprite().getOrigin()
 	);
-
 }
 
 void Weapon::Update(float& aDelta, tz::Vector2f aPos, sf::RenderWindow& aWindow)
@@ -73,8 +72,8 @@ void Weapon::Update(float& aDelta, tz::Vector2f aPos, sf::RenderWindow& aWindow)
 	tz::Vector2f tempPos = myPos;
 	if (tz::DisBetweenVec(myPreviousMousePos, tempMousePos) > 0.1)
 	{
-		tempPos.X += ((tempMousePos.X - tempPos.X)*2) * aDelta;
-		tempPos.Y += ((tempMousePos.Y - tempPos.Y)*2) * aDelta;
+		tempPos.X += ((tempMousePos.X - tempPos.X) * 2) * aDelta;
+		tempPos.Y += ((tempMousePos.Y - tempPos.Y) * 2) * aDelta;
 	}
 
 	if (tz::DisBetweenVec(tempPos, aPos) > 15)
@@ -90,10 +89,9 @@ void Weapon::Update(float& aDelta, tz::Vector2f aPos, sf::RenderWindow& aWindow)
 	tempAngle -= PI / 2;
 	tempAngle *= (180 / PI); //Convert from radians to degrees
 
-
 	//Set position of hitbox & sprite
 	myPos = tempPos;
-	
+
 	mySprite->SetPosition(myPos);
 	mySprite->GetSprite().setRotation(tempAngle);
 
@@ -101,7 +99,7 @@ void Weapon::Update(float& aDelta, tz::Vector2f aPos, sf::RenderWindow& aWindow)
 	myBody.setRotation(tempAngle);
 }
 
-void Weapon::Draw(sf::RenderWindow& aWindow)
+void Weapon::Draw(sf::RenderWindow & aWindow)
 {
 	mySprite->Draw(aWindow);
 	//DrawBody(aWindow);

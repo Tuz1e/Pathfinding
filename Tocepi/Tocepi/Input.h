@@ -14,15 +14,13 @@ public:
 
 	void SetLockKey(sf::Keyboard::Key aKey);
 
-	sf::Keyboard::Key 
+	sf::Keyboard::Key
 		GetLeftKey(),
 		GetRightKey(),
 		GetUpKey(),
 		GetDownKey(),
 		GetPreviousKey(),
 		GetLockedKey();
-
-	
 
 private:
 	sf::Keyboard::Key

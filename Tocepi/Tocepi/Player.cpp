@@ -5,11 +5,9 @@ Player::Player()
 	myPos = tz::Vector2f(0, 0);
 }
 
-
 Player::Player(tz::Vector2f aPos)
 {
 	myPos = aPos;
-
 }
 
 Player::Player(float x, float y)
@@ -117,8 +115,6 @@ void Player::Update(float& aDelta, sf::RenderWindow& aWindow)
 		myCorrectingFlag = true;
 	}
 
-
-
 	myPos = myPos + myVelocity * aDelta;
 	mySprite->SetPosition(myPos);
 	myBody.setPosition(GetBoundingBox().left, GetBoundingBox().top);
@@ -126,15 +122,13 @@ void Player::Update(float& aDelta, sf::RenderWindow& aWindow)
 	myWeapon->Update(aDelta, myPos, aWindow);
 	myCollidingFlag = false;
 	myMovingFlag = false;
-
 }
 
 void Player::Draw(sf::RenderWindow& aWindow, sf::View& aView)
 {
-	
 	mySprite->Flip
 	(
-		((sf::Mouse::getPosition(aWindow).x) < (aWindow.getSize().x/2))
+		((sf::Mouse::getPosition(aWindow).x) < (aWindow.getSize().x / 2))
 		? FlipView::Left : FlipView::Right
 	);
 	myWeapon->Draw(aWindow);
@@ -142,7 +136,7 @@ void Player::Draw(sf::RenderWindow& aWindow, sf::View& aView)
 	//DrawBody(aWindow);
 }
 
-Weapon* Player::GetWeapon()
+Weapon * Player::GetWeapon()
 {
 	return myWeapon;
 }

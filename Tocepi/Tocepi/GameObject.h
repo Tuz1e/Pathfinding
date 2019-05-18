@@ -13,9 +13,9 @@ public:
 	GameObject();
 	~GameObject();
 
-	virtual void 
-		Init(), 
-		Update(float& aDelta), 
+	virtual void
+		Init(),
+		Update(float& aDelta),
 		Draw(sf::RenderWindow& aWindow);
 
 	virtual std::string& GetName();
@@ -35,8 +35,8 @@ public:
 	sf::RectangleShape& GetBody();
 
 protected:
-	std::string 
-		myTextureLocation, 
+	std::string
+		myTextureLocation,
 		myName;
 	sf::RectangleShape myBody;
 	tx::Sprite* mySprite;

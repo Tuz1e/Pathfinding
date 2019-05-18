@@ -25,9 +25,9 @@ public:
 	Weapon* GetWeapon();
 	void SetColliding(bool aCollisionFlag);
 
-	int 
-		&GetWeaponID(), 
-		&GetBackpackSpace();
+	int
+		& GetWeaponID(),
+		& GetBackpackSpace();
 
 private:
 	void LoadDefaults();
@@ -36,8 +36,8 @@ private:
 	int
 		myWeaponId,
 		myBackpackSpace;
-	bool 
-		myCorrectingFlag = false, 
+	bool
+		myCorrectingFlag = false,
 		myMovingFlag = false;
 	TextureType myTextureType;
 	Weapon* myWeapon;

@@ -15,23 +15,18 @@
 #include "Player.h"
 #include "TZ/GameKit.hpp"
 
-#define COLLIDABLE "Collision"
-#define TRAPSPAWN "TrapSpawn"
-#define DOOR "Door"
-#define CHESTSPAWN "Chest"
-#define PLAYERSPAWN "PlayerSpawn"
-#define ENEMYSPAWN "EnemySpawn"
-#define RENDERABLE "Renderable"
-
 class TileLayer
 {
 public:
 	TileLayer();
 	TileLayer(
+		float aRenderOffset,
+		float aFadeOffset);
+	TileLayer(
 		bool aCollisionStatement,
 		bool aTrapStatement,
-		bool aExitStatement,
-		bool aLootStatement,
+		bool aDoorStatement,
+		bool aChestStatement,
 		bool aPlayerSpawnStatement,
 		bool aEnemySpawnStatement,
 		bool aRenderStatement,
