@@ -5,7 +5,7 @@
 #include "SFML/Graphics.hpp"
 #include "Input.h"
 #include "Player.h"
-#include "Map.h"
+#include "TileMap.h"
 #include "SessionHandler.h"
 
 //TODO: Main menu

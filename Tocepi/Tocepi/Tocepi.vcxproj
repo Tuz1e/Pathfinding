@@ -138,7 +138,7 @@
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Map.cpp" />
+    <ClCompile Include="TileMap.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -159,7 +159,7 @@
     <ClInclude Include="Info.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Item.h" />
-    <ClInclude Include="Map.h" />
+    <ClInclude Include="TileMap.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="pch.h" />

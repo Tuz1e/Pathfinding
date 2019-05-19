@@ -1,4 +1,4 @@
-#include "Map.h"
+#include "TileMap.h"
 
 //Copyright 2019 Pontuz Klasson
 
@@ -11,7 +11,7 @@
 //TODO: Load map xml using tinyxml
 //TODO: Chunk loading
 
-Map::Map(std::string aLocation, float aRenderOffset, float aFadeOffset) :
+TileMap::TileMap(std::string aLocation, float aRenderOffset, float aFadeOffset) :
 	myDataLocation(aLocation),
 	myRenderOffset(aRenderOffset),
 	myFadeOffset(aFadeOffset)
@@ -20,14 +20,14 @@ Map::Map(std::string aLocation, float aRenderOffset, float aFadeOffset) :
 	myName = myDataLoader.GetDataString("Username");
 }
 
-Map::~Map()
+TileMap::~TileMap()
 {
 	DelPtr(mySprite);
 	DelPtr(myTextureTiles);
 	DelPtr(myLayers);
 }
 
-void Map::LoadData()
+void TileMap::LoadData()
 {
 	myLayerAmount = myDataLoader.GetDataInteger("Layers");
 	myWidth = myDataLoader.GetDataInteger("Width");
@@ -95,7 +95,7 @@ void Map::LoadData()
 	}
 }
 
-void Map::Update(Player & aPlayer)
+void TileMap::Update(Player & aPlayer)
 {
 	//TODO: Map update logic including collision
 
@@ -114,7 +114,7 @@ void Map::Update(Player & aPlayer)
 	}
 }
 
-void Map::Draw(sf::RenderWindow & aWindow, Player & aPlayer)
+void TileMap::Draw(sf::RenderWindow & aWindow, Player & aPlayer)
 {
 	for (size_t i = 0; i < myLayers->size(); i++)
 	{
@@ -126,7 +126,7 @@ void Map::Draw(sf::RenderWindow & aWindow, Player & aPlayer)
 	}
 }
 
-void Map::LoadSheetData(std::vector<sf::IntRect> * someTextureTiles)
+void TileMap::LoadSheetData(std::vector<sf::IntRect> * someTextureTiles)
 {
 	for (size_t y = 0; y < mySheetVerticalSize; y++)
 	{
@@ -148,7 +148,7 @@ void Map::LoadSheetData(std::vector<sf::IntRect> * someTextureTiles)
 	PrintLoaded("Map data: Spritesheet data for Map->" + myName);
 }
 
-std::vector<Tile> Map::CleanData(std::vector<Tile> & aLayer)
+std::vector<Tile> TileMap::CleanData(std::vector<Tile> & aLayer)
 {
 	std::vector<Tile> tempData;
 	for (size_t i = 0; i < aLayer.size(); i++)
@@ -161,7 +161,7 @@ std::vector<Tile> Map::CleanData(std::vector<Tile> & aLayer)
 	return tempData;
 }
 
-void Map::SetColliders(std::vector<Tile> * aLayer, sf::Sprite & aSprite)
+void TileMap::SetColliders(std::vector<Tile> * aLayer, sf::Sprite & aSprite)
 {
 	for (size_t i = 0; i < aLayer->size(); i++)
 	{
@@ -182,7 +182,7 @@ void Map::SetColliders(std::vector<Tile> * aLayer, sf::Sprite & aSprite)
 	PrintLoaded("Map data: Colliders for map->" + myName);
 }
 
-void Map::LoadSprite(sf::Sprite & aSprite, sf::Texture * aSheet)
+void TileMap::LoadSprite(sf::Sprite & aSprite, sf::Texture * aSheet)
 {
 	aSheet->loadFromFile(myTextureLocation);
 	aSprite = sf::Sprite(*aSheet);
@@ -191,7 +191,7 @@ void Map::LoadSprite(sf::Sprite & aSprite, sf::Texture * aSheet)
 	PrintLoaded("Map data: sprite for map->" + myName);
 }
 
-std::vector<Tile> Map::GetTileData(std::vector<std::string> * someData)
+std::vector<Tile> TileMap::GetTileData(std::vector<std::string> * someData)
 {
 	std::vector<Tile> tempData;
 	Tile tempTile;
@@ -223,57 +223,57 @@ std::vector<Tile> Map::GetTileData(std::vector<std::string> * someData)
 
 #pragma region Get&Set
 
-int& Map::GetLayersAmount()
+int& TileMap::GetLayersAmount()
 {
 	return myLayerAmount;
 }
 
-float& Map::GetTileDimension()
+float& TileMap::GetTileDimension()
 {
 	return myTileDimension;
 }
 
-int& Map::GetVerticalSize()
+int& TileMap::GetVerticalSize()
 {
 	return mySheetVerticalSize;
 }
 
-int& Map::GetHorizontalSize()
+int& TileMap::GetHorizontalSize()
 {
 	return mySheetHorizontalSize;
 }
 
-int& Map::GetHeight()
+int& TileMap::GetHeight()
 {
 	return myHeight;
 }
 
-int& Map::GetWidth()
+int& TileMap::GetWidth()
 {
 	return myWidth;
 }
 
-float& Map::GetScale()
+float& TileMap::GetScale()
 {
 	return myTileScale;
 }
 
-std::vector<TileLayer>* Map::GetLayers()
+std::vector<TileLayer>* TileMap::GetLayers()
 {
 	return myLayers;
 }
 
-std::string& Map::GetTextureLocation()
+std::string& TileMap::GetTextureLocation()
 {
 	return myTextureLocation;
 }
 
-std::string& Map::GetLocation()
+std::string& TileMap::GetLocation()
 {
 	return myDataLocation;
 }
 
-bool& Map::GetLoadedFlag()
+bool& TileMap::GetLoadedFlag()
 {
 	return myLoadedFlag;
 }

@@ -14,11 +14,11 @@
 #include "DataLoader.h"
 #include "Player.h"
 
-class Map
+class TileMap
 {
 public:
-	Map(std::string aLocation, float aRenderOffset, float aFadeOffset);
-	~Map();
+	TileMap(std::string aLocation, float aRenderOffset, float aFadeOffset);
+	~TileMap();
 
 	void
 		LoadData(),

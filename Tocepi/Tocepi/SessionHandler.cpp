@@ -43,7 +43,7 @@ void SessionHandler::Init(
 }
 
 void SessionHandler::GetMaps(
-	std::vector<Map>& someMaps,
+	std::vector<TileMap>& someMaps,
 	float& aRenderOffset,
 	float& aFadeOffset)
 {
@@ -52,7 +52,7 @@ void SessionHandler::GetMaps(
 
 	for (size_t i = 0; i < tempMaps.size(); i++)
 	{
-		Map tempMap = Map(tempMaps[i], aRenderOffset, aFadeOffset);
+		TileMap tempMap = TileMap(tempMaps[i], aRenderOffset, aFadeOffset);
 		someMaps.push_back(tempMap);
 	}
 }
@@ -110,7 +110,7 @@ void SessionHandler::LoadPlayer(Input& anInput)
 	PrintLoaded("Player");
 }
 
-void SessionHandler::LoadMap(std::vector<Map>& someMaps, float& aRenderOffset, float& aFadeOffset)
+void SessionHandler::LoadMap(std::vector<TileMap>& someMaps, float& aRenderOffset, float& aFadeOffset)
 {
 	//TODO: Make map loading more dynamic
 	//Should only load up current map.

@@ -4,7 +4,7 @@
 #include <vector>
 
 #include "Info.h"
-#include "Map.h"
+#include "TileMap.h"
 
 class SessionHandler
 {
@@ -26,11 +26,11 @@ public:
 
 private:
 	void GetMaps(
-		std::vector<Map>& someMaps,
+		std::vector<TileMap>& someMaps,
 		float& aRenderOffset,
 		float& aFadeOffset),
 		LoadMap(
-			std::vector<Map>& someMaps,
+			std::vector<TileMap>& someMaps,
 			float& aRenderOffset,
 			float& aFadeOffset),
 		LoadPlayer(Input& anInput),
@@ -44,7 +44,7 @@ private:
 
 	tz::Vector2f myScreen;
 
-	std::vector<Map> myMaps;
+	std::vector<TileMap> myMaps;
 	Player* myPlayer;
 	sf::View
 		myView,
