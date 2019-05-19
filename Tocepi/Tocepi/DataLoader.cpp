@@ -58,52 +58,111 @@ tz::Vector2f DataLoader::GetSpeedVec()
 	return tz::Vector2f(GetDataFloat("SpeedX"), GetDataFloat("SpeedY"));
 }
 
-float DataLoader::GetSpeed()
-{
-	return GetDataFloat("Speed");
-}
-
 std::string& DataLoader::GetName()
 {
 	return myName;
 }
 
-std::string DataLoader::GetDataString(std::string aFindLine)
+std::string DataLoader::GetDataString(const std::string & aFindLine)
 {
-	return GetFromXml(myProfileLocation, aFindLine);
+	try
+	{
+		return GetFromXml(myProfileLocation, aFindLine);
+	}
+	catch (...)
+	{
+		PrintWarning("Failed to get data string for line ->" + aFindLine);
+		return "ERROR";
+	}
 }
 
-std::string DataLoader::GetDataString(std::string & aPath, std::string aFindLine)
+std::string DataLoader::GetDataString(std::string & aPath, const std::string & aFindLine)
 {
-	return GetFromXml(aPath, aFindLine);
+	try
+	{
+		return GetFromXml(aPath, aFindLine);
+	}
+	catch (...)
+	{
+		PrintWarning("Failed to get data string for line ->" + aFindLine);
+		return "ERROR";
+	}
 }
 
-int DataLoader::GetDataInteger(std::string aFindLine)
+int DataLoader::GetDataInteger(const std::string & aFindLine)
 {
-	return ConvertToInt(GetFromXml(myProfileLocation, aFindLine));
+	try
+	{
+		return ConvertToInt(GetFromXml(myProfileLocation, aFindLine));
+	}
+	catch (...)
+	{
+		PrintWarning("Failed to get data integer for line ->" + aFindLine);
+		return 0;
+	}
 }
 
-int DataLoader::GetDataInteger(std::string & aPath, std::string aFindLine)
+int DataLoader::GetDataInteger(std::string & aPath, const std::string & aFindLine)
 {
-	return ConvertToInt(GetFromXml(aPath, aFindLine));
+	try
+	{
+		return ConvertToInt(GetFromXml(aPath, aFindLine));
+	}
+	catch (...)
+	{
+		PrintWarning("Failed to get data integer for line ->" + aFindLine);
+		return 0;
+	}
 }
 
-float DataLoader::GetDataFloat(std::string aFindLine)
+float DataLoader::GetDataFloat(const std::string & aFindLine)
 {
-	return ConvertToFloat(GetFromXml(myProfileLocation, aFindLine));
+	try
+	{
+		return ConvertToFloat(GetFromXml(myProfileLocation, aFindLine));
+	}
+	catch (...)
+	{
+		PrintWarning("Failed to get data float for line ->" + aFindLine);
+		return 0;
+	}
 }
 
-float DataLoader::GetDataFloat(std::string & aPath, std::string aFindLine)
+float DataLoader::GetDataFloat(std::string & aPath, const std::string & aFindLine)
 {
-	return ConvertToFloat(GetFromXml(aPath, aFindLine));
+	try
+	{
+		return ConvertToFloat(GetFromXml(aPath, aFindLine));
+	}
+	catch (...)
+	{
+		PrintWarning("Failed to get data float for line ->" + aFindLine);
+		return 0;
+	}
 }
 
-bool DataLoader::GetDataBoolean(std::string aFindLine)
+bool DataLoader::GetDataBoolean(const std::string & aFindLine)
 {
-	return (ConvertToInt(GetFromXml(myProfileLocation, aFindLine)) == 1);
+	try
+	{
+		return (ConvertToInt(GetFromXml(myProfileLocation, aFindLine)) == 1);
+	}
+	catch (...)
+	{
+		PrintWarning("Failed to get data boolean for line ->" + aFindLine);
+		return false;
+	}
 }
 
-bool DataLoader::GetDataBoolean(std::string & aPath, std::string aFindLine)
+bool DataLoader::GetDataBoolean(std::string & aPath, const std::string & aFindLine)
 {
-	return (ConvertToInt(GetFromXml(aPath, aFindLine)) == 1);
+	try
+	{
+		return (ConvertToInt(GetFromXml(aPath, aFindLine)) == 1);
+	}
+	catch (...)
+	{
+		PrintWarning("Failed to get data boolean for line ->" + aFindLine);
+		return false;
+	}
 }

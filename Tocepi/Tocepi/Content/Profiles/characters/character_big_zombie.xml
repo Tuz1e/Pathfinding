@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tocepi>
+	<Username>Big Zombie</Username>
+	<Speed>
+		<SpeedX>48</SpeedX>
+		<SpeedY>48</SpeedY>
+	</Speed>
+	<TextureProfile>
+		<TXP0>Content/profiles/textures/characters/character_texture_big_zombie.xml</TXP0>
+	</TextureProfile>
+</Tocepi>

@@ -8,46 +8,55 @@
 #include "File.h"
 #include "Info.h"
 
-inline int ConvertToInt(const std::string& convertableStr)
+inline int ConvertToInt(const std::string& aConvertableStr)
 {
-	if (!convertableStr.empty())
+	if (!aConvertableStr.empty())
 	{
 		try
 		{
-			return std::stoi(convertableStr.c_str());
+			return std::stoi(aConvertableStr.c_str());
 		}
 		catch (...) {}
 	}
 	return 0;
 }
 
-inline float ConvertToFloat(const std::string& convertableStr)
+inline float ConvertToFloat(const std::string& aConvertableStr)
 {
-	if (!convertableStr.empty())
+	if (!aConvertableStr.empty())
 	{
 		try
 		{
-			return std::stof(convertableStr);
+			return std::stof(aConvertableStr);
 		}
 		catch (...) {}
 	}
 	return 0.0f;
 }
 
-inline void PrintLoaded(std::string str)
+inline void PrintLoaded(std::string aStr)
 {
 	try
 	{
-		std::cout << "Loaded in: " << str << std::endl;
+		std::cout << "Loaded in: " << aStr << std::endl;
 	}
 	catch (...) {}
 }
 
-inline void Print(std::string str)
+inline void Print(std::string aStr)
 {
 	try
 	{
-		std::cout << str << std::endl;
+		std::cout << aStr << std::endl;
+	}
+	catch (...) {}
+}
+
+inline void PrintWarning(std::string aStr)
+{
+	try
+	{
+		std::cout << "WARNING: " << aStr << std::endl;
 	}
 	catch (...) {}
 }
@@ -63,12 +72,12 @@ inline int Randomize(const int& aLowAmount, const int& aHighAmount)
 }
 
 template<typename T>
-void DelPtr(T * &ptr)
+void DelPtr(T * &aPtr)
 {
-	if (ptr != nullptr)
+	if (aPtr != nullptr)
 	{
-		delete ptr;
-		ptr = nullptr;
+		delete aPtr;
+		aPtr = nullptr;
 	}
 }
 

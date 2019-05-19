@@ -42,7 +42,7 @@ s<?xml version="1.0" encoding="UTF-8"?>
 	<L3-Chest>0</L3-Chest>
 	<L3-PlayerSpawn>0</L3-PlayerSpawn>
 	<L3-EnemySpawn>0</L3-EnemySpawn>
-	<L3-Renderable>1</L3-Renderable>
+	<L3-Renderable>0</L3-Renderable>
 	
 	<L4-Collision>0</L4-Collision>
 	<L4-TrapSpawn>0</L4-TrapSpawn>

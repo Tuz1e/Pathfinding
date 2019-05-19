@@ -9,6 +9,10 @@ my own tilemap loader.
 
 The loading of the tilemap is setup to easily be changed depending on map file where examples of this could be txt, json or xml files.
 
+## What the game looks like
+*As of May 19th 2019
+![] (Presentables/tocepi_presentation_2019_05_19.gif)
+
 ## Information to run project
 ###### OS Support
 - [x] Windows 10 Pro
