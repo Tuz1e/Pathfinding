@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tocepi>
 	<Texture>
-		<TX0>Content/textures/characters/elf/character_elf_idle_m.png</TX0>
+		<TX0>Content/textures/characters/elf_m/character_elf_idle_m.png</TX0>
 			<TX0-ScaleX>1</TX0-ScaleX>
 			<TX0-ScaleY>1</TX0-ScaleY>
 			<TX0-Columns>1</TX0-Columns>
@@ -9,7 +9,7 @@
 			<TX0-Frames>4</TX0-Frames>
 			<TX0-Animate>1</TX0-Animate>
 			<TX0-Framerate>1.4</TX0-Framerate>
-		<TX1>Content/textures/characters/elf/character_elf_run_m.png</TX1>
+		<TX1>Content/textures/characters/elf_m/character_elf_run_m.png</TX1>
 			<TX1-ScaleX>1</TX1-ScaleX>
 			<TX1-ScaleY>1</TX1-ScaleY>
 			<TX1-Columns>1</TX1-Columns>

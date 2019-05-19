@@ -33,7 +33,6 @@ void Weapon::LoadWeapon()
 	myThrowableFlag = myDataLoader.GetDataBoolean("Throwable"); //Gets whether or not you can throw it
 	myStunFlag = myDataLoader.GetDataBoolean("Stun"); //Gets whether or not it can stun anyone upon hit
 	myDescription = myDataLoader.GetDataString("Description"); //Gets the description of the weapon
-	myRotationSpeed = myDataLoader.GetDataFloat("Speed"); //Gets the speed of which the weapon rotate around the player
 
 	if (myRangeFlag)
 	{

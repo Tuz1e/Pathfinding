@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tocepi>
 	<Username>Default</Username>
-	<BackpackSpace>20</BackpackSpace>
 	<Speed>
 		<SpeedX>90</SpeedX>
 		<SpeedY>90</SpeedY>

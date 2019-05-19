@@ -159,7 +159,7 @@ int& Player::GetBackpackSpace()
 void Player::LoadDefaults()
 {
 	myTextureType = TextureType::IDLE;
-	myDataLoader = DataLoader(PLAYER_ELF);
+	myDataLoader = DataLoader(PLAYER_CHARACTER);
 	myDataLoader.LoadTextureData();
 
 	mySprite = new tx::Sprite(myDataLoader.GetTextures(), myPos, myTextureType);

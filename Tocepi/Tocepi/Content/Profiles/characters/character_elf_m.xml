@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tocepi>
-	<Username>Elf</Username>
-	<BackpackSpace>20</BackpackSpace>
+	<Username>Male Elf</Username>
 	<Speed>
 		<SpeedX>72</SpeedX>
 		<SpeedY>72</SpeedY>
 	</Speed>
 	<TextureProfile>
-		<TXP0>Content/profiles/textures/characters/character_texture_elf.xml</TXP0>
+		<TXP0>Content/profiles/textures/characters/character_texture_elf_m.xml</TXP0>
 	</TextureProfile>
 </Tocepi>

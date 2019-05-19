@@ -95,6 +95,7 @@ void SessionHandler::LoadPlayer(Input& anInput)
 
 			//Sets player position to a random positition between available spawn positions
 			myPlayer = new Player(tempData[Randomize(0, tempData.size())].GetPosition());
+
 			myPlayer->Init(anInput);
 			break;
 		}
