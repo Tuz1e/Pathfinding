@@ -133,7 +133,7 @@ void Player::Draw(sf::RenderWindow& aWindow, sf::View& aView)
 	);
 	myWeapon->Draw(aWindow);
 	mySprite->Draw(aWindow);
-	//DrawBody(aWindow);
+	DrawBody(aWindow);
 }
 
 Weapon * Player::GetWeapon()

@@ -12,6 +12,8 @@
 //TODO: Pause Screen
 //TODO: Item/Weapon manager
 
+//TODO: Character spritesheets is too wide
+
 enum GameState
 {
 	MENU,

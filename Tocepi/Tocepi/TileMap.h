@@ -1,13 +1,5 @@
-#ifndef MAP_H
-#define MAP_H
-
-//Copyright 2019 Pontuz Klasson
-
-//Licensed under the Apache License, Version 2.0 (the "License");
-//you may not use this file except in compliance with the License.
-//You may obtain a copy of the License at
-
-//http://www.apache.org/licenses/LICENSE-2.0
+#ifndef TILEMAP_H
+#define TILEMAP_H
 
 #include "SFML/Graphics.hpp"
 #include "TileLayer.h"
@@ -81,4 +73,4 @@ private:
 	DataLoader myDataLoader;
 };
 
-#endif //MAP_H
+#endif //TILEMAP_H
