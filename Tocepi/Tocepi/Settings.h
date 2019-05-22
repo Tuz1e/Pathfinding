@@ -7,7 +7,7 @@ struct Screen
 {
 	int Width, Height;
 	int AspectWidth, AspectHeight;
-	bool Fullscreen, FrameCounter;
+	bool Fullscreen, FrameCounter, VSync;
 };
 
 class Settings

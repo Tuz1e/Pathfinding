@@ -31,11 +31,15 @@ int main()
 			tempSettings.GetScreen().Height),
 		tempSettings.GetTitle());
 	tempWindow.setFramerateLimit(60);
+	//tempWindow.setVerticalSyncEnabled(tempSettings.GetScreen().VSync);
+
+	float tempFps, tempLastTime;
+	tempFps = tempLastTime = 0;
 
 	sf::Clock tempClock;
 	float tempDelta;
 
-	tempGame.Init(tempWindow);
+	tempGame.Init(tempWindow, tempSettings.GetScreen().FrameCounter);
 
 	while (tempWindow.isOpen())
 	{
@@ -55,8 +59,14 @@ int main()
 
 		tempWindow.clear(sf::Color(32, 32, 32));
 		tempGame.Draw(tempWindow);
-		tempGame.LateDraw(tempWindow);
+		tempGame.LateDraw(tempWindow, tempFps);
 		tempWindow.display();
+
+		if (tempSettings.GetScreen().FrameCounter)
+		{
+			tempFps = 1.0f / (tempDelta - tempLastTime);
+			tempLastTime = tempDelta;
+		}
 	}
 
 	return 0;

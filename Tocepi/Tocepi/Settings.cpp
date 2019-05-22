@@ -19,6 +19,7 @@ void Settings::LoadDefault()
 
 	myScreen.Fullscreen = ((ConvertToInt(GetFromXml(DEFAULT_SETTINGS, "Fullscreen"))) == 1) ? true : false;
 	myScreen.FrameCounter = ((ConvertToInt(GetFromXml(DEFAULT_SETTINGS, "FrameCounter"))) == 1) ? true : false;
+	myScreen.VSync = ((ConvertToInt(GetFromXml(DEFAULT_SETTINGS, "VSync"))) == 1) ? true : false;
 }
 
 Screen Settings::GetScreen()

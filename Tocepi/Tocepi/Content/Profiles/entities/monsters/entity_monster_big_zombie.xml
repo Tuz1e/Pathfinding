@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tocepi>
+	<Username>Zombabe</Username>
+	<Health>500</Health>
+	<BaseDamage>9</BaseDamage>
+	<Bleed>0</Bleed>
+	<Toxic>1</Toxic>
+	<ProvokeSight>1</ProvokeSight>
+	<ProvokeHit>1</ProvokeHit>
+	<SpawnRate>72</SpawnRate>
+	<Profile>Content/profiles/characters/character_big_demon.xml</Profile>
+</Tocepi>

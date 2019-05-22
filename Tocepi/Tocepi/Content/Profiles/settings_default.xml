@@ -9,5 +9,6 @@
 		<SAR_Height>9</SAR_Height>
 	</ScreenAspectRatio>
 	<Fullscreen>0</Fullscreen>
-	<FrameCounter>0</FrameCounter>
+	<FrameCounter>1</FrameCounter>
+	<VSync>1</VSync>
 </Tocepi>

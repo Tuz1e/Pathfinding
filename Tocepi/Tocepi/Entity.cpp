@@ -26,3 +26,28 @@ sf::IntRect Entity::GetBoundingBox()
 		mySprite->GetFrame().width,
 		mySprite->GetFrame().height * 0.25f);
 }
+
+float& Entity::GetHealth()
+{
+	return myHealth;
+}
+
+void Entity::ModifyHealth(float& someDamage)
+{
+	myHealth += someDamage;
+}
+
+void Entity::LoadDefaults(std::string aLocation)
+{
+	myTextureType = TextureType::IDLE;
+	myDataLoader = DataLoader(
+		(aLocation == "") ? myProfileLocation : aLocation
+	);
+	myDataLoader.LoadTextureData();
+
+	mySprite = new tx::Sprite(myDataLoader.GetTextures(), myPos, myTextureType);
+	mySprite->LoadTexture();
+	mySpeed = myDataLoader.GetSpeedVec();
+
+	PrintLoaded("Entity defaults");
+}

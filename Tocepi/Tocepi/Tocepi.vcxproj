@@ -138,6 +138,8 @@
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Monster.cpp" />
+    <ClCompile Include="MonsterManager.cpp" />
     <ClCompile Include="TileMap.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
@@ -159,6 +161,8 @@
     <ClInclude Include="Info.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Item.h" />
+    <ClInclude Include="Monster.h" />
+    <ClInclude Include="MonsterManager.h" />
     <ClInclude Include="TileMap.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="ObjectManager.h" />

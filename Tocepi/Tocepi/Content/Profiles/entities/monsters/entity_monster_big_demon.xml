@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tocepi>
+	<Username>Demon</Username>
+	<Health>1500</Health>
+	<BaseDamage>18</BaseDamage>
+	<Bleed>1</Bleed>
+	<Toxic>0</Toxic>
+	<ProvokeSight>0</ProvokeSight>
+	<ProvokeHit>1</ProvokeHit>
+	<SpawnRate>20</SpawnRate>
+	<Profile>Content/profiles/characters/character_big_demon.xml</Profile>
+</Tocepi>

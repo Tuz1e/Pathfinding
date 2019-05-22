@@ -22,7 +22,7 @@ Player::~Player()
 
 void Player::Init(Input& anInput)
 {
-	LoadDefaults();
+	LoadDefaults(PLAYER_CHARACTER);
 	myInput = anInput;
 
 	SetBody
@@ -154,17 +154,4 @@ int& Player::GetWeaponID()
 int& Player::GetBackpackSpace()
 {
 	return myBackpackSpace;
-}
-
-void Player::LoadDefaults()
-{
-	myTextureType = TextureType::IDLE;
-	myDataLoader = DataLoader(PLAYER_CHARACTER);
-	myDataLoader.LoadTextureData();
-
-	mySprite = new tx::Sprite(myDataLoader.GetTextures(), myPos, myTextureType);
-	mySprite->LoadTexture();
-	mySpeed = myDataLoader.GetSpeedVec();
-
-	PrintLoaded("Player defaults");
 }

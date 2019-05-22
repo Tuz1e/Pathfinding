@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tocepi>
-	<Username>Small Skeleton</Username>
+	<Username>Mr Orc</Username>
 	<Health>200</Health>
 	<BaseDamage>5</BaseDamage>
 	<Bleed>0</Bleed>
 	<Toxic>0</Toxic>
 	<ProvokeSight>1</ProvokeSight>
-	<ProvokeHit>1</ProvokeHit>
+	<ProvokeHit>0</ProvokeHit>
 	<SpawnRate>80</SpawnRate>
 	<Profile>Content/profiles/characters/character_small_skeleton.xml</Profile>
 </Tocepi>

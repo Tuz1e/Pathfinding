@@ -14,10 +14,17 @@ public:
 		& GetSpeed();
 	sf::IntRect GetBoundingBox();
 
+	float& GetHealth();
+	void ModifyHealth(float& someDamage);
+	void LoadDefaults(std::string aLocation = "");
+
 protected:
 	tz::Vector2f
 		myVelocity,
 		mySpeed;
+	TextureType myTextureType;
+	std::string myProfileLocation;
+	float myHealth;
 	bool myCollidingFlag = false;
 };
 
