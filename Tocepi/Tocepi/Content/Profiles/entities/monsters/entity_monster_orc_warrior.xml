@@ -8,5 +8,6 @@
 	<ProvokeSight>1</ProvokeSight>
 	<ProvokeHit>0</ProvokeHit>
 	<SpawnRate>80</SpawnRate>
+	<Vision>110</Vision>
 	<Profile>Content/profiles/characters/character_small_skeleton.xml</Profile>
 </Tocepi>

@@ -8,5 +8,6 @@
 	<ProvokeSight>0</ProvokeSight>
 	<ProvokeHit>1</ProvokeHit>
 	<SpawnRate>20</SpawnRate>
+	<Vision>50</Vision>
 	<Profile>Content/profiles/characters/character_big_demon.xml</Profile>
 </Tocepi>

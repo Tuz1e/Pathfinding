@@ -25,7 +25,9 @@ protected:
 	TextureType myTextureType;
 	std::string myProfileLocation;
 	float myHealth;
-	bool myCollidingFlag = false;
+	bool myCollidingFlag = false,
+		myToxicInfectedFlag,
+		myBleedingFlag;
 };
 
 #endif //ENTITY_H

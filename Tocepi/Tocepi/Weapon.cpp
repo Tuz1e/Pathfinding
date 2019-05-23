@@ -86,7 +86,7 @@ void Weapon::Update(float& aDelta, tz::Vector2f aPos, sf::RenderWindow& aWindow)
 	//Weapon rotation
 	float tempAngle = atan2((tempMousePos.Y - tempPos.Y) * -1, (tempMousePos.X - tempPos.X) * -1);
 	tempAngle -= PI / 2;
-	tempAngle *= (180 / PI); //Convert from radians to degrees
+	tempAngle *= (180 / PI); //Convert from radian to degrees
 
 	//Set position of hitbox & sprite
 	myPos = tempPos;
