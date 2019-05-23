@@ -47,6 +47,7 @@ sf::IntRect GameObject::GetBoundingBox()
 void GameObject::SetPosition(tz::Vector2f aPos)
 {
 	myPos = aPos;
+	mySprite->SetPosition(aPos);
 }
 
 bool GameObject::GetCollidableFlag()

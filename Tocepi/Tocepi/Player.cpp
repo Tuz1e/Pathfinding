@@ -114,9 +114,7 @@ void Player::Update(float& aDelta, sf::RenderWindow& aWindow)
 
 		myCorrectingFlag = true;
 	}
-
-	myPos = myPos + myVelocity * aDelta;
-	mySprite->SetPosition(myPos);
+	SetPosition(myPos + (myVelocity * aDelta));
 	myBody.setPosition(GetBoundingBox().left, GetBoundingBox().top);
 	mySprite->UpdateAnimation(aDelta); //Update the animation
 	myWeapon->Update(aDelta, myPos, aWindow);
@@ -124,7 +122,7 @@ void Player::Update(float& aDelta, sf::RenderWindow& aWindow)
 	myMovingFlag = false;
 }
 
-void Player::Draw(sf::RenderWindow& aWindow, sf::View& aView)
+void Player::Draw(sf::RenderWindow & aWindow, sf::View & aView)
 {
 	mySprite->Flip
 	(

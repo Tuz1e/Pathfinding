@@ -6,12 +6,12 @@
 
 #include "Settings.h"
 
-#include <chrono>
-#include <time.h>
-#include <thread>
-#include <sys/timeb.h>
-#include <thread>
-#include <atomic>
+//#include <chrono>
+//#include <time.h>
+//#include <thread>
+//#include <sys/timeb.h>
+//#include <thread>
+//#include <atomic>
 
 //timeb myTb;
 
@@ -30,8 +30,8 @@ int main()
 			tempSettings.GetScreen().Width,
 			tempSettings.GetScreen().Height),
 		tempSettings.GetTitle());
-	tempWindow.setFramerateLimit(60);
-	//tempWindow.setVerticalSyncEnabled(tempSettings.GetScreen().VSync);
+	tempWindow.setFramerateLimit(tempSettings.GetScreen().LimitFramerate);
+	tempWindow.setVerticalSyncEnabled(tempSettings.GetScreen().VSync);
 
 	float tempFps, tempLastTime;
 	tempFps = tempLastTime = 0;
@@ -54,7 +54,6 @@ int main()
 		}
 
 		tempDelta = tempClock.restart().asSeconds();
-
 		tempGame.Update(tempDelta, tempEvent);
 
 		tempWindow.clear(sf::Color(32, 32, 32));

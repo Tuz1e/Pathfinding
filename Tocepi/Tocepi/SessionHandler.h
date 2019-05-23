@@ -5,6 +5,7 @@
 
 #include "Info.h"
 #include "TileMap.h"
+#include "MonsterManager.h"
 
 class SessionHandler
 {
@@ -25,15 +26,17 @@ public:
 		LateDraw(sf::RenderWindow& aWindow);
 
 private:
-	void GetMaps(
-		std::vector<TileMap>& someMaps,
-		float& aRenderOffset,
-		float& aFadeOffset),
+	void
+		GetMaps(
+			std::vector<TileMap>& someMaps,
+			float& aRenderOffset,
+			float& aFadeOffset),
 		LoadMap(
 			std::vector<TileMap>& someMaps,
 			float& aRenderOffset,
 			float& aFadeOffset),
 		LoadPlayer(Input& anInput),
+		LoadMonsters(int anAmount),
 		SetView(sf::View& aView, float& aViewZoom, Player& aPlayer, float& aWidth, float& aHeight),
 		MouseScroll(sf::View& aView, sf::Event& anEvent);
 
@@ -46,6 +49,7 @@ private:
 
 	std::vector<TileMap> myMaps;
 	Player* myPlayer;
+	MonsterManager* myMonsterManager;
 	sf::View
 		myView,
 		myMinimap;

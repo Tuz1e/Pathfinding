@@ -10,5 +10,6 @@
 	</ScreenAspectRatio>
 	<Fullscreen>0</Fullscreen>
 	<FrameCounter>0</FrameCounter>
-	<VSync>0</VSync>
+	<LimitFramerate>60</LimitFramerate>
+	<VSync>1</VSync>
 </Tocepi>

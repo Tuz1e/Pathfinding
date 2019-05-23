@@ -5,7 +5,7 @@
 #include "Input.h"
 #include "Weapon.h"
 
-#define PLAYER_CHARACTER "Content/profiles/characters/character_elf_f.xml"
+#define PLAYER_CHARACTER "Content/profiles/characters/character_elf_m.xml"
 
 #define WEAPON_DEV "Content/profiles/items/weapons/weapon_dev_sword.xml"
 

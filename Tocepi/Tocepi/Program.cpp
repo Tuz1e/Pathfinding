@@ -1,8 +1,5 @@
 #include "Program.h"
 
-//TODO: Render queue to make that of which object has the highest Y value
-//rendered above the other
-
 Program::Program()
 {
 	myState = GameState::SESSION;
@@ -75,7 +72,9 @@ void Program::Draw(sf::RenderWindow& aWindow)
 
 void Program::LateDraw(sf::RenderWindow& aWindow, float& someFps)
 {
-	aWindow.setView(aWindow.getDefaultView()); //Makes sure that UI Elements etc are actually visible
+	//FIX: Breaks certain functions
+	//aWindow.setView(aWindow.getDefaultView()); //Makes sure that UI Elements etc are actually visible
+
 	switch (myState)
 	{
 	case GameState::MENU:
@@ -89,18 +88,18 @@ void Program::LateDraw(sf::RenderWindow& aWindow, float& someFps)
 		break;
 	}
 
-	if (myFrameCFlag)
-	{
-		if (myCounter >= 60)
-		{
-			myText.setString("FPS: " + std::to_string(someFps));
-			myCounter = 0;
-		}
-		aWindow.draw(myText);
-	}
+	//if (myFrameCFlag)
+	//{
+	//	if (myCounter >= 60)
+	//	{
+	//		myText.setString("FPS: " + std::to_string(someFps));
+	//		myCounter = 0;
+	//	}
+	//	aWindow.draw(myText);
+	//}
 }
 
-void Program::InitSession(SessionHandler & aSession, sf::RenderWindow & aWindow)
+void Program::InitSession(SessionHandler& aSession, sf::RenderWindow& aWindow)
 {
 	//TODO: Session handler to be more flexible
 	if (myState == GameState::SESSION)

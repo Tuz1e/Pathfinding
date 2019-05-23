@@ -10,3 +10,4 @@
 #define PLAYER_DEFAULT "Content/profiles/player/player_default.xml"
 
 #define MAPLOCATIONS "Content/profiles/maps"
+#define MONSTERLOCATIONS "Content/profiles/entities/monsters"

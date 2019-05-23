@@ -16,6 +16,7 @@ void Settings::LoadDefault()
 	myScreen.Height = ConvertToInt(GetFromXml(DEFAULT_SETTINGS, "SS_Height"));
 	myScreen.AspectWidth = ConvertToInt(GetFromXml(DEFAULT_SETTINGS, "SAR_Width"));
 	myScreen.AspectHeight = ConvertToInt(GetFromXml(DEFAULT_SETTINGS, "SAR_Height"));
+	myScreen.LimitFramerate = ConvertToInt(GetFromXml(DEFAULT_SETTINGS, "LimitFramerate"));
 
 	myScreen.Fullscreen = ((ConvertToInt(GetFromXml(DEFAULT_SETTINGS, "Fullscreen"))) == 1) ? true : false;
 	myScreen.FrameCounter = ((ConvertToInt(GetFromXml(DEFAULT_SETTINGS, "FrameCounter"))) == 1) ? true : false;

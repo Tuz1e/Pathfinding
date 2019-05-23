@@ -7,6 +7,7 @@ struct Screen
 {
 	int Width, Height;
 	int AspectWidth, AspectHeight;
+	int LimitFramerate;
 	bool Fullscreen, FrameCounter, VSync;
 };
 

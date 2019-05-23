@@ -7,12 +7,30 @@ class Monster : public Entity
 {
 public:
 	Monster();
+	Monster(
+		std::string aName,
+		int someHealth,
+		int aVision,
+		float aSpawnRate,
+		bool aToxicFlag,
+		bool aBleedFlag,
+		bool aProvokeSightFlag,
+		bool aProvokeHitFlag
+	);
 	~Monster();
 
 	void
-		SetDirection(tz::Vector2f& aPos),
-		Update(float& aDelta) override,
+		Update(float& aDelta, tz::Vector2f& aPos),
 		Draw(sf::RenderWindow& aWindow) override;
+
+	void SetToxicFlag(bool aStatement),
+		SetBleedFlag(bool aStatement),
+		SetProvokeSightFlag(bool aStatement),
+		SetProvokeHitFlag(bool aStatement),
+		SetVisionFlag(int aVision),
+		SetSpawnRate(int aSpawnRate);
+
+	bool SetDestination(tz::Vector2f& aPos);
 
 	bool
 		& GetToxicFlag(),
@@ -28,8 +46,10 @@ private:
 	bool
 		myToxicFlag,
 		myBleedFlag,
-		myProvokeSight,
-		myProvokeHit;
+		myProvokeSightFlag,
+		myProvokeHitFlag,
+		myProvokedFlag,
+		myGotHitFlag;
 	int myVision;
 	float mySpawnRate;
 };

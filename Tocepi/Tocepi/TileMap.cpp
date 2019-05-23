@@ -1,6 +1,5 @@
 #include "TileMap.h"
 
-//TODO: Load map xml using tinyxml
 //TODO: Chunk loading
 
 TileMap::TileMap(std::string aLocation, float aRenderOffset, float aFadeOffset) :
@@ -89,8 +88,6 @@ void TileMap::LoadData()
 
 void TileMap::Update(Player & aPlayer)
 {
-	//TODO: Map update logic including collision
-
 	for (size_t i = 0; i < myLayers->size(); i++)
 	{
 		if (myLayers->at(i).GetCollisions())

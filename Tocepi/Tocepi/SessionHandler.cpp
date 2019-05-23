@@ -1,6 +1,7 @@
 #include "SessionHandler.h"
 
 //TODO: Loading screen for maps
+//TODO: Render queue to render based on Y position.
 
 SessionHandler::SessionHandler()
 {
@@ -10,6 +11,7 @@ SessionHandler::SessionHandler()
 SessionHandler::~SessionHandler()
 {
 	DelPtr(myPlayer);
+	DelPtr(myMonsterManager);
 }
 
 ///<summary>
@@ -37,9 +39,36 @@ void SessionHandler::Init(
 	LoadMap(myMaps, aRenderOffset, aFadeOffset);
 	LoadPlayer(anInput);
 
+	myMonsterManager = new MonsterManager(MONSTERLOCATIONS);
+	LoadMonsters(Randomize(0, 100));
+
 	SetView(myView, aViewZoom, *myPlayer, aScreenWidth, aScreenHeight);
 
 	myMinimap.setViewport(sf::FloatRect(0.75f, 0.f, 0.25f, 0.25f));
+}
+
+void SessionHandler::Update(float& aDelta, sf::Event& anEvent)
+{
+	MouseScroll(myView, anEvent);
+	myView.move
+	(
+		sf::Vector2f(myPlayer->GetVelocity().X, myPlayer->GetVelocity().Y) * aDelta
+	);
+
+	myMaps[myMapId].Update(*myPlayer);
+
+	myPlayer->Update(aDelta, *myWindow);
+	myMonsterManager->Update(aDelta, myPlayer->GetPosition());
+}
+
+void SessionHandler::Draw(sf::RenderWindow& aWindow)
+{
+	//Update/Set view
+	aWindow.setView(myView);
+
+	myMaps[myMapId].Draw(aWindow, *myPlayer);
+	myPlayer->Draw(aWindow, myView);
+	myMonsterManager->Draw(aWindow, myRenderOffset, myPlayer->GetPosition());
 }
 
 void SessionHandler::GetMaps(
@@ -57,18 +86,43 @@ void SessionHandler::GetMaps(
 	}
 }
 
-void SessionHandler::MouseScroll(sf::View& aView, sf::Event& anEvent)
+void SessionHandler::LoadMonsters(int anAmount)
 {
-	//TODO: Zoom/Unzoom when scrolling
-	if (anEvent.type == sf::Event::MouseWheelScrolled)
+	std::vector<Tile> tempData;
+	for (size_t i = 0; i < myMaps[myMapId].GetLayers()->size(); i++)
 	{
-		if (anEvent.mouseWheelScroll.wheel == sf::Mouse::VerticalWheel)
+		if (myMaps[myMapId].GetLayers()->at(i).GetEnemySpawns())
 		{
-			if (anEvent.MouseWheelScrolled)
-			{
-			}
+			tempData = myMaps[myMapId].GetLayers()->at(i).GetData();
+			break;
 		}
 	}
+
+	//Makes sure there are actually supposed to spawn monsters on the map
+	if (tempData.size() > 0)
+	{
+		myMonsterManager->LoadDefaults(anAmount);
+
+		for (size_t i = 0; i < myMonsterManager->GetMonsters().size(); i++)
+		{
+			//Sets monster position to a random positition between available spawn positions
+			myMonsterManager->GetMonsters()[i].SetPosition((tempData[Randomize(0, tempData.size())]).GetPosition());
+		}
+	}
+}
+
+void SessionHandler::MouseScroll(sf::View& aView, sf::Event& anEvent)
+{
+	////TODO: Zoom/Unzoom view when scrolling
+	//if (anEvent.type == sf::Event::MouseWheelScrolled)
+	//{
+	//	if (anEvent.mouseWheelScroll.wheel == sf::Mouse::VerticalWheel)
+	//	{
+	//		if (anEvent.MouseWheelScrolled)
+	//		{
+	//		}
+	//	}
+	//}
 }
 
 void SessionHandler::SetView(sf::View& aView, float& aViewZoom, Player& aPlayer, float& aWidth, float& aHeight)
@@ -129,30 +183,6 @@ void SessionHandler::LoadMap(std::vector<TileMap>& someMaps, float& aRenderOffse
 	PrintLoaded("Session map");
 }
 
-void SessionHandler::Update(float& aDelta, sf::Event& anEvent)
-{
-	MouseScroll(myView, anEvent);
-	myView.move
-	(
-		sf::Vector2f(myPlayer->GetVelocity().X, myPlayer->GetVelocity().Y) * aDelta
-	);
-
-	myMaps[myMapId].Update(*myPlayer);
-
-	myPlayer->Update(aDelta, *myWindow);
-}
-
-void SessionHandler::Draw(sf::RenderWindow& aWindow)
-{
-	aWindow.setView(myView);
-
-	myMaps[myMapId].Draw(aWindow, *myPlayer);
-
-	myPlayer->Draw(aWindow, myView);
-}
-
 void SessionHandler::LateDraw(sf::RenderWindow& aWindow)
 {
-	//aWindow.setView(myMinimap);
-	//myMaps[myMapId].Draw(aWindow, *myPlayer);
 }

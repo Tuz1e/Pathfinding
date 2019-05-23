@@ -2,8 +2,8 @@
 <Tocepi>
 	<Username>Small Skeleton</Username>
 	<Speed>
-		<SpeedX>89</SpeedX>
-		<SpeedY>89</SpeedY>
+		<SpeedX>68</SpeedX>
+		<SpeedY>68</SpeedY>
 	</Speed>
 	<TextureProfile>
 		<TXP0>Content/profiles/textures/characters/character_texture_small_skeleton.xml</TXP0>
