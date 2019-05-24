@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tocepi>
+	<Username>Cleaver</Username>
+	<Durability>750</Durability>
+	<BaseDamage>7</BaseDamage>
+	<Range>0</Range>
+	<RangeProjectileTexture></RangeProjectileTexture>
+	<Throwable>1</Throwable>
+	<Stun>0</Stun>
+	<Description>A cleaver.</Description>
+	<RotationSpeed>
+		<Speed>4.0</Speed>
+	</RotationSpeed>
+	<Texture>
+		<TXP0>Content/profiles/textures/items/weapons/weapon_texture_cleaver.xml</TXP0>
+	</Texture>
+</Tocepi>

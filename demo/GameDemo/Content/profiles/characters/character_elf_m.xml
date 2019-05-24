@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tocepi>
+	<Username>Male Elf</Username>
+	<Speed>
+		<SpeedX>72</SpeedX>
+		<SpeedY>72</SpeedY>
+	</Speed>
+	<TextureProfile>
+		<TXP0>Content/profiles/textures/characters/character_texture_elf_m.xml</TXP0>
+	</TextureProfile>
+</Tocepi>

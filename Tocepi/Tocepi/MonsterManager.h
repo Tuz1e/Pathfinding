@@ -15,6 +15,8 @@ public:
 		Update(float& aDelta, tz::Vector2f& aPos),
 		Draw(sf::RenderWindow& aWindow, const float& aRenderDis, tz::Vector2f& aPos);
 
+	void SetMonsters(std::vector<Monster> someMonsters);
+
 	std::vector<Monster>& GetMonsters();
 
 private:

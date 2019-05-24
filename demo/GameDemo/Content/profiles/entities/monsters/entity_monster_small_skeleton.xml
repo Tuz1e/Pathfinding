@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tocepi>
+	<Username>Small Skeleton</Username>
+	<Health>200</Health>
+	<BaseDamage>17</BaseDamage>
+	<Profile>Content/profiles/characters/character_small_skeleton.xml</Profile>
+</Tocepi>

@@ -59,6 +59,30 @@ void SessionHandler::Update(float& aDelta, sf::Event& anEvent)
 
 	myPlayer->Update(aDelta, *myWindow);
 	myMonsterManager->Update(aDelta, myPlayer->GetPosition());
+
+	for (size_t i = 0; i < myMonsterManager->GetMonsters().size(); i++)
+	{
+		if (myPlayer->CheckColliding(myMonsterManager->GetMonsters().at(i).GetBody()))
+		{
+			myMonsterManager->GetMonsters().at(i).SetHasHit(true);
+			myPlayer->SetHit(myMonsterManager->GetMonsters().at(i).GetBaseDamage());
+		}
+
+		if (myPlayer->GetWeapon()->CheckColliding(myMonsterManager->GetMonsters().at(i).GetBody()))
+		{
+			myMonsterManager->GetMonsters().at(i).SetHit(-myPlayer->GetWeapon()->GetBaseDamage());
+		}
+	}
+
+	std::vector<Monster> tempMonsters;
+	for (size_t i = 0; i < myMonsterManager->GetMonsters().size(); i++)
+	{
+		if (myMonsterManager->GetMonsters().at(i).GetAliveFlag())
+		{
+			tempMonsters.push_back(myMonsterManager->GetMonsters().at(i));
+		}
+	}
+	myMonsterManager->SetMonsters(tempMonsters);
 }
 
 void SessionHandler::Draw(sf::RenderWindow& aWindow)

@@ -51,3 +51,26 @@ void Entity::LoadDefaults(std::string aLocation)
 
 	PrintLoaded("Entity defaults");
 }
+
+void Entity::SetHit(float someDamage)
+{
+	if (!myGotHitFlag)
+	{
+		myGotHitFlag = true;
+		myGotHitCounter = 15;
+		
+		ModifyHealth(someDamage);
+
+		if (myAliveFlag && myHealth <= 0)
+		{
+			std::cout << "Entity died." << std::endl;
+			myAliveFlag = false;
+		}
+	}
+}
+
+bool& Entity::GetAliveFlag()
+{
+	return myAliveFlag;
+}
+

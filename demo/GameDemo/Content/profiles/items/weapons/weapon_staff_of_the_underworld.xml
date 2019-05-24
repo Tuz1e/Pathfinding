@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tocepi>
+	<Username>Staff of the Underworld</Username>
+	<Durability>2500</Durability>
+	<BaseDamage>0</BaseDamage>
+	<Range>1</Range>
+	<RangeProjectileTexture></RangeProjectileTexture>
+	<Throwable>0</Throwable>
+	<Stun>0</Stun>
+	<Description>A staff from Lucifer himself.</Description>
+	<RotationSpeed>
+		<Speed>4.5</Speed>
+	</RotationSpeed>
+	<Texture>
+		<TXP0>Content/profiles/textures/items/weapons/weapon_texture_red_magic_staff.xml</TXP0>
+	</Texture>
+</Tocepi>

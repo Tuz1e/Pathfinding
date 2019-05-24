@@ -9,20 +9,23 @@ Monster::Monster(
 	int someHealth,
 	int aVision,
 	float aSpawnRate,
+	float aBaseDamage,
 	bool aToxicFlag,
 	bool aBleedFlag,
 	bool aProvokeSightFlag,
 	bool aProvokeHitFlag
 )
 	: myVision(aVision), mySpawnRate(aSpawnRate),
-	myToxicFlag(aToxicFlag), myBleedFlag(aBleedFlag),
+	myBaseDamage(aBaseDamage), myToxicFlag(aToxicFlag), 
+	myBleedFlag(aBleedFlag),
 	myProvokeSightFlag(aProvokeSightFlag),
 	myProvokeHitFlag(aProvokeHitFlag)
 {
 	myName = aName;
 	myHealth = someHealth;
-	myProvokedFlag = false;
+	myProvokedFlag = (aProvokeSightFlag) ? true : false;
 	myGotHitFlag = false;
+	myAliveFlag = true;
 }
 
 Monster::~Monster()
@@ -31,15 +34,43 @@ Monster::~Monster()
 
 void Monster::Update(float& aDelta, tz::Vector2f& aPos)
 {
-	if ((myProvokeSightFlag || myProvokeHitFlag) && !myProvokedFlag)
+	if (!myAliveFlag)
+	{
+		return;
+	}
+
+	if ((myGotHitFlag && myProvokeHitFlag || myProvokeSightFlag) && !myProvokedFlag)
 	{
 		myProvokedFlag = true;
 	}
 
+	//TODO: Turn into a method
+	if (myGotHitFlag)
+	{
+		if (myGotHitCounter <= 0)
+		{
+			myGotHitFlag = false;
+		}
+		else
+		{
+			myGotHitCounter -= (1 * aDelta);
+		}
+	}
+
+	if (myHasHitFlag)
+	{
+		if (myHasHitCounter <= 0)
+		{
+			myHasHitFlag = false;
+		}
+		else
+		{
+			myHasHitCounter -= (1 * aDelta);
+		}
+	}
+
 	if (myProvokedFlag)
 	{
-		//TODO: Monster move logic
-
 		if (SetDestination(aPos))
 		{
 			SetPosition(myPos + (myDestination * mySpeed * aDelta));
@@ -57,6 +88,7 @@ void Monster::Update(float& aDelta, tz::Vector2f& aPos)
 			{
 				myTextureType = TextureType::IDLE;
 				mySprite->SetTexture(myTextureType);
+				myProvokedFlag = false;
 			}
 		}
 	}
@@ -66,6 +98,10 @@ void Monster::Update(float& aDelta, tz::Vector2f& aPos)
 
 void Monster::Draw(sf::RenderWindow& aWindow)
 {
+	if (!myAliveFlag)
+	{
+		return;
+	}
 	mySprite->Draw(aWindow);
 }
 
@@ -74,9 +110,24 @@ void Monster::SetToxicFlag(bool aStatement)
 	myToxicFlag = aStatement;
 }
 
+void Monster::SetBaseDamage(float aBaseDamage)
+{
+	myBaseDamage = aBaseDamage;
+}
+
 void Monster::SetSpawnRate(int aSpawnRate)
 {
 	mySpawnRate = aSpawnRate;
+}
+
+void Monster::SetHasHit(bool aStatement)
+{
+	myHasHitFlag = aStatement;
+
+	if (aStatement)
+	{
+		myHasHitCounter = 15;
+	}
 }
 
 void Monster::SetVisionFlag(int aVision)
@@ -120,9 +171,19 @@ bool& Monster::GetToxicFlag()
 	return myToxicFlag;
 }
 
-bool& Monster::GetProvokeHit()
+float& Monster::GetBaseDamage()
+{
+	return myBaseDamage;
+}
+
+bool& Monster::GetProvokeHitFlag()
 {
 	return myProvokeHitFlag;
+}
+
+bool Monster::GetHasHitFlag()
+{
+	return myHasHitFlag;
 }
 
 int& Monster::GetVision()
@@ -135,7 +196,7 @@ float& Monster::GetSpawnRate()
 	return mySpawnRate;
 }
 
-bool& Monster::GetProvokeSight()
+bool& Monster::GetProvokeSightFlag()
 {
 	return myProvokeSightFlag;
 }

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tocepi>
+	<Username>Test Map</Username>
+	<Layers>7</Layers>
+	<Width>20</Width>
+	<Height>20</Height>
+	<Data>Content/maps/test_map/test_map.txt</Data>
+	<TX>Content/textures/maps/map_texture_dungeontileset.png</TX>
+	<TileScale>1</TileScale>
+	<TileDimension>16</TileDimension>
+	<TXTiles>1024</TXTiles>
+	<TXVertical>32</TXVertical>
+	<TXHorizontal>32</TXHorizontal>
+	
+	<L0-Collision>1</L0-Collision>
+	<L0-TrapSpawn>0</L0-TrapSpawn>
+	<L0-Door>0</L0-Door>
+	<L0-Chest>0</L0-Chest>
+	<L0-PlayerSpawn>0</L0-PlayerSpawn>
+	<L0-EnemySpawn>0</L0-EnemySpawn>
+	<L0-Renderable>1</L0-Renderable>
+	
+	<L1-Collision>0</L1-Collision>
+	<L1-TrapSpawn>0</L1-TrapSpawn>
+	<L1-Door>0</L1-Door>
+	<L1-Chest>0</L1-Chest>
+	<L1-PlayerSpawn>0</L1-PlayerSpawn>
+	<L1-EnemySpawn>0</L1-EnemySpawn>
+	<L1-Renderable>1</L1-Renderable>
+	
+	<L2-Collision>0</L2-Collision>
+	<L2-TrapSpawn>1</L2-TrapSpawn>
+	<L2-Door>0</L2-Door>
+	<L2-Chest>0</L2-Chest>
+	<L2-PlayerSpawn>0</L2-PlayerSpawn>
+	<L2-EnemySpawn>0</L2-EnemySpawn>
+	<L2-Renderable>0</L2-Renderable>
+	
+	<L3-Collision>0</L3-Collision>
+	<L3-TrapSpawn>0</L3-TrapSpawn>
+	<L3-Door>1</L3-Door>
+	<L3-Chest>0</L3-Chest>
+	<L3-PlayerSpawn>0</L3-PlayerSpawn>
+	<L3-EnemySpawn>0</L3-EnemySpawn>
+	<L3-Renderable>0</L3-Renderable>
+	
+	<L4-Collision>0</L4-Collision>
+	<L4-TrapSpawn>0</L4-TrapSpawn>
+	<L4-Door>0</L4-Door>
+	<L4-Chest>1</L4-Chest>
+	<L4-PlayerSpawn>0</L4-PlayerSpawn>
+	<L4-EnemySpawn>0</L4-EnemySpawn>
+	<L4-Renderable>0</L4-Renderable>
+	
+	<L5-Collision>0</L5-Collision>
+	<L5-TrapSpawn>0</L5-TrapSpawn>
+	<L5-Door>0</L5-Door>
+	<L5-Chest>0</L5-Chest>
+	<L5-PlayerSpawn>1</L5-PlayerSpawn>
+	<L5-EnemySpawn>0</L5-EnemySpawn>
+	<L5-Renderable>0</L5-Renderable>
+	
+	<L6-Collision>0</L6-Collision>
+	<L6-TrapSpawn>0</L6-TrapSpawn>
+	<L6-Door>0</L6-Door>
+	<L6-Chest>0</L6-Chest>
+	<L6-PlayerSpawn>0</L6-PlayerSpawn>
+	<L6-EnemySpawn>1</L6-EnemySpawn>
+	<L6-Renderable>0</L6-Renderable>
+</Tocepi>

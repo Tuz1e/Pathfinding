@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tocepi>
+	<Username>Default</Username>
+	<Speed>
+		<SpeedX>90</SpeedX>
+		<SpeedY>90</SpeedY>
+	</Speed>
+	<Texture>
+		<TXP0>Content/profiles/textures/characters/character_texture_default.xml</TXP0>
+	</Texture>
+</Tocepi>

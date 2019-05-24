@@ -30,6 +30,7 @@ void MonsterManager::LoadDefaults(int anAmount)
 					ConvertToInt(GetFromXml(tempProfile, "Health")),
 					ConvertToInt(GetFromXml(tempProfile, "Vision")),
 					ConvertToFloat(GetFromXml(tempProfile, "SpawnRate")),
+					ConvertToFloat(GetFromXml(tempProfile, "BaseDamage")),
 					(ConvertToInt(GetFromXml(tempProfile, "Toxic")) == 1 ? true : false),
 					(ConvertToInt(GetFromXml(tempProfile, "Bleed")) == 1 ? true : false),
 					(ConvertToInt(GetFromXml(tempProfile, "ProvokeSight")) == 1 ? true : false),
@@ -64,6 +65,11 @@ void MonsterManager::Draw(sf::RenderWindow & aWindow, const float& aRenderDis, t
 			myMonsters[i].Draw(aWindow);
 		}
 	}
+}
+
+void MonsterManager::SetMonsters(std::vector<Monster> someMonsters)
+{
+	myMonsters = someMonsters;
 }
 
 std::vector<Monster>& MonsterManager::GetMonsters()

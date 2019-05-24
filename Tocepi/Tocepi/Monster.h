@@ -12,6 +12,7 @@ public:
 		int someHealth,
 		int aVision,
 		float aSpawnRate,
+		float aBaseDamage,
 		bool aToxicFlag,
 		bool aBleedFlag,
 		bool aProvokeSightFlag,
@@ -28,18 +29,25 @@ public:
 		SetProvokeSightFlag(bool aStatement),
 		SetProvokeHitFlag(bool aStatement),
 		SetVisionFlag(int aVision),
-		SetSpawnRate(int aSpawnRate);
+		SetSpawnRate(int aSpawnRate),
+		SetBaseDamage(float aBaseDamage);
+
+	void SetHasHit(bool aStatement);
 
 	bool SetDestination(tz::Vector2f& aPos);
 
 	bool
 		& GetToxicFlag(),
 		& GetBleedFlag(),
-		& GetProvokeSight(),
-		& GetProvokeHit();
+		& GetProvokeSightFlag(),
+		& GetProvokeHitFlag();
+
+	bool GetHasHitFlag();
 
 	int& GetVision();
-	float& GetSpawnRate();
+	float
+		& GetSpawnRate(),
+		& GetBaseDamage();
 
 private:
 	tz::Vector2f myDestination;
@@ -49,9 +57,13 @@ private:
 		myProvokeSightFlag,
 		myProvokeHitFlag,
 		myProvokedFlag,
-		myGotHitFlag;
+		myGotHitFlag,
+		myHasHitFlag;
 	int myVision;
-	float mySpawnRate;
+	float
+		mySpawnRate, 
+		myHasHitCounter,
+		myBaseDamage;
 };
 
 #endif //MONSTER_H

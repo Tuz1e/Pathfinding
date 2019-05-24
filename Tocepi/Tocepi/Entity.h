@@ -13,10 +13,14 @@ public:
 		& GetVelocity(),
 		& GetSpeed();
 	sf::IntRect GetBoundingBox();
-
-	float& GetHealth();
 	void ModifyHealth(float& someDamage);
 	void LoadDefaults(std::string aLocation = "");
+
+	void SetHit(float someDamage);
+	
+	bool &GetAliveFlag();
+
+	float& GetHealth();
 
 protected:
 	tz::Vector2f
@@ -24,10 +28,17 @@ protected:
 		mySpeed;
 	TextureType myTextureType;
 	std::string myProfileLocation;
-	float myHealth;
-	bool myCollidingFlag = false,
+	float 
+		myHealth, 
+		myGotHitCounter;
+	bool 
+		myCollidingFlag = false,
 		myToxicInfectedFlag,
 		myBleedingFlag;
+
+	bool 
+		myAliveFlag, 
+		myGotHitFlag = false;
 };
 
 #endif //ENTITY_H

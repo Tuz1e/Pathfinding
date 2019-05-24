@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tocepi>
+	<Username>Chest</Username>
+	<Durability>1</Durability>
+	<OpenAble>1</OpenAble>
+	<Locked>0</Locked>
+	<Texture>
+		<TXP0>Content/profiles/textures/objects/object_chest_template.xml</TXP0>
+	</Texture>
+</Tocepi>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tocepi>
+	<Username>Not so small hammer</Username>
+	<Durability>1950</Durability>
+	<BaseDamage>25</BaseDamage>
+	<Range>0</Range>
+	<RangeProjectileTexture></RangeProjectileTexture>
+	<Throwable>0</Throwable>
+	<Stun>0</Stun>
+	<Description>A not so small hammer.</Description>
+	<RotationSpeed>
+		<Speed>2.5</Speed>
+	</RotationSpeed>
+	<Texture>
+		<TXP0>Content/profiles/textures/items/weapons/weapon_texture_big_hammer.xml</TXP0>
+	</Texture>
+</Tocepi>

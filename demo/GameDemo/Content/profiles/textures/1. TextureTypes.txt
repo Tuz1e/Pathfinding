@@ -1,0 +1,3 @@
+TX00 = Idle
+TX01 = Run
+TX02 = Hit
