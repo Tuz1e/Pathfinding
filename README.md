@@ -9,12 +9,16 @@ my own tilemap loader.
 
 The loading of the tilemap is setup to easily be changed depending on map file where examples of this could be txt, json or xml files.
 
+NOTE:
+This game was never fully finished, which means, it was just a show of concept in some sort.
+
 ## Demo
 ![Tocepi as of May 19th 2019](demo/demo.gif)
 
 ## Information to run project
 ###### OS Support
 - [x] Windows 10 Pro
+- [x] Windows 10 Education
 
 ###### IDE
 
@@ -30,7 +34,7 @@ git submodule update --init --recursive
 ```
 
 ## Dependencies:
-- TuzLib [My own library] (https://github.com/Tuz1e/TuzLib)
+- TuzLib [My old library] (Library no longer being supported)
 - SFML (Version 1.5.2)[Graphics Library and Game Logic](https://www.sfml-dev.org/, https://github.com/SFML/SFML)
 
 ## Tools
