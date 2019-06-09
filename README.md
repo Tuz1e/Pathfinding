@@ -29,7 +29,7 @@ This game was never fully finished, which means, it was just a show of concept i
 ## Cloning 
 If you are too clone this project, here is the simple commands.
 ```
-git clone https://github.com/Tuz1e/Tocepi [Location]
+git clone https://github.com/TxJson/Tocepi [Location]
 git submodule update --init --recursive
 ```
 
@@ -42,4 +42,4 @@ git submodule update --init --recursive
 
 ## Licensing
 
-[Apache License 2.0](https://github.com/Tuz1e/Tocepi/blob/master/LICENSE)
+[Apache License 2.0](https://github.com/TxJson/Tocepi/blob/master/LICENSE)
