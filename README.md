@@ -1,7 +1,5 @@
 # Tocepi
 
-**NOTE:** *As of 26/06/2020 this game is now under development again*
-
 Game project for last year of upper secondary school.
 
 The task is set to, after a year of other C++ projects, create something of our own. Preferably a game. 
